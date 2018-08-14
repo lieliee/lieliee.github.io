@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="神经网络," />
 
 
 
@@ -79,16 +79,23 @@
 
 
 
-<meta name="description" content="凡心所向，素履所往。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="烈烈">
-<meta property="og:url" content="http://yoursite.com/tags/神经网络/index.html">
+<meta name="description" content="反向传播:训练模型参数，在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小。">
+<meta name="keywords" content="神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建神经网络--反向传播">
+<meta property="og:url" content="http://yoursite.com/2018/08/14/nncback/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="凡心所向，素履所往。">
+<meta property="og:description" content="反向传播:训练模型参数，在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/uploads/nn06.png">
+<meta property="og:image" content="http://yoursite.com/uploads/nn07.png">
+<meta property="og:image" content="http://yoursite.com/uploads/nn08.png">
+<meta property="og:image" content="http://yoursite.com/uploads/nn09.png">
+<meta property="og:updated_time" content="2018-08-14T12:01:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="烈烈">
-<meta name="twitter:description" content="凡心所向，素履所往。">
+<meta name="twitter:title" content="搭建神经网络--反向传播">
+<meta name="twitter:description" content="反向传播:训练模型参数，在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/nn06.png">
 
 
 
@@ -118,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/神经网络/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/14/nncback/"/>
 
 
 
 
 
-  <title>标签: 神经网络 | 烈烈</title>
+  <title>搭建神经网络--反向传播 | 烈烈</title>
   
 
 
@@ -153,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,110 +264,188 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>神经网络<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/14/nncback/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lieliee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/cat.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="烈烈">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/08/14/nncback/" itemprop="url">
-              
-                <span itemprop="name">搭建神经网络--反向传播</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">搭建神经网络--反向传播</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-14T19:36:33+08:00"
-              content="2018-08-14" >
-          08-14
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T19:36:33+08:00">
+                2018-08-14
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习-深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习&深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/14/nncback/" class="leancloud_visitors" data-flag-title="搭建神经网络--反向传播">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/14/nncb/" itemprop="url">
-              
-                <span itemprop="name">搭建神经网络--前向传播</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-14T19:31:09+08:00"
-              content="2018-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/14/nnintroduce/" itemprop="url">
-              
-                <span itemprop="name">什么是神经网络</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-14T18:26:40+08:00"
-              content="2018-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p>反向传播:训练模型参数，在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小。<br><a id="more"></a></p>
+<h4 id="损失函数-loss"><a href="#损失函数-loss" class="headerlink" title="损失函数(loss):"></a>损失函数(loss):</h4><p>计算得到的预测值y与已知答案y_的差距。<br>损失函数的计算有很多方法，均方误差MSE是比较常用的方法之一。</p>
+<h4 id="均方误差MSE"><a href="#均方误差MSE" class="headerlink" title="均方误差MSE:"></a>均方误差MSE:</h4><p>求前向传播计算结果与已知答案之差的平方再求平均。<br><img src="/uploads/nn06.png" alt="avatar"></p>
+<h4 id="反向传播训练方法"><a href="#反向传播训练方法" class="headerlink" title="反向传播训练方法:"></a>反向传播训练方法:</h4><p>以减小loss值为优化目标，有梯度下降、momentum优化器、adam优化器等优化方法。<br>这三种优化方法用 tensorflow 的函数可以表示为:<br>train_step=tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)<br>train_step=tf.train.MomentumOptimizer(learning_rate, momentum).minimize(loss)<br>train_step=tf.train.AdamOptimizer(learning_rate).minimize(loss)</p>
+<h4 id="三种优化方法区别如下"><a href="#三种优化方法区别如下" class="headerlink" title="三种优化方法区别如下:"></a>三种优化方法区别如下:</h4><h5 id="1-tf-train-GradientDescentOptimizer"><a href="#1-tf-train-GradientDescentOptimizer" class="headerlink" title="1.tf.train.GradientDescentOptimizer()"></a>1.tf.train.GradientDescentOptimizer()</h5><p>使用随机梯度下降算法，使参数沿着梯度的反方向，即总损失减小的方向移动，实现更新参数。<br><img src="/uploads/nn07.png" alt="avatar"><br>参数更新公式是<br><img src="/uploads/nn08.png" alt="avatar"><br>其中，𝐽(𝜃)为损失函数，𝜃为参数，𝛼为学习率。</p>
+<h5 id="2-tf-train-MomentumOptimizer"><a href="#2-tf-train-MomentumOptimizer" class="headerlink" title="2.tf.train.MomentumOptimizer()"></a>2.tf.train.MomentumOptimizer()</h5><p>在更新参数时，利用了超参数，参数更新公式是<br><img src="/uploads/nn09.png" alt="avatar"></p>
+<h5 id="3-tf-train-AdamOptimizer"><a href="#3-tf-train-AdamOptimizer" class="headerlink" title="3.tf.train.AdamOptimizer()"></a>3.tf.train.AdamOptimizer()</h5><p>是利用自适应学习率的优化算法，Adam算法和随机梯度下降算法不同。随机梯度下降算法保持单一的学习率更新所有的参数，学 习率在训练过程中并不会改变。而Adam算法通过计算梯度的一阶矩估计和二阶矩估计而为不同的参数设计独立的自适应性学习率。</p>
+<h4 id="学习率"><a href="#学习率" class="headerlink" title="学习率:"></a>学习率:</h4><p>决定每次参数更新的幅度。优化器中都需要一个叫做学习率的参数，使用时，如果学习率选择过大会出现震 荡不收敛的情况，如果学习率选择过小，会出现收敛速度慢的情况。我们可以选个比较小的值填入，比如0.01、0.001。</p>
+<p>进阶:反向传播参数更新推导过程(过程长且复杂，需要了解的小伙伴私信我)</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/14/nncb/" rel="next" title="搭建神经网络--前向传播">
+                <i class="fa fa-chevron-left"></i> 搭建神经网络--前向传播
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -368,6 +453,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODgzOC8xNTM2Ng=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -388,8 +482,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -453,6 +556,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数-loss"><span class="nav-number">1.</span> <span class="nav-text">损失函数(loss):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#均方误差MSE"><span class="nav-number">2.</span> <span class="nav-text">均方误差MSE:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反向传播训练方法"><span class="nav-number">3.</span> <span class="nav-text">反向传播训练方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三种优化方法区别如下"><span class="nav-number">4.</span> <span class="nav-text">三种优化方法区别如下:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-tf-train-GradientDescentOptimizer"><span class="nav-number">4.1.</span> <span class="nav-text">1.tf.train.GradientDescentOptimizer()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-tf-train-MomentumOptimizer"><span class="nav-number">4.2.</span> <span class="nav-text">2.tf.train.MomentumOptimizer()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-tf-train-AdamOptimizer"><span class="nav-number">4.3.</span> <span class="nav-text">3.tf.train.AdamOptimizer()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习率"><span class="nav-number">5.</span> <span class="nav-text">学习率:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -581,6 +700,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -609,6 +732,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
