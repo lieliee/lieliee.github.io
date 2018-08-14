@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://yoursite.com/uploads/nn07.png">
 <meta property="og:image" content="http://yoursite.com/uploads/nn08.png">
 <meta property="og:image" content="http://yoursite.com/uploads/nn09.png">
-<meta property="og:updated_time" content="2018-08-14T12:04:14.000Z">
+<meta property="og:updated_time" content="2018-08-14T12:30:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建神经网络--反向传播">
 <meta name="twitter:description" content="反向传播:训练模型参数，在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小。">
@@ -385,7 +385,7 @@
 <h4 id="三种优化方法区别如下"><a href="#三种优化方法区别如下" class="headerlink" title="三种优化方法区别如下:"></a>三种优化方法区别如下:</h4><h5 id="1-tf-train-GradientDescentOptimizer"><a href="#1-tf-train-GradientDescentOptimizer" class="headerlink" title="1.tf.train.GradientDescentOptimizer()"></a>1.tf.train.GradientDescentOptimizer()</h5><p>使用随机梯度下降算法，使参数沿着梯度的反方向，即总损失减小的方向移动，实现更新参数。<br><img src="/uploads/nn07.png" alt="avatar"><br>参数更新公式是<br><img src="/uploads/nn08.png" alt="avatar"><br>其中，𝐽(𝜃)为损失函数，𝜃为参数，𝛼为学习率。</p>
 <h5 id="2-tf-train-MomentumOptimizer"><a href="#2-tf-train-MomentumOptimizer" class="headerlink" title="2.tf.train.MomentumOptimizer()"></a>2.tf.train.MomentumOptimizer()</h5><p>在更新参数时，利用了超参数，参数更新公式是<br><img src="/uploads/nn09.png" alt="avatar"></p>
 <h5 id="3-tf-train-AdamOptimizer"><a href="#3-tf-train-AdamOptimizer" class="headerlink" title="3.tf.train.AdamOptimizer()"></a>3.tf.train.AdamOptimizer()</h5><p>是利用自适应学习率的优化算法，Adam算法和随机梯度下降算法不同。随机梯度下降算法保持单一的学习率更新所有的参数，学 习率在训练过程中并不会改变。而Adam算法通过计算梯度的一阶矩估计和二阶矩估计而为不同的参数设计独立的自适应性学习率。</p>
-<h4 id="学习率"><a href="#学习率" class="headerlink" title="学习率:"></a>学习率:</h4><p>决定每次参数更新的幅度。优化器中都需要一个叫做学习率的参数，使用时，如果学习率选择过大会出现震 荡不收敛的情况，如果学习率选择过小，会出现收敛速度慢的情况。我们可以选个比较小的值填入，比如0.01、0.001。</p>
+<h4 id="学习率"><a href="#学习率" class="headerlink" title="学习率:"></a>学习率:</h4><p>决定每次参数更新的幅度。优化器中都需要一个叫做学习率的参数，使用时，如果学习率选择过大会出现震 荡不收敛的情况，如果学习率选择过小，会出现收敛速度慢的情况。我们可以选个比较小的值填入，比如0.01、0.001。<br>代码实现参考<a href="https://github.com/lieliee/Data-Analysis-ML/tree/master/NN" target="_blank" rel="noopener">git</a>：back.py</p>
 <p>进阶:反向传播参数更新推导过程(过程长且复杂，想要了解的小伙伴私信我)</p>
 
       
