@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="神经网络," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="正则化是在损失函数中给每个参数 w 加上权重，引入模型复杂度指标，从而抑制模型噪声，减小过拟合。">
+<meta name="keywords" content="神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经网络优化--正则化">
+<meta property="og:url" content="http://yoursite.com/2018/08/15/opt_regular/index.html">
+<meta property="og:site_name" content="烈烈">
+<meta property="og:description" content="正则化是在损失函数中给每个参数 w 加上权重，引入模型复杂度指标，从而抑制模型噪声，减小过拟合。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_regular/regular01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_regular/regular02.png">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_regular/regular03.png">
+<meta property="og:updated_time" content="2018-08-15T15:12:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="神经网络优化--正则化">
+<meta name="twitter:description" content="正则化是在损失函数中给每个参数 w 加上权重，引入模型复杂度指标，从而抑制模型噪声，减小过拟合。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/opt_regular/regular01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/15/opt_regular/"/>
+
+
+
+
+
+  <title>神经网络优化--正则化 | 烈烈</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2deb2847e52e08a9c70ff8e85ce1bdf5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">烈烈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/opt_regular/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lieliee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/cat.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="烈烈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">神经网络优化--正则化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T22:38:05+08:00">
+                2018-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习-深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习&深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/15/opt_regular/" class="leancloud_visitors" data-flag-title="神经网络优化--正则化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>正则化是在损失函数中给每个参数 w 加上权重，引入模型复杂度指标，从而抑制模型噪声，减小过拟合。<br><a id="more"></a></p>
+<h5 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合:"></a>过拟合:</h5><p>神经网络模型在训练数据集上的准确率较高，在新的数据进行预测或分类时准确率较 低，说明模型的泛化能力差。<br>使用正则化后，损失函数 loss 变为两项之和:<br>loss = loss(y 与 y_) + REGULARIZER*loss(w) 其中，第一项是预测结果与标准答案之间的差距，如之前讲过的交叉熵、均方误差等;第二项是正则<br>化计算结果。</p>
+<h4 id="正则化计算方法"><a href="#正则化计算方法" class="headerlink" title="正则化计算方法:"></a>正则化计算方法:</h4><p>1 L1 正则化: 𝒍𝒐𝒔𝒔𝑳𝟏 = ∑𝒊|𝒘𝒊|<br>用 Tesnsorflow 函数表示:loss(w) = tf.contrib.layers.l1_regularizer(REGULARIZER)(w) 2 L2 正则化: 𝒍𝒐𝒔𝒔𝑳𝟐 = ∑𝒊|𝒘𝒊|𝟐<br>用 Tesnsorflow 函数表示:loss(w) = tf.contrib.layers.l2_regularizer(REGULARIZER)(w) √用 Tesnsorflow 函数实现正则化:<br>tf.add_to_collection(‘losses’, tf.contrib.layers.l2_regularizer(regularizer)(w) loss = cem + tf.add_n(tf.get_collection(‘losses’))<br>cem 的计算已在 4.1 节中给出。</p>
+<h4 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h4><p>在本例子中，使用了之前未用过的模块与函数:</p>
+<h5 id="matplotlib-模块"><a href="#matplotlib-模块" class="headerlink" title="matplotlib 模块:"></a>matplotlib 模块:</h5><p>Python 中的可视化工具模块，实现函数可视化终端安装指令:sudo pip install matplotlib</p>
+<h5 id="函数-plt-scatter"><a href="#函数-plt-scatter" class="headerlink" title="函数 plt.scatter():"></a>函数 plt.scatter():</h5><p>利用指定颜色实现点(x,y)的可视化 plt.scatter (x 坐标, y 坐标, c=”颜色”)<br>plt.show()</p>
+<h5 id="收集规定区域内所有的网格坐标点"><a href="#收集规定区域内所有的网格坐标点" class="headerlink" title="收集规定区域内所有的网格坐标点:"></a>收集规定区域内所有的网格坐标点:</h5><p>xx, yy = np.mgrid[起:止:步长, 起:止:步长] #找到规定区域以步长为分辨率的行列网格坐标点 grid = np.c_[xx.ravel(), yy.ravel()] #收集规定区域内所有的网格坐标点 √plt.contour()函数:告知 x、y 坐标和各点高度，用 levels 指定高度的点描上颜色 plt.contour (x 轴坐标值, y 轴坐标值, 该点的高度, levels=[等高线的高度])<br>plt.show()<br>代码如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="comment">#0导入模块 ，生成模拟数据集</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">BATCH_SIZE = <span class="number">30</span> </span><br><span class="line">seed = <span class="number">2</span> </span><br><span class="line"><span class="comment">#基于seed产生随机数</span></span><br><span class="line">rdm = np.random.RandomState(seed)</span><br><span class="line"><span class="comment">#随机数返回300行2列的矩阵，表示300组坐标点（x0,x1）作为输入数据集</span></span><br><span class="line">X = rdm.randn(<span class="number">300</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment">#从X这个300行2列的矩阵中取出一行,判断如果两个坐标的平方和小于2，给Y赋值1，其余赋值0</span></span><br><span class="line"><span class="comment">#作为输入数据集的标签（正确答案）</span></span><br><span class="line">Y_ = [int(x0*x0 + x1*x1 &lt;<span class="number">2</span>) <span class="keyword">for</span> (x0,x1) <span class="keyword">in</span> X]</span><br><span class="line"><span class="comment">#遍历Y中的每个元素，1赋值'red'其余赋值'blue'，这样可视化显示时人可以直观区分</span></span><br><span class="line">Y_c = [[<span class="string">'red'</span> <span class="keyword">if</span> y <span class="keyword">else</span> <span class="string">'blue'</span>] <span class="keyword">for</span> y <span class="keyword">in</span> Y_]</span><br><span class="line"><span class="comment">#对数据集X和标签Y进行shape整理，第一个元素为-1表示，随第二个参数计算得到，第二个元素表示多少列，把X整理为n行2列，把Y整理为n行1列</span></span><br><span class="line">X = np.vstack(X).reshape(<span class="number">-1</span>,<span class="number">2</span>)</span><br><span class="line">Y_ = np.vstack(Y_).reshape(<span class="number">-1</span>,<span class="number">1</span>)</span><br><span class="line"><span class="keyword">print</span> X</span><br><span class="line"><span class="keyword">print</span> Y_</span><br><span class="line"><span class="keyword">print</span> Y_c</span><br><span class="line"><span class="comment">#用plt.scatter画出数据集X各行中第0列元素和第1列元素的点即各行的（x0，x1），用各行Y_c对应的值表示颜色（c是color的缩写） </span></span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>], X[:,<span class="number">1</span>], c=np.squeeze(Y_c)) </span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义神经网络的输入、参数和输出，定义前向传播过程 </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_weight</span><span class="params">(shape, regularizer)</span>:</span></span><br><span class="line">	w = tf.Variable(tf.random_normal(shape), dtype=tf.float32)</span><br><span class="line">	tf.add_to_collection(<span class="string">'losses'</span>, tf.contrib.layers.l2_regularizer(regularizer)(w))</span><br><span class="line">	<span class="keyword">return</span> w</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_bias</span><span class="params">(shape)</span>:</span>  </span><br><span class="line">    b = tf.Variable(tf.constant(<span class="number">0.01</span>, shape=shape)) </span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">	</span><br><span class="line">x = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, <span class="number">2</span>))</span><br><span class="line">y_ = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">w1 = get_weight([<span class="number">2</span>,<span class="number">11</span>], <span class="number">0.01</span>)	</span><br><span class="line">b1 = get_bias([<span class="number">11</span>])</span><br><span class="line">y1 = tf.nn.relu(tf.matmul(x, w1)+b1)</span><br><span class="line"></span><br><span class="line">w2 = get_weight([<span class="number">11</span>,<span class="number">1</span>], <span class="number">0.01</span>)</span><br><span class="line">b2 = get_bias([<span class="number">1</span>])</span><br><span class="line">y = tf.matmul(y1, w2)+b2 </span><br><span class="line"></span><br><span class="line"><span class="comment">#定义损失函数</span></span><br><span class="line">loss_mse = tf.reduce_mean(tf.square(y-y_))</span><br><span class="line">loss_total = loss_mse + tf.add_n(tf.get_collection(<span class="string">'losses'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义反向传播方法：不含正则化</span></span><br><span class="line">train_step = tf.train.AdamOptimizer(<span class="number">0.0001</span>).minimize(loss_mse)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">	init_op = tf.global_variables_initializer()</span><br><span class="line">	sess.run(init_op)</span><br><span class="line">	STEPS = <span class="number">40000</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(STEPS):</span><br><span class="line">		start = (i*BATCH_SIZE) % <span class="number">300</span></span><br><span class="line">		end = start + BATCH_SIZE</span><br><span class="line">		sess.run(train_step, feed_dict=&#123;x:X[start:end], y_:Y_[start:end]&#125;)</span><br><span class="line">		<span class="keyword">if</span> i % <span class="number">2000</span> == <span class="number">0</span>:</span><br><span class="line">			loss_mse_v = sess.run(loss_mse, feed_dict=&#123;x:X, y_:Y_&#125;)</span><br><span class="line">			print(<span class="string">"After %d steps, loss is: %f"</span> %(i, loss_mse_v))</span><br><span class="line">    <span class="comment">#xx在-3到3之间以步长为0.01，yy在-3到3之间以步长0.01,生成二维网格坐标点</span></span><br><span class="line">	xx, yy = np.mgrid[<span class="number">-3</span>:<span class="number">3</span>:<span class="number">.01</span>, <span class="number">-3</span>:<span class="number">3</span>:<span class="number">.01</span>]</span><br><span class="line">	<span class="comment">#将xx , yy拉直，并合并成一个2列的矩阵，得到一个网格坐标点的集合</span></span><br><span class="line">	grid = np.c_[xx.ravel(), yy.ravel()]</span><br><span class="line">	<span class="comment">#将网格坐标点喂入神经网络 ，probs为输出</span></span><br><span class="line">	probs = sess.run(y, feed_dict=&#123;x:grid&#125;)</span><br><span class="line">	<span class="comment">#probs的shape调整成xx的样子</span></span><br><span class="line">	probs = probs.reshape(xx.shape)</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"w1:\n"</span>,sess.run(w1)</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"b1:\n"</span>,sess.run(b1)</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"w2:\n"</span>,sess.run(w2)	</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"b2:\n"</span>,sess.run(b2)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>], X[:,<span class="number">1</span>], c=np.squeeze(Y_c))</span><br><span class="line">plt.contour(xx, yy, probs, levels=[<span class="number">.5</span>])</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义反向传播方法：包含正则化</span></span><br><span class="line">train_step = tf.train.AdamOptimizer(<span class="number">0.0001</span>).minimize(loss_total)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">	init_op = tf.global_variables_initializer()</span><br><span class="line">	sess.run(init_op)</span><br><span class="line">	STEPS = <span class="number">40000</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(STEPS):</span><br><span class="line">		start = (i*BATCH_SIZE) % <span class="number">300</span></span><br><span class="line">		end = start + BATCH_SIZE</span><br><span class="line">		sess.run(train_step, feed_dict=&#123;x: X[start:end], y_:Y_[start:end]&#125;)</span><br><span class="line">		<span class="keyword">if</span> i % <span class="number">2000</span> == <span class="number">0</span>:</span><br><span class="line">			loss_v = sess.run(loss_total, feed_dict=&#123;x:X,y_:Y_&#125;)</span><br><span class="line">			print(<span class="string">"After %d steps, loss is: %f"</span> %(i, loss_v))</span><br><span class="line"></span><br><span class="line">	xx, yy = np.mgrid[<span class="number">-3</span>:<span class="number">3</span>:<span class="number">.01</span>, <span class="number">-3</span>:<span class="number">3</span>:<span class="number">.01</span>]</span><br><span class="line">	grid = np.c_[xx.ravel(), yy.ravel()]</span><br><span class="line">	probs = sess.run(y, feed_dict=&#123;x:grid&#125;)</span><br><span class="line">	probs = probs.reshape(xx.shape)</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"w1:\n"</span>,sess.run(w1)</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"b1:\n"</span>,sess.run(b1)</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"w2:\n"</span>,sess.run(w2)</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"b2:\n"</span>,sess.run(b2)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[:,<span class="number">0</span>], X[:,<span class="number">1</span>], c=np.squeeze(Y_c)) </span><br><span class="line">plt.contour(xx, yy, probs, levels=[<span class="number">.5</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>执行代码，效果如下:<br>首先，数据集实现可视化，x0 + x1 &lt; 2 的点显示红色， x0 + x1 ≥2 的点显示蓝色，如图所示:<br><img src="/uploads/opt_regular/regular01.png" alt="avatar"><br>接着，执行无正则化的训练过程，把红色的点和蓝色的点分开，生成曲线如下图所示:<br><img src="/uploads/opt_regular/regular02.png" alt="avatar"><br>最后，执行有正则化的训练过程，把红色的点和蓝色的点分开，生成曲线如下图所示:<br><img src="/uploads/opt_regular/regular03.png" alt="avatar"><br>对比无正则化与有正则化模型的训练结果，可看出有正则化模型的拟合曲线平滑，模型具有更好的泛化能力。<br>代码实现参考<a href="https://github.com/lieliee/Data-Analysis-ML/tree/master/opt" target="_blank" rel="noopener">Github</a>opt_regular.py</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/15/opt_movingavg/" rel="next" title="神经网络优化--滑动平均">
+                <i class="fa fa-chevron-left"></i> 神经网络优化--滑动平均
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODgzOC8xNTM2Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/cat.jpeg"
+                alt="lieliee" />
+            
+              <p class="site-author-name" itemprop="name">lieliee</p>
+              <p class="site-description motion-element" itemprop="description">凡心所向，素履所往。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#过拟合"><span class="nav-number">1.</span> <span class="nav-text">过拟合:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正则化计算方法"><span class="nav-number"></span> <span class="nav-text">正则化计算方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#举例："><span class="nav-number"></span> <span class="nav-text">举例：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#matplotlib-模块"><span class="nav-number">1.</span> <span class="nav-text">matplotlib 模块:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数-plt-scatter"><span class="nav-number">2.</span> <span class="nav-text">函数 plt.scatter():</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#收集规定区域内所有的网格坐标点"><span class="nav-number">3.</span> <span class="nav-text">收集规定区域内所有的网格坐标点:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lieliee</span>
+
+  
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("PV9hdfVja0ey2xmQNzg01S5R-gzGzoHsz", "qlJ9wR1LxMdf3qTCXdFTosMU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
