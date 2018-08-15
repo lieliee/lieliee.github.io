@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Tensorflow," />
+  <meta name="keywords" content="神经网络," />
 
 
 
@@ -79,21 +79,26 @@
 
 
 
-<meta name="description" content="TensorFlow是谷歌研发的第二代人工智能学习系统，具有快速、灵活、开源、适合大规模应用等特点，深得全球众多开发者的喜爱，是机器学习和深度学习的必备框架。">
-<meta name="keywords" content="Tensorflow">
+<meta name="description" content="神经网络优化主要为通过反向传播算法训练网络参数，在反向传播中，通过优化损失函数，学习率，使用滑动平均，正则化等方法优化网络参数，使神经网络的预测更加准确。">
+<meta name="keywords" content="神经网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu Tensorflow 环境搭建">
-<meta property="og:url" content="http://yoursite.com/2018/08/14/tf/index.html">
+<meta property="og:title" content="神经网络优化--损失函数">
+<meta property="og:url" content="http://yoursite.com/2018/08/15/opt_loss/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="TensorFlow是谷歌研发的第二代人工智能学习系统，具有快速、灵活、开源、适合大规模应用等特点，深得全球众多开发者的喜爱，是机器学习和深度学习的必备框架。">
+<meta property="og:description" content="神经网络优化主要为通过反向传播算法训练网络参数，在反向传播中，通过优化损失函数，学习率，使用滑动平均，正则化等方法优化网络参数，使神经网络的预测更加准确。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/uploads/tf/tf.png">
-<meta property="og:image" content="http://yoursite.com/uploads/tf/tfv.png">
-<meta property="og:updated_time" content="2018-08-15T05:30:37.000Z">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_loss/opt01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_loss/opt02.png">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_loss/active01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_loss/active02.png">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_loss/active03.png">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_loss/opt04.png">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_loss/opt03.png">
+<meta property="og:updated_time" content="2018-08-15T05:41:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu Tensorflow 环境搭建">
-<meta name="twitter:description" content="TensorFlow是谷歌研发的第二代人工智能学习系统，具有快速、灵活、开源、适合大规模应用等特点，深得全球众多开发者的喜爱，是机器学习和深度学习的必备框架。">
-<meta name="twitter:image" content="http://yoursite.com/uploads/tf/tf.png">
+<meta name="twitter:title" content="神经网络优化--损失函数">
+<meta name="twitter:description" content="神经网络优化主要为通过反向传播算法训练网络参数，在反向传播中，通过优化损失函数，学习率，使用滑动平均，正则化等方法优化网络参数，使神经网络的预测更加准确。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/opt_loss/opt01.png">
 
 
 
@@ -123,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/14/tf/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/15/opt_loss/"/>
 
 
 
 
 
-  <title>ubuntu Tensorflow 环境搭建 | 烈烈</title>
+  <title>神经网络优化--损失函数 | 烈烈</title>
   
 
 
@@ -276,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/14/tf/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/opt_loss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lieliee">
@@ -293,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ubuntu Tensorflow 环境搭建</h1>
+          <h1 class="post-title" itemprop="name headline">神经网络优化--损失函数</h1>
         
 
         <div class="post-meta">
@@ -305,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T13:43:34+08:00">
-                2018-08-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T09:58:25+08:00">
+                2018-08-15
               </time>
             
 
@@ -345,7 +350,7 @@
 
           
           
-             <span id="/2018/08/14/tf/" class="leancloud_visitors" data-flag-title="ubuntu Tensorflow 环境搭建">
+             <span id="/2018/08/15/opt_loss/" class="leancloud_visitors" data-flag-title="神经网络优化--损失函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -376,11 +381,15 @@
       
 
       
-        <p>TensorFlow是谷歌研发的第二代人工智能学习系统，具有快速、灵活、开源、适合大规模应用等特点，深得全球众多开发者的喜爱，是机器学习和深度学习的必备框架。<br><a id="more"></a></p>
-<h3 id="1-ubuntu安装"><a href="#1-ubuntu安装" class="headerlink" title="1.ubuntu安装"></a>1.ubuntu安装</h3><p>推荐使用虚拟机安装ubuntu镜像。<br>ubuntu 14.04 64位镜像下载：<br><a href="https://pan.baidu.com/s/1fcqS7dKOMjMDiJUp_x4e8g" target="_blank" rel="noopener">百度云</a> 密码:cwj7</p>
-<h3 id="2-Tensorflow搭建"><a href="#2-Tensorflow搭建" class="headerlink" title="2.Tensorflow搭建"></a>2.Tensorflow搭建</h3><h4 id="首先安装pip："><a href="#首先安装pip：" class="headerlink" title="首先安装pip："></a>首先安装pip：</h4><p>在终端输入<br>sudo apt-get install python-pip</p>
-<h4 id="安装Tensorflow"><a href="#安装Tensorflow" class="headerlink" title="安装Tensorflow"></a>安装Tensorflow</h4><p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/tensorflow/" target="_blank" rel="noopener">清华大学开源软件镜像网</a><br>选择合适的镜像，可根据自己的实际情况选择，推荐稳定版本如下：<br><img src="/uploads/tf/tf.png" alt="avatar"><br>安装完成后在终端输入python进入编程环境，随后输入如图所示则安装成功：<br><img src="/uploads/tf/tfv.png" alt="avatar"></p>
-<p>ps:如果安装之后提示缺少模块，则可以使用pip或apt-get进行安装，推荐apt-get，稳定。</p>
+        <p>神经网络优化主要为通过反向传播算法训练网络参数，在反向传播中，通过优化损失函数，学习率，使用滑动平均，正则化等方法优化网络参数，使神经网络的预测更加准确。<br><a id="more"></a></p>
+<h3 id="1-基本网络"><a href="#1-基本网络" class="headerlink" title="1.基本网络"></a>1.基本网络</h3><p>上一篇中back.py中的网络模型：<br><img src="/uploads/opt_loss/opt01.png" alt="avatar"><br>传统网络模型：<br><img src="/uploads/opt_loss/opt02.png" alt="avatar"></p>
+<h4 id="神经元模型"><a href="#神经元模型" class="headerlink" title="神经元模型:"></a>神经元模型:</h4><p>用数学公式表示为:𝐟(∑𝒊𝒙𝒊𝒘𝒊 + 𝐛)，f为激活函数。神经网络是以神经元为基本单元构成的。 </p>
+<h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数:"></a>激活函数:</h4><p>引入非线性激活因素，提高模型的表达力。常用的激活函数有relu、sigmoid、tanh等。<br>激活函数relu: 在Tensorflow中，用tf.nn.relu()表示<br><img src="/uploads/opt_loss/active01.png" alt="avatar"><br>激活函数 sigmoid:在Tensorflow中，用tf.nn.sigmoid()表示<br><img src="/uploads/opt_loss/active02.png" alt="avatar"><br>激活函数tanh:在Tensorflow 中，用tf.nn.tanh()表示<br><img src="/uploads/opt_loss/active03.png" alt="avatar"><br>神经网络的复杂度:可用神经网络的层数和神经网络中待优化参数个数表示<br>神经网路的层数:一般不计入输入层，层数 = n 个隐藏层 + 1 个输出层<br>神经网路待优化的参数:神经网络中所有参数 w 的个数 + 所有参数 b 的个数<br>例如:<br><img src="/uploads/opt_loss/opt04.png" alt="avatar"><br>在该神经网络中，包含 1 个输入层、1 个隐藏层和 1 个输出层，该神经网络的层数为 2 层。 在该神经网络中，参数的个数是所有参数 w 的个数加上所有参数 b 的总数，第一层参数用三行四列的 二阶张量表示(即 12 个线上的权重 w)再加上 4 个偏置 b;第二层参数是四行两列的二阶张量()即 8 个线上的权重 w)再加上 2 个偏置 b。总参数 = 3<em>4+4 + 4</em>2+2 = 26。</p>
+<h3 id="2-损失函数"><a href="#2-损失函数" class="headerlink" title="2.损失函数"></a>2.损失函数</h3><h4 id="损失函数-loss"><a href="#损失函数-loss" class="headerlink" title="损失函数(loss):"></a>损失函数(loss):</h4><p>用来表示预测值(y)与已知答案(y_)的差距。在训练神经网络时，通过不断改变神经网络中所有参数，使损失函数不断减小，从而训练出更高准确率的神经网络模型。<br>常用的损失函数有均方误差、自定义和交叉熵等。</p>
+<h4 id="均方误差-mse"><a href="#均方误差-mse" class="headerlink" title="均方误差(mse):"></a>均方误差(mse):</h4><p>n个样本的预测值y与已知答案y_之差的平方和，再求平均值。<br><img src="/uploads/opt_loss/opt03.png" alt="avatar"><br>在Tensorflow中用loss_mse = tf.reduce_mean(tf.square(y_ - y))<br>例如:<br>预测酸奶日销量 y，x1 和 x2 是影响日销量的两个因素。<br>应提前采集的数据有:一段时间内，每日的 x1 因素、x2 因素和销量 y_。采集的数据尽量多。<br>在本例中用销量预测产量，最优的产量应该等于销量。由于目前没有数据集，所以拟造了一套数据集。利用 Tensorflow 中函数随机生成 x1、 x2，制造标准答案 y_ = x1 + x2，为了更真实，求和后还加了正负 0.05 的随机噪声。<br>我们把这套自制的数据集喂入神经网络，构建一个一层的神经网络，拟合预测酸奶日销量的函数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="comment">#预测多或预测少的影响一样</span></span><br><span class="line"><span class="comment">#0导入模块，生成数据集</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">BATCH_SIZE = <span class="number">8</span></span><br><span class="line">SEED = <span class="number">23455</span></span><br><span class="line"></span><br><span class="line">rdm = np.random.RandomState(SEED)</span><br><span class="line">X = rdm.rand(<span class="number">32</span>,<span class="number">2</span>)</span><br><span class="line">Y_ = [[x1+x2+(rdm.rand()/<span class="number">10.0</span><span class="number">-0.05</span>)] <span class="keyword">for</span> (x1, x2) <span class="keyword">in</span> X]</span><br><span class="line"></span><br><span class="line"><span class="comment">#1定义神经网络的输入、参数和输出，定义前向传播过程。</span></span><br><span class="line">x = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, <span class="number">2</span>))</span><br><span class="line">y_ = tf.placeholder(tf.float32, shape=(<span class="keyword">None</span>, <span class="number">1</span>))</span><br><span class="line">w1= tf.Variable(tf.random_normal([<span class="number">2</span>, <span class="number">1</span>], stddev=<span class="number">1</span>, seed=<span class="number">1</span>))</span><br><span class="line">y = tf.matmul(x, w1)</span><br><span class="line"></span><br><span class="line"><span class="comment">#2定义损失函数及反向传播方法。</span></span><br><span class="line"><span class="comment">#定义损失函数为MSE,反向传播方法为梯度下降。</span></span><br><span class="line">loss_mse = tf.reduce_mean(tf.square(y_ - y))</span><br><span class="line">train_step = tf.train.GradientDescentOptimizer(<span class="number">0.001</span>).minimize(loss_mse)</span><br><span class="line"></span><br><span class="line"><span class="comment">#3生成会话，训练STEPS轮</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    init_op = tf.global_variables_initializer()</span><br><span class="line">    sess.run(init_op)</span><br><span class="line">    STEPS = <span class="number">20000</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(STEPS):</span><br><span class="line">        start = (i*BATCH_SIZE) % <span class="number">32</span></span><br><span class="line">        end = (i*BATCH_SIZE) % <span class="number">32</span> + BATCH_SIZE</span><br><span class="line">        sess.run(train_step, feed_dict=&#123;x: X[start:end], y_: Y_[start:end]&#125;)</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">500</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"After %d training steps, w1 is: "</span> % (i)</span><br><span class="line">            <span class="keyword">print</span> sess.run(w1), <span class="string">"\n"</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Final w1 is: \n"</span>, sess.run(w1)</span><br><span class="line"><span class="comment">#在本代码#2中尝试其他反向传播方法，看对收敛速度的影响</span></span><br></pre></td></tr></table></figure></p>
+<p>本例中神经网络预测模型为 y = w1<em>x1 + w2</em>x2，损失函数采用均方误差。通过使 损失函数值(loss)不断降低，神经网络模型得到最终参数 w1=0.98，w2=1.02，销量预测结果为 y = 0.98<em>x1 + 1.02</em>x2。由于在生成数据集时，标准答案为 y = x1+x2，因此，销量预测结果和标准 答案已非常接近，说明该神经网络预测酸奶日销量正确。</p>
+<h4 id="交叉熵-Cross-Entropy"><a href="#交叉熵-Cross-Entropy" class="headerlink" title="交叉熵(Cross Entropy):"></a>交叉熵(Cross Entropy):</h4><p>表示两个概率分布之间的距离。交叉熵越大，两个概率分布距离越远，两个概率分布越相异;交叉熵越小，两个概率分布距离越近，两个概率分布越相似。<br>交叉熵计算公式:𝐇(𝐲_ , 𝐲) = −∑𝐲_ ∗ 𝒍𝒐𝒈 𝒚<br>用Tensorflow函数表示为<br>ce= -tf.reduce_mean(y_<em> tf.log(tf.clip_by_value(y, 1e-12, 1.0)))<br>例如:<br>两个神经网络模型解决二分类问题中，已知标准答案为 y_ = (1, 0)，第一个神经网络模型预测结果为y1=(0.6, 0.4)，第二个神经网络模型预测结果为 y2=(0.8, 0.2)，判断哪个神经网络模型预测的结果更接近标准答案。<br>根据交叉熵的计算公式得:<br>H1((1,0),(0.6,0.4)) = -(1</em>log0.6 + 0<em>log0.4) ≈ -(-0.222 + 0) = 0.222<br>H2((1,0),(0.8,0.2)) = -(1</em>log0.8 + 0*log0.2) ≈ -(-0.097 + 0) = 0.097<br>由于 0.222&gt;0.097，所以预测结果 y2 与标准答案 y_更接近，y2 预测更准确。</p>
+<h4 id="自定义损失函数"><a href="#自定义损失函数" class="headerlink" title="自定义损失函数:"></a>自定义损失函数:</h4><p>根据问题的实际情况，定制合理的损失函数。</p>
 
       
     </div>
@@ -398,7 +407,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Tensorflow/" rel="tag"># Tensorflow</a>
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
           
         </div>
       
@@ -411,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/13/python/" rel="next" title="Python基础知识">
-                <i class="fa fa-chevron-left"></i> Python基础知识
+              <a href="/2018/08/14/nn_back/" rel="next" title="搭建神经网络--反向传播">
+                <i class="fa fa-chevron-left"></i> 搭建神经网络--反向传播
               </a>
             
           </div>
@@ -421,8 +430,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/14/nn_introduce/" rel="prev" title="什么是神经网络">
-                什么是神经网络 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/15/opt_learning_rate/" rel="prev" title="神经网络优化--学习率">
+                神经网络优化--学习率 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -564,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ubuntu安装"><span class="nav-number">1.</span> <span class="nav-text">1.ubuntu安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Tensorflow搭建"><span class="nav-number">2.</span> <span class="nav-text">2.Tensorflow搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先安装pip："><span class="nav-number">2.1.</span> <span class="nav-text">首先安装pip：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Tensorflow"><span class="nav-number">2.2.</span> <span class="nav-text">安装Tensorflow</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-基本网络"><span class="nav-number">1.</span> <span class="nav-text">1.基本网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#神经元模型"><span class="nav-number">1.1.</span> <span class="nav-text">神经元模型:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#激活函数"><span class="nav-number">1.2.</span> <span class="nav-text">激活函数:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-损失函数"><span class="nav-number">2.</span> <span class="nav-text">2.损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数-loss"><span class="nav-number">2.1.</span> <span class="nav-text">损失函数(loss):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#均方误差-mse"><span class="nav-number">2.2.</span> <span class="nav-text">均方误差(mse):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交叉熵-Cross-Entropy"><span class="nav-number">2.3.</span> <span class="nav-text">交叉熵(Cross Entropy):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义损失函数"><span class="nav-number">2.4.</span> <span class="nav-text">自定义损失函数:</span></a></li></ol></li></ol></div>
             
 
           </div>
