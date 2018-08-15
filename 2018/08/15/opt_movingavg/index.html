@@ -79,23 +79,20 @@
 
 
 
-<meta name="description" content="反向传播算法是训练模型的核心算法，他可以根据定义好的损失函数优化神经网络中的参数取值，本篇在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小。">
+<meta name="description" content="滑动平均:记录了一段时间内模型中所有参数 w 和 b 各自的平均值。利用滑动平均值可以增强模型的泛化能力。">
 <meta name="keywords" content="神经网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建神经网络--反向传播">
-<meta property="og:url" content="http://yoursite.com/2018/08/14/nn_back/index.html">
+<meta property="og:title" content="神经网络优化--滑动平均">
+<meta property="og:url" content="http://yoursite.com/2018/08/15/opt_movingavg/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="反向传播算法是训练模型的核心算法，他可以根据定义好的损失函数优化神经网络中的参数取值，本篇在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小。">
+<meta property="og:description" content="滑动平均:记录了一段时间内模型中所有参数 w 和 b 各自的平均值。利用滑动平均值可以增强模型的泛化能力。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/uploads/nn_back/nn06.png">
-<meta property="og:image" content="http://yoursite.com/uploads/nn_back/nn07.png">
-<meta property="og:image" content="http://yoursite.com/uploads/nn_back/nn08.png">
-<meta property="og:image" content="http://yoursite.com/uploads/nn_back/nn09.png">
-<meta property="og:updated_time" content="2018-08-15T05:32:06.000Z">
+<meta property="og:image" content="http://yoursite.com/uploads/opt_movingavg/ma01.png">
+<meta property="og:updated_time" content="2018-08-15T14:29:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建神经网络--反向传播">
-<meta name="twitter:description" content="反向传播算法是训练模型的核心算法，他可以根据定义好的损失函数优化神经网络中的参数取值，本篇在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小。">
-<meta name="twitter:image" content="http://yoursite.com/uploads/nn_back/nn06.png">
+<meta name="twitter:title" content="神经网络优化--滑动平均">
+<meta name="twitter:description" content="滑动平均:记录了一段时间内模型中所有参数 w 和 b 各自的平均值。利用滑动平均值可以增强模型的泛化能力。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/opt_movingavg/ma01.png">
 
 
 
@@ -125,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/14/nn_back/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/15/opt_movingavg/"/>
 
 
 
 
 
-  <title>搭建神经网络--反向传播 | 烈烈</title>
+  <title>神经网络优化--滑动平均 | 烈烈</title>
   
 
 
@@ -278,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/14/nn_back/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/opt_movingavg/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lieliee">
@@ -295,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭建神经网络--反向传播</h1>
+          <h1 class="post-title" itemprop="name headline">神经网络优化--滑动平均</h1>
         
 
         <div class="post-meta">
@@ -307,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T19:36:33+08:00">
-                2018-08-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T18:37:26+08:00">
+                2018-08-15
               </time>
             
 
@@ -347,7 +344,7 @@
 
           
           
-             <span id="/2018/08/14/nn_back/" class="leancloud_visitors" data-flag-title="搭建神经网络--反向传播">
+             <span id="/2018/08/15/opt_movingavg/" class="leancloud_visitors" data-flag-title="神经网络优化--滑动平均">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -378,15 +375,8 @@
       
 
       
-        <p>反向传播算法是训练模型的核心算法，他可以根据定义好的损失函数优化神经网络中的参数取值，本篇在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小。<br><a id="more"></a></p>
-<h4 id="损失函数-loss"><a href="#损失函数-loss" class="headerlink" title="损失函数(loss):"></a>损失函数(loss):</h4><p>计算得到的预测值y与已知答案y_的差距。<br>损失函数的计算有很多方法，均方误差MSE是比较常用的方法之一。</p>
-<h4 id="均方误差MSE"><a href="#均方误差MSE" class="headerlink" title="均方误差MSE:"></a>均方误差MSE:</h4><p>求前向传播计算结果与已知答案之差的平方再求平均。<br><img src="/uploads/nn_back/nn06.png" alt="avatar"></p>
-<h4 id="反向传播训练方法"><a href="#反向传播训练方法" class="headerlink" title="反向传播训练方法:"></a>反向传播训练方法:</h4><p>以减小loss值为优化目标，有梯度下降、momentum优化器、adam优化器等优化方法。<br>这三种优化方法用 tensorflow 的函数可以表示为:<br>train_step=tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)<br>train_step=tf.train.MomentumOptimizer(learning_rate, momentum).minimize(loss)<br>train_step=tf.train.AdamOptimizer(learning_rate).minimize(loss)</p>
-<h4 id="三种优化方法区别如下"><a href="#三种优化方法区别如下" class="headerlink" title="三种优化方法区别如下:"></a>三种优化方法区别如下:</h4><h5 id="1-tf-train-GradientDescentOptimizer"><a href="#1-tf-train-GradientDescentOptimizer" class="headerlink" title="1.tf.train.GradientDescentOptimizer()"></a>1.tf.train.GradientDescentOptimizer()</h5><p>使用随机梯度下降算法，使参数沿着梯度的反方向，即总损失减小的方向移动，实现更新参数。<br><img src="/uploads/nn_back/nn07.png" alt="avatar"><br>参数更新公式是<br><img src="/uploads/nn_back/nn08.png" alt="avatar"><br>其中，𝐽(𝜃)为损失函数，𝜃为参数，𝛼为学习率。</p>
-<h5 id="2-tf-train-MomentumOptimizer"><a href="#2-tf-train-MomentumOptimizer" class="headerlink" title="2.tf.train.MomentumOptimizer()"></a>2.tf.train.MomentumOptimizer()</h5><p>在更新参数时，利用了超参数，参数更新公式是<br><img src="/uploads/nn_back/nn09.png" alt="avatar"></p>
-<h5 id="3-tf-train-AdamOptimizer"><a href="#3-tf-train-AdamOptimizer" class="headerlink" title="3.tf.train.AdamOptimizer()"></a>3.tf.train.AdamOptimizer()</h5><p>是利用自适应学习率的优化算法，Adam算法和随机梯度下降算法不同。随机梯度下降算法保持单一的学习率更新所有的参数，学 习率在训练过程中并不会改变。而Adam算法通过计算梯度的一阶矩估计和二阶矩估计而为不同的参数设计独立的自适应性学习率。</p>
-<h4 id="学习率"><a href="#学习率" class="headerlink" title="学习率:"></a>学习率:</h4><p>决定每次参数更新的幅度。优化器中都需要一个叫做学习率的参数，使用时，如果学习率选择过大会出现震 荡不收敛的情况，如果学习率选择过小，会出现收敛速度慢的情况。我们可以选个比较小的值填入，比如0.01、0.001。<br>代码实现参考<a href="https://github.com/lieliee/Data-Analysis-ML/tree/master/NN" target="_blank" rel="noopener">git</a>：back.py</p>
-<p>进阶:反向传播参数更新推导过程(过程长且复杂，想要了解的小伙伴私信我)</p>
+        <p>滑动平均:记录了一段时间内模型中所有参数 w 和 b 各自的平均值。利用滑动平均值可以增强模型的泛化能力。<br><a id="more"></a><br>滑动平均值(影子)计算公式:<br>影子 = 衰减率 <em> 影子 +(1 - 衰减率)</em> 参数<br>其中，衰减率<br><img src="/uploads/opt_movingavg/ma01.png" alt="avatat"><br>用 Tesnsorflow 函数表示为:<br><strong>ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY，global_step)</strong><br>其中<br>MOVING_AVERAGE_DECAY 表示滑动平均衰减率，一般会赋接近 1 的值<br>global_step 表示当前 训练了多少轮。<br><strong>ema_op = ema.apply(tf.trainable_variables())</strong><br>其中，ema.apply()函数实现对括号内参数求滑动平均，<br>tf.trainable_variables()函数实现把所有待训练参数汇总为列表。<br><strong>with tf.control_dependencies([train_step, ema_op]):</strong><br>&emsp;&emsp;<strong>train_op = tf.no_op(name=’train’)</strong><br>其中，该函数实现将滑动平均和训练过程同步运行。<br>查看模型中参数的平均值，可以用 ema.average()函数。<br>例如:<br>在神经网络模型中，将 MOVING_AVERAGE_DECAY 设置为 0.99，参数 w1 设置为 0，w1 的滑动平均值设置为 0。<br>1.开始时，轮数 global_step 设置为 0，参数 w1 更新为 1，则 w1 的滑动平均值为:<br>w1 滑动平均值=min(0.99,1/10)<em>0+(1– min(0.99,1/10)</em>1 = 0.9<br>2.当轮数 global_step 设置为 100 时，参数 w1 更新为 10，以下代码 global_step 保持为 100，每<br>次执行滑动平均操作影子值更新，则滑动平均值变为:<br>w1 滑动平均值=min(0.99,101/110)<em>0.9+(1– min(0.99,101/110)</em>10 = 0.826+0.818=1.644<br>3.再次运行，参数 w1 更新为 1.644，则滑动平均值变为:<br>w1 滑动平均值=min(0.99,101/110)<em>1.644+(1– min(0.99,101/110)</em>10 = 2.328<br>4.再次运行，参数 w1 更新为 2.328，则滑动平均值:<br>w1 滑动平均值=2.956<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment">#1. 定义变量及滑动平均类</span></span><br><span class="line"><span class="comment">#定义一个32位浮点变量，初始值为0.0  这个代码就是不断更新w1参数，优化w1参数，滑动平均做了个w1的影子</span></span><br><span class="line">w1 = tf.Variable(<span class="number">0</span>, dtype=tf.float32)</span><br><span class="line"><span class="comment">#定义num_updates（NN的迭代轮数）,初始值为0，不可被优化（训练），这个参数不训练</span></span><br><span class="line">global_step = tf.Variable(<span class="number">0</span>, trainable=<span class="keyword">False</span>)</span><br><span class="line"><span class="comment">#实例化滑动平均类，给衰减率为0.99，当前轮数global_step</span></span><br><span class="line">MOVING_AVERAGE_DECAY = <span class="number">0.99</span></span><br><span class="line">ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, global_step)</span><br><span class="line"><span class="comment">#ema.apply后的括号里是更新列表，每次运行sess.run（ema_op）时，对更新列表中的元素求滑动平均值。</span></span><br><span class="line"><span class="comment">#在实际应用中会使用tf.trainable_variables()自动将所有待训练的参数汇总为列表</span></span><br><span class="line"><span class="comment">#ema_op = ema.apply([w1])</span></span><br><span class="line">ema_op = ema.apply(tf.trainable_variables())</span><br><span class="line"></span><br><span class="line"><span class="comment">#2. 查看不同迭代中变量取值的变化。</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># 初始化</span></span><br><span class="line">    init_op = tf.global_variables_initializer()</span><br><span class="line">    sess.run(init_op)</span><br><span class="line">	<span class="comment">#用ema.average(w1)获取w1滑动平均值 （要运行多个节点，作为列表中的元素列出，写在sess.run中）</span></span><br><span class="line">	<span class="comment">#打印出当前参数w1和w1滑动平均值</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span>, sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1"</span>, sess.run([w1, ema.average(w1)]) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 参数w1的值赋为1</span></span><br><span class="line">    sess.run(tf.assign(w1, <span class="number">1</span>))</span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span>, sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1"</span>, sess.run([w1, ema.average(w1)]) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 更新global_step和w1的值,模拟出轮数为100时，参数w1变为10, 以下代码global_step保持为100，每次执行滑动平均操作，影子值会更新 </span></span><br><span class="line">    sess.run(tf.assign(global_step, <span class="number">100</span>))  </span><br><span class="line">    sess.run(tf.assign(w1, <span class="number">10</span>))</span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span>, sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])       </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 每次sess.run会更新一次w1的滑动平均值</span></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line"><span class="comment">#更改MOVING_AVERAGE_DECAY 为 0.1  看影子追随速度</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">current global_step: 0</span></span><br><span class="line"><span class="string">current w1 [0.0, 0.0]</span></span><br><span class="line"><span class="string">current global_step: 0</span></span><br><span class="line"><span class="string">current w1 [1.0, 0.9]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 1.6445453]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 2.3281732]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 2.955868]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 3.532206]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 4.061389]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 4.547275]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 4.9934072]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></p>
+<p>从运行结果可知，最初参数 w1 和滑动平均值都是 0;参数 w1 设定为 1 后，滑动平均值变为 0.9; 当迭代轮数更新为 100 轮时，参数 w1 更新为 10 后，滑动平均值变为 1.644。随后每执行一次，参数 w1 的滑动平均值都向参数 w1 靠近。可见，滑动平均追随参数的变化而变化。</p>
 
       
     </div>
@@ -417,8 +407,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/14/nn_before/" rel="next" title="搭建神经网络--前向传播">
-                <i class="fa fa-chevron-left"></i> 搭建神经网络--前向传播
+              <a href="/2018/08/15/opt_learning_rate/" rel="next" title="神经网络优化--学习率">
+                <i class="fa fa-chevron-left"></i> 神经网络优化--学习率
               </a>
             
           </div>
@@ -426,10 +416,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/15/opt_loss/" rel="prev" title="神经网络优化--损失函数">
-                神经网络优化--损失函数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -486,17 +472,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -560,22 +537,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数-loss"><span class="nav-number">1.</span> <span class="nav-text">损失函数(loss):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#均方误差MSE"><span class="nav-number">2.</span> <span class="nav-text">均方误差MSE:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反向传播训练方法"><span class="nav-number">3.</span> <span class="nav-text">反向传播训练方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三种优化方法区别如下"><span class="nav-number">4.</span> <span class="nav-text">三种优化方法区别如下:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-tf-train-GradientDescentOptimizer"><span class="nav-number">4.1.</span> <span class="nav-text">1.tf.train.GradientDescentOptimizer()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-tf-train-MomentumOptimizer"><span class="nav-number">4.2.</span> <span class="nav-text">2.tf.train.MomentumOptimizer()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-tf-train-AdamOptimizer"><span class="nav-number">4.3.</span> <span class="nav-text">3.tf.train.AdamOptimizer()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习率"><span class="nav-number">5.</span> <span class="nav-text">学习率:</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
