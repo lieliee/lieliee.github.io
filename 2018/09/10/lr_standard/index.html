@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="内心," />
+  <meta name="keywords" content="算法," />
 
 
 
@@ -79,18 +79,28 @@
 
 
 
-<meta name="description" content="今天是9.7，本来是7个月的，我喜欢7，可是没有7了。">
-<meta name="keywords" content="内心">
+<meta name="description" content="衡量线性回归算法好坏的指标主要有MSE，RMSE，MAE及R Squared。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的">
-<meta property="og:url" content="http://yoursite.com/2018/09/07/me/index.html">
+<meta property="og:title" content="衡量线性回归，分类算法的指标">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/lr_standard/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="今天是9.7，本来是7个月的，我喜欢7，可是没有7了。">
+<meta property="og:description" content="衡量线性回归算法好坏的指标主要有MSE，RMSE，MAE及R Squared。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-08T12:19:28.000Z">
+<meta property="og:image" content="http://yoursite.com/uploads/pj/fl.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pj/lr01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pj/mse.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pj/rmse.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pj/mae.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pj/r01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pj/r02.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pj/r03.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pj/r04.png">
+<meta property="og:updated_time" content="2018-09-10T07:56:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的">
-<meta name="twitter:description" content="今天是9.7，本来是7个月的，我喜欢7，可是没有7了。">
+<meta name="twitter:title" content="衡量线性回归，分类算法的指标">
+<meta name="twitter:description" content="衡量线性回归算法好坏的指标主要有MSE，RMSE，MAE及R Squared。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/pj/fl.png">
 
 
 
@@ -120,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/07/me/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/10/lr_standard/"/>
 
 
 
 
 
-  <title>我的 | 烈烈</title>
+  <title>衡量线性回归，分类算法的指标 | 烈烈</title>
   
 
 
@@ -273,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/07/me/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/lr_standard/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lieliee">
@@ -290,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">我的</h1>
+          <h1 class="post-title" itemprop="name headline">衡量线性回归，分类算法的指标</h1>
         
 
         <div class="post-meta">
@@ -302,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-07T11:07:55+08:00">
-                2018-09-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T14:27:16+08:00">
+                2018-09-10
               </time>
             
 
@@ -325,8 +335,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -342,7 +352,7 @@
 
           
           
-             <span id="/2018/09/07/me/" class="leancloud_visitors" data-flag-title="我的">
+             <span id="/2018/09/10/lr_standard/" class="leancloud_visitors" data-flag-title="衡量线性回归，分类算法的指标">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -373,15 +383,13 @@
       
 
       
-        <p>今天是9.7，本来是7个月的，我喜欢7，可是没有7了。<br><a id="more"></a><br>我始终是个没安全感的人，或者，孩子。<br>受了委屈，会憋不住，找人倾诉，别人安慰一下，会哭成泪人。<br>会半夜给你发一堆消息，你还记得吗。</p>
-<p>终于我们分开了，我做的不够好，你累了，不想和我一起了。<br>最后的见面，在你宿舍楼下，匆匆的，你瘦了，我只想最后再看你几分钟，已经没机会了。<br>目送你离开，你头也没回。</p>
-<p>一个男生，不要哭呀，可是心疼到一定程度，怎么表达呢，眼泪不自觉就掉了呀。<br>我从没想过离开你，而你早已下定了离开的决心。</p>
-<p>我没想到，最后我们连朋友都做不成，你的坚决，像一下捏住了我的心脏，我没了心跳，挣扎不了。<br>你划清了一切界限，我们半年的感情，好像没有丝毫可以留恋。<br>我和你组队，你的一句‘别和这个人玩’，然后我被请出了队伍，我的胸口好像被什么堵住。<br>我的回忆，在你看来变成了厌恶。</p>
-<p>离开了我，你开心了不少，有人玩游戏，有人吃饭，也有人一起学习，而我还在沉迷，我好傻。<br>看到你开始了新的生活，我早就该清醒不是吗。</p>
-<p>我好怕遇见你，你还会和我打招呼吗，你挽着另一个人说笑，我该怎么面对。<br>你一直和一个人玩游戏，那个人是谁呢，是你喜欢的人吗。</p>
-<p>故事开始的美好，却结束的潦草，有人哭就会有人笑，心里认定可以走一辈子的人，终成了路人。</p>
-<p>最近几天天气很好，还是会想起你，你在干什么呢，吃的什么呢，有没有吃早饭，你还好吗。</p>
-<p>我的宿命分两段，<br>未遇见你时，和遇见你以后。<br>你治好我的忧郁，而后赐我悲伤。<br>忧郁和悲伤之间的片刻欢喜，<br>透支了我生命全部的热情储蓄。<br>想饮一些酒，让灵魂失重，好被风吹走。<br>可一想到终将是你的路人，<br>便觉得，沦为整个世界的路人。<br>风虽大，都绕过我灵魂。</p>
+        <p>衡量线性回归算法好坏的指标主要有MSE，RMSE，MAE及R Squared。<br><a id="more"></a></p>
+<h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3><p>在使用KNN解决分类问题时，我们将数据集分为训练数据集和测试数据集，比例通常为4：1，使用训练数据集训练出模型之后，使用测试数据集预测结果，将结果与原有数据集真实内容进行比较匹配，从而得到分类准确度，这种准确度通常用来衡量分类方法的好坏。<br><img src="/uploads/pj/fl.png" alt="avatar"></p>
+<h3 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h3><p><img src="/uploads/pj/lr01.png" alt="avatar"><br>衡量的指标主要有：</p>
+<h4 id="MSE-均方误差（Mean-Squared-Error）"><a href="#MSE-均方误差（Mean-Squared-Error）" class="headerlink" title="MSE 均方误差（Mean Squared Error）"></a>MSE 均方误差（Mean Squared Error）</h4><p><img src="/uploads/pj/mse.png" alt="avatar"></p>
+<h4 id="RMSE-均方根误差-Root-Squared-Error"><a href="#RMSE-均方根误差-Root-Squared-Error" class="headerlink" title="RMSE 均方根误差 (Root Squared Error)"></a>RMSE 均方根误差 (Root Squared Error)</h4><p><img src="/uploads/pj/rmse.png" alt="avatar"></p>
+<h4 id="MAE-平均绝对误差-Mean-Absolute-Error"><a href="#MAE-平均绝对误差-Mean-Absolute-Error" class="headerlink" title="MAE 平均绝对误差 (Mean Absolute Error)"></a>MAE 平均绝对误差 (Mean Absolute Error)</h4><p><img src="/uploads/pj/mae.png" alt="avatar"><br>我们常用的分类的准确度：1最好，0最差<br>RMSE和MAE无法取得1和0之间的值，可能出现5，10等数字。<br>这时需要另一种衡量标准。</p>
+<h4 id="R-Squared"><a href="#R-Squared" class="headerlink" title="R Squared"></a>R Squared</h4><p><img src="/uploads/pj/r01.png" alt="avatar"><br><img src="/uploads/pj/r02.png" alt="avatar"><br><img src="/uploads/pj/r03.png" alt="avatar"><br><img src="/uploads/pj/r04.png" alt="avatar"></p>
 
       
     </div>
@@ -399,7 +407,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/内心/" rel="tag"># 内心</a>
+            <a href="/tags/算法/" rel="tag"># 算法</a>
           
         </div>
       
@@ -412,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/15/opt_regular/" rel="next" title="神经网络优化--正则化">
-                <i class="fa fa-chevron-left"></i> 神经网络优化--正则化
+              <a href="/2018/09/10/lr/" rel="next" title="多元线性回归">
+                <i class="fa fa-chevron-left"></i> 多元线性回归
               </a>
             
           </div>
@@ -421,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/08/knn/" rel="prev" title="K近邻算法—KNN">
-                K近邻算法—KNN <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -481,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -546,6 +559,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类问题"><span class="nav-number">1.</span> <span class="nav-text">分类问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单线性回归"><span class="nav-number">2.</span> <span class="nav-text">简单线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MSE-均方误差（Mean-Squared-Error）"><span class="nav-number">2.1.</span> <span class="nav-text">MSE 均方误差（Mean Squared Error）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RMSE-均方根误差-Root-Squared-Error"><span class="nav-number">2.2.</span> <span class="nav-text">RMSE 均方根误差 (Root Squared Error)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MAE-平均绝对误差-Mean-Absolute-Error"><span class="nav-number">2.3.</span> <span class="nav-text">MAE 平均绝对误差 (Mean Absolute Error)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#R-Squared"><span class="nav-number">2.4.</span> <span class="nav-text">R Squared</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
