@@ -79,25 +79,36 @@
 
 
 
-<meta name="description" content="线性回归算法(Liner Regression)，线性回归与上一节的KNN不同，KNN主要解决分类问题，而LR主要解决回归问题。本篇介绍简单回归算法（SimpleLinearRegression）。">
+<meta name="description" content="PCA（Principal Component Analysis）是一个非监督的机器学习算法。主要用于数据的降维。通过降维，可以发现更便于人类理解的特征，也可用于可视化和去噪。">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单线性回归">
-<meta property="og:url" content="http://yoursite.com/2018/09/10/slr/index.html">
+<meta property="og:title" content="主成分分析">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/pca/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="线性回归算法(Liner Regression)，线性回归与上一节的KNN不同，KNN主要解决分类问题，而LR主要解决回归问题。本篇介绍简单回归算法（SimpleLinearRegression）。">
+<meta property="og:description" content="PCA（Principal Component Analysis）是一个非监督的机器学习算法。主要用于数据的降维。通过降维，可以发现更便于人类理解的特征，也可用于可视化和去噪。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/uploads/slr/jd01.png">
-<meta property="og:image" content="http://yoursite.com/uploads/slr/jd02.png">
-<meta property="og:image" content="http://yoursite.com/uploads/slr/jd03.png">
-<meta property="og:image" content="http://yoursite.com/uploads/slr/sl01.png">
-<meta property="og:image" content="http://yoursite.com/uploads/slr/sl02.png">
-<meta property="og:image" content="http://yoursite.com/uploads/slr/erc.png">
-<meta property="og:updated_time" content="2018-09-10T06:18:25.000Z">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca02.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca03.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca04.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca05.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca06.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca07.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca08.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca14.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca09.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca10.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca11.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca12.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca13.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca15.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca16.png">
+<meta property="og:image" content="http://yoursite.com/uploads/pca/pca17.png">
+<meta property="og:updated_time" content="2018-09-28T10:12:08.381Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单线性回归">
-<meta name="twitter:description" content="线性回归算法(Liner Regression)，线性回归与上一节的KNN不同，KNN主要解决分类问题，而LR主要解决回归问题。本篇介绍简单回归算法（SimpleLinearRegression）。">
-<meta name="twitter:image" content="http://yoursite.com/uploads/slr/jd01.png">
+<meta name="twitter:title" content="主成分分析">
+<meta name="twitter:description" content="PCA（Principal Component Analysis）是一个非监督的机器学习算法。主要用于数据的降维。通过降维，可以发现更便于人类理解的特征，也可用于可视化和去噪。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/pca/pca01.png">
 
 
 
@@ -127,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/10/slr/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/28/pca/"/>
 
 
 
 
 
-  <title>简单线性回归 | 烈烈</title>
+  <title>主成分分析 | 烈烈</title>
   
 
 
@@ -280,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/10/slr/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/pca/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lieliee">
@@ -297,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">简单线性回归</h1>
+          <h1 class="post-title" itemprop="name headline">主成分分析</h1>
         
 
         <div class="post-meta">
@@ -309,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T10:27:01+08:00">
-                2018-09-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T16:20:15+08:00">
+                2018-09-28
               </time>
             
 
@@ -349,7 +360,7 @@
 
           
           
-             <span id="/2018/09/10/slr/" class="leancloud_visitors" data-flag-title="简单线性回归">
+             <span id="/2018/09/28/pca/" class="leancloud_visitors" data-flag-title="主成分分析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -380,10 +391,15 @@
       
 
       
-        <p>线性回归算法(Liner Regression)，线性回归与上一节的KNN不同，KNN主要解决分类问题，而LR主要解决回归问题。本篇介绍简单回归算法（SimpleLinearRegression）。<br><a id="more"></a><br>思想简单，容易实现。<br>许多强大的非线性模型的基础。<br>结果具有很好的可解释性。<br>蕴含机器学习中很多重要的思想。</p>
-<h2 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h2><p>样本特征只有一个，称为：简单线性回归。<br>例如房屋和价格的关系：<br><img src="/uploads/slr/jd01.png" alt="avatar"><br>通过每个点，我们需要找到一条直线，最大程度的“拟合”样本特征和样本输出标记之间的关系：<br><img src="/uploads/slr/jd02.png" alt="avatar"><br>所以我们希望真值和预测值之间的差距尽量小：<br><img src="/uploads/slr/jd03.png" alt="avatar"></p>
-<h2 id="至此，我们可以得到一类机器学习的基本思路"><a href="#至此，我们可以得到一类机器学习的基本思路" class="headerlink" title="至此，我们可以得到一类机器学习的基本思路"></a>至此，我们可以得到一类机器学习的基本思路</h2><p>损失函数（loss）尽可能小<br>效用函数（utility function）尽可能大<br><img src="/uploads/slr/sl01.png" alt="avatar"><br><img src="/uploads/slr/sl02.png" alt="avatar"><br>在简单线性回归中，应用最小二乘法，求得a,和b的值，最小二乘法推导过程见上一篇<a href="https://www.lieliee.com/2018/09/09/ercheng/" target="_blank" rel="noopener">博客</a>:<br><img src="/uploads/slr/erc.png" alt="avatar"></p>
-<h3 id="python实现："><a href="#python实现：" class="headerlink" title="python实现："></a>python实现：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#设置</span></span><br><span class="line">x = np.array([<span class="number">1.</span> ,<span class="number">2.</span> ,<span class="number">3.</span> ,<span class="number">4.</span>, <span class="number">5.</span>])</span><br><span class="line">y = np.array([<span class="number">1.</span>, <span class="number">3.</span>, <span class="number">2.</span>, <span class="number">3.</span>, <span class="number">5.</span>])</span><br><span class="line"><span class="comment">##绘图</span></span><br><span class="line">plt.scatter(x,y)</span><br><span class="line">plt.axis([<span class="number">0</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">6</span>])</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">##接下来按照公式求解即可</span></span><br><span class="line">x_mean = np.mean(x)</span><br><span class="line">y_mean = np.mean(y)</span><br><span class="line">num = <span class="number">0.0</span></span><br><span class="line">d = <span class="number">0.0</span></span><br><span class="line"><span class="keyword">for</span> x_i, y_i <span class="keyword">in</span> zip(x, y):</span><br><span class="line">    num += (x_i - x_mean) * (y_i - y_mean)</span><br><span class="line">    d += (x_i - x_mean) ** <span class="number">2</span></span><br><span class="line"><span class="comment">##所解值</span></span><br><span class="line">a = num / d</span><br><span class="line">b = y_mean -a * x_mean</span><br><span class="line">y_hat = a * x + b</span><br><span class="line"><span class="comment">##绘图</span></span><br><span class="line">plt.scatter(x, y)</span><br><span class="line">plt.plot(x, y_hat, color=<span class="string">'r'</span>)</span><br><span class="line">plt.axis([<span class="number">0</span>, <span class="number">6</span>, <span class="number">0</span>, <span class="number">6</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+        <p>PCA（Principal Component Analysis）是一个非监督的机器学习算法。主要用于数据的降维。通过降维，可以发现更便于人类理解的特征，也可用于可视化和去噪。<br><a id="more"></a></p>
+<h3 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h3><p>这里用一个2维降到一维的例子引入PCA。<br>在一个二维平面中，有两个特征：<br><img src="/uploads/pca/pca01.png" alt="avatar"><br>如何降到一维呢？方法是取1，2中的一个特征，把另一个特征扔掉。<br>左边是舍弃特征1，保留特征2；右边是舍弃特征2，保留特征1。<br><img src="/uploads/pca/pca02.png" alt="avatar"><br>如果要选择一种，会选择第二种，因为样本间距离大，但这却不是最好。<br>找到一根直线，让点映射到上面，1个轴，1个维度，距离更大，区分更好。<br><img src="/uploads/pca/pca03.png" alt="avatar"><br><img src="/uploads/pca/pca04.png" alt="avatar"><br>如何找到这个样本间距最大的轴？如何定义样本间间距，使用方差（Variance）<br><img src="/uploads/pca/pca05.png" alt="avatar"><br>找到一个轴，使得样本空间的所有点映射到这个轴后，方差最大。</p>
+<ul>
+<li>第一步，将样本的均值归0（demean），即所有的样本都减去样本的均值。<br><img src="/uploads/pca/pca06.png" alt="avatar"></li>
+<li>第二步，求一个轴的方向w=(w1,w2)<br><img src="/uploads/pca/pca07.png" alt="avatar"><br>对于多维空间：<br><img src="/uploads/pca/pca08.png" alt="avatar"><br>一个目标函数的最优化问题，使用梯度上升法解决。</li>
+</ul>
+<h3 id="2-数学方法"><a href="#2-数学方法" class="headerlink" title="2.数学方法"></a>2.数学方法</h3><p>设有m条n维数据。<br>1）将原始数据按列组成n行m列矩阵X<br>2）将X的每一行（代表一个属性字段）进行零均值化，即减去这一行的均值<br>3）求出协方差矩阵C=1/mXX𝖳(X乘上X的转置)<br>4）求出协方差矩阵的特征值及对应的特征向量<br>5）将特征向量按对应特征值大小从上到下按行排列成矩阵，取前k行组成矩阵P<br>6）Y=PX即为降维到k维后的数据</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>用PCA方法将这组二维数据其降到一维。<br>（1）有5条记录组成的数据：<br><img src="/uploads/pca/pca14.png" alt="avatar"><br>（2）每行的均值分别为2，3，减去后：<br><img src="/uploads/pca/pca09.png" alt="avatar"><br>（3）求协方差矩阵：<br><img src="/uploads/pca/pca10.png" alt="avatar"><br>（4）求出特征值和特征向量：<br>特征值：<br><img src="/uploads/pca/pca11.png" alt="avatar"><br>特征向量：<br><img src="/uploads/pca/pca12.png" alt="avatar"><br>正交化后：<br><img src="/uploads/pca/pca13.png" alt="avatar"><br>（5）这n个特征向量为e1,e2,⋯,en<br>E=(e1e2⋯en)<br>P=E𝖳（转置）<br>所以P为：<br><img src="/uploads/pca/pca15.png" alt="avatar"><br>（6）P就是我们要找的矩阵。<br>P乘上数据矩阵，就得到了降维后的数据：<br><img src="/uploads/pca/pca16.png" alt="avatar"></p>
+<p>降维后的投影结果：<br><img src="/uploads/pca/pca17.png" alt="avatar"></p>
 
       
     </div>
@@ -414,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/09/ercheng/" rel="next" title="最小二乘法">
-                <i class="fa fa-chevron-left"></i> 最小二乘法
+              <a href="/2018/09/28/gradient_descent/" rel="next" title="梯度下降法">
+                <i class="fa fa-chevron-left"></i> 梯度下降法
               </a>
             
           </div>
@@ -423,10 +439,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/10/lr/" rel="prev" title="多元线性回归">
-                多元线性回归 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -567,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单线性回归"><span class="nav-number">1.</span> <span class="nav-text">简单线性回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#至此，我们可以得到一类机器学习的基本思路"><span class="nav-number">2.</span> <span class="nav-text">至此，我们可以得到一类机器学习的基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python实现："><span class="nav-number">2.1.</span> <span class="nav-text">python实现：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-介绍"><span class="nav-number">1.</span> <span class="nav-text">1.介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-数学方法"><span class="nav-number">2.</span> <span class="nav-text">2.数学方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-number">2.1.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></div>
             
 
           </div>
