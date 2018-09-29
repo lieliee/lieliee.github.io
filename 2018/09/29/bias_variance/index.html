@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/uploads/bias_variance/bv01.png">
 <meta property="og:image" content="http://yoursite.com/uploads/bias_variance/fc.png">
 <meta property="og:image" content="http://yoursite.com/uploads/bias_variance/pc.png">
-<meta property="og:updated_time" content="2018-09-29T12:30:13.675Z">
+<meta property="og:updated_time" content="2018-09-29T12:31:56.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="偏差和方差">
 <meta name="twitter:description" content="学习算法的预测误差, 或者说泛化误差可以分解为三个部分: 偏差(bias), 方差(variance) 和噪声(noise)。在估计学习算法性能的过程中, 我们主要关注偏差与方差. 因为噪声属于不可约减的误差。">
@@ -381,7 +381,7 @@
 <h3 id="1-偏差和方差"><a href="#1-偏差和方差" class="headerlink" title="1.偏差和方差"></a>1.偏差和方差</h3><p><img src="/uploads/bias_variance/bv01.png" alt="avatar"><br>模型误差 = 偏差(bias) + 方差(Variance) + 不可避免的误差</p>
 <h4 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h4><p>方差度量了同样大小的训练集的变动所导致的学习性能的变化, 即<strong>刻画了数据扰动所造成的影响</strong>。<br><img src="/uploads/bias_variance/fc.png" alt="avatar"><br>数据的一点点扰动都会较大地影响模型。<br>通常通常原因，使用的模型太复杂。<br>如高阶多项式回归。<br>方差大，过拟合overfitting。</p>
 <h4 id="偏差"><a href="#偏差" class="headerlink" title="偏差"></a>偏差</h4><p>偏差度量了学习算法的期望预测与真实结果的偏离程度, 即<strong>刻画了学习算法本身的拟合能力</strong>。<br><img src="/uploads/bias_variance/pc.png" alt="avatar"><br>导致偏差的主要原因：<br>对问题本身的假设不正确。<br>如：非线性数据使用线性回归<br>偏差大，欠拟合underfitting。</p>
-<h4 id="噪声"><a href="#噪声" class="headerlink" title="噪声"></a>噪声</h4><p>噪声表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界, 即<strong>刻画了学习问题本身的难度</strong>。<br>巧妇难为无米之炊, 给一堆很差的食材, 要想做出一顿美味, 肯定是很有难度的.</p>
+<h4 id="噪声"><a href="#噪声" class="headerlink" title="噪声"></a>噪声</h4><p>噪声表达了在当前任务任何学习算法所能达到的期望泛化误差的下界, 即<strong>刻画了学习问题本身的难度</strong>。<br>巧妇难为无米之炊, 给一堆很差的食材, 要想做出一顿美味, 肯定是很有难度的.</p>
 <h3 id="2-讨论"><a href="#2-讨论" class="headerlink" title="2.讨论"></a>2.讨论</h3><p>非参数学习通常是高方差算法，如KNN。<br>因为不对数据进行任何假设。<br>参数学习通常是高偏差算法，如线性回归。<br>因为线性回归具有极强的假设。</p>
 <p>大多数算法具有相应的参数，可以调整偏差和方差。<br>如KNN中的K。<br>如线性回归中多项式回归中的阶数。</p>
 <p>偏差和方差通常是矛盾的。<br>降低偏差，会提高方差。<br>降低方差，会提高偏差。</p>
