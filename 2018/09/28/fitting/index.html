@@ -90,7 +90,9 @@
 <meta property="og:image" content="http://yoursite.com/uploads/fitting/fit01.png">
 <meta property="og:image" content="http://yoursite.com/uploads/fitting/fit02.png">
 <meta property="og:image" content="http://yoursite.com/uploads/fitting/fit03.png">
-<meta property="og:updated_time" content="2018-09-29T03:11:43.588Z">
+<meta property="og:image" content="http://yoursite.com/uploads/fitting/fit05.png">
+<meta property="og:image" content="http://yoursite.com/uploads/fitting/fit04.png">
+<meta property="og:updated_time" content="2018-09-29T06:38:42.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="过拟合,欠拟合,学习曲线">
 <meta name="twitter:description" content="过拟合（over-fitting ）和欠拟合（under-fitting）是我们在机器学习建模中常会遇到的两种情况，文章会介绍两种情况出现的原因和解决方法。">
@@ -402,7 +404,7 @@
 <li>增大数据训练量</li>
 <li>使用正则化方法</li>
 </ul>
-<h3 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h3><p>1.模型复杂度曲线<br><img src="/uploads/fitting/fit03.png" alt="avatar"></p>
+<h3 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h3><p>1.模型复杂度曲线<br><img src="/uploads/fitting/fit03.png" alt="avatar"><br>我们想要找到泛化能力最好的地方。理论的模型，针对不同数据，不同模型，可能绘制不出这样清晰的曲线。例如KNN和多项式回归，不适合绘制，虽然它们内在符合这样的逻辑。后续的决策树适合绘制这样的曲线。<br>2.学习曲线<br>通过学习曲线，也可以清晰地看到模型的过拟合，欠拟合。<br>学习曲线：随着训练样本的逐渐增多，算法训练出的模型的表现能力。<br>横轴：样本训练数<br>纵轴：损失函数MSE<br>欠拟合与最佳学习曲线：<br><img src="/uploads/fitting/fit05.png" alt="avatar"><br>欠拟合和最佳比较，train和test趋于稳定的位置更高，说明train和test误差都较大，模型有错误。<br>过拟合与最佳学习曲线：<br><img src="/uploads/fitting/fit04.png" alt="avatar"><br>训练数据集误差不大，测试数据集误差较大，测试和训练集离的远，差距较大，说明模型的泛化能力不好，对于新的数据来说，误差比较大。</p>
 
       
     </div>
