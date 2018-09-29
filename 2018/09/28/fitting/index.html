@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="算法," />
 
 
 
@@ -79,16 +79,22 @@
 
 
 
-<meta name="description" content="凡心所向，素履所往。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="烈烈">
-<meta property="og:url" content="http://yoursite.com/categories/随笔/index.html">
+<meta name="description" content="过拟合（over-fitting ）和欠拟合（under-fitting）是我们在机器学习建模中常会遇到的两种情况，文章会介绍两种情况出现的原因和解决方法。">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="过拟合,欠拟合,学习曲线">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/fitting/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="凡心所向，素履所往。">
+<meta property="og:description" content="过拟合（over-fitting ）和欠拟合（under-fitting）是我们在机器学习建模中常会遇到的两种情况，文章会介绍两种情况出现的原因和解决方法。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/uploads/fitting/fit01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/fitting/fit02.png">
+<meta property="og:image" content="http://yoursite.com/uploads/fitting/fit03.png">
+<meta property="og:updated_time" content="2018-09-29T03:10:42.900Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="烈烈">
-<meta name="twitter:description" content="凡心所向，素履所往。">
+<meta name="twitter:title" content="过拟合,欠拟合,学习曲线">
+<meta name="twitter:description" content="过拟合（over-fitting ）和欠拟合（under-fitting）是我们在机器学习建模中常会遇到的两种情况，文章会介绍两种情况出现的原因和解决方法。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/fitting/fit01.png">
 
 
 
@@ -118,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/随笔/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/28/fitting/"/>
 
 
 
 
 
-  <title>分类: 随笔 | 烈烈</title>
+  <title>过拟合,欠拟合,学习曲线 | 烈烈</title>
   
 
 
@@ -153,7 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,111 +263,205 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>随笔<small>分类</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/fitting/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lieliee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/cat.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="烈烈">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/09/27/sh/" itemprop="url">
-              
-                <span itemprop="name">岁月悠悠，念也悠悠</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">过拟合,欠拟合,学习曲线</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-27T16:47:16+08:00"
-              content="2018-09-27" >
-          09-27
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T19:59:51+08:00">
+                2018-09-28
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/28/fitting/" class="leancloud_visitors" data-flag-title="过拟合,欠拟合,学习曲线">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/07/me/" itemprop="url">
-              
-                <span itemprop="name">我的</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-07T11:07:55+08:00"
-              content="2018-09-07" >
-          09-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/13/chuan/" itemprop="url">
-              
-                <span itemprop="name">分享</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-13T10:16:17+08:00"
-              content="2018-08-13" >
-          08-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p>过拟合（over-fitting ）和欠拟合（under-fitting）是我们在机器学习建模中常会遇到的两种情况，文章会介绍两种情况出现的原因和解决方法。<br><a id="more"></a></p>
+<h3 id="欠拟合-under-fitting"><a href="#欠拟合-under-fitting" class="headerlink" title="欠拟合 under-fitting"></a>欠拟合 under-fitting</h3><p>算法所训练的模型不能完整表达数据关系。<br><img src="/uploads/fitting/fit01.png" alt="avatar"><br>原因：</p>
+<ul>
+<li>特征量少</li>
+<li>模型复杂度过低</li>
+</ul>
+<p>解决：</p>
+<ul>
+<li>增加新特征</li>
+<li>增加模型复杂度</li>
+</ul>
+<h3 id="过拟合-over-fitting"><a href="#过拟合-over-fitting" class="headerlink" title="过拟合 over-fitting"></a>过拟合 over-fitting</h3><p>算法所训练的模型过多地表达了数据间的噪声关系。<br>训练集表现好，测试集不能正确分类，泛化能力差。<br><img src="/uploads/fitting/fit02.png" alt="avatar"><br>原因：</p>
+<ul>
+<li>训练集和测试集特征不一致</li>
+<li>数据噪声太大</li>
+<li>特重量太多</li>
+<li>模型太复杂</li>
+<li>训练集占总数据比例小</li>
+</ul>
+<p>解决：</p>
+<ul>
+<li>重新清洗数据</li>
+<li>增大数据训练量</li>
+<li>使用正则化方法</li>
+</ul>
+<h3 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h3><p>1.模型复杂度曲线<br><img src="/uploads/fitting/fit03.png" alt="avatar"></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/pca/" rel="next" title="主成分分析">
+                <i class="fa fa-chevron-left"></i> 主成分分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -369,6 +469,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODgzOC8xNTM2Ng=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -389,8 +498,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -454,6 +572,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#欠拟合-under-fitting"><span class="nav-number">1.</span> <span class="nav-text">欠拟合 under-fitting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过拟合-over-fitting"><span class="nav-number">2.</span> <span class="nav-text">过拟合 over-fitting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习曲线"><span class="nav-number">3.</span> <span class="nav-text">学习曲线</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -582,6 +716,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -610,6 +748,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
