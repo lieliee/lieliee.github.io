@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="算法," />
 
 
 
@@ -79,16 +79,22 @@
 
 
 
-<meta name="description" content="凡心所向，素履所往。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="烈烈">
-<meta property="og:url" content="http://yoursite.com/archives/2018/08/index.html">
+<meta name="description" content="交叉验证（Cross Validation）是一种统计学上将数据样本切割成较小子集的实用方法。于是可以先在一个子集上做分析， 而其它子集则用来做后续对此分析的确认及验证。">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="交叉验证">
+<meta property="og:url" content="http://yoursite.com/2018/09/29/cross_validation/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="凡心所向，素履所往。">
+<meta property="og:description" content="交叉验证（Cross Validation）是一种统计学上将数据样本切割成较小子集的实用方法。于是可以先在一个子集上做分析， 而其它子集则用来做后续对此分析的确认及验证。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/uploads/cross_validation/cv01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/cross_validation/cv02.png">
+<meta property="og:image" content="http://yoursite.com/uploads/cross_validation/cv03.png">
+<meta property="og:updated_time" content="2018-09-29T07:26:42.111Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="烈烈">
-<meta name="twitter:description" content="凡心所向，素履所往。">
+<meta name="twitter:title" content="交叉验证">
+<meta name="twitter:description" content="交叉验证（Cross Validation）是一种统计学上将数据样本切割成较小子集的实用方法。于是可以先在一个子集上做分析， 而其它子集则用来做后续对此分析的确认及验证。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/cross_validation/cv01.png">
 
 
 
@@ -118,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/08/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/29/cross_validation/"/>
 
 
 
 
 
-  <title>归档 | 烈烈</title>
+  <title>交叉验证 | 烈烈</title>
   
 
 
@@ -153,7 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,411 +263,189 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/29/cross_validation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lieliee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/cat.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="烈烈">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">交叉验证</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T14:56:07+08:00">
+                2018-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 23 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/2018/09/29/cross_validation/" class="leancloud_visitors" data-flag-title="交叉验证">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/15/opt_regular/" itemprop="url">
-              
-                <span itemprop="name">神经网络优化--正则化</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-15T22:38:05+08:00"
-              content="2018-08-15" >
-          08-15
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/15/opt_movingavg/" itemprop="url">
-              
-                <span itemprop="name">神经网络优化--滑动平均</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-15T18:37:26+08:00"
-              content="2018-08-15" >
-          08-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/15/opt_learning_rate/" itemprop="url">
-              
-                <span itemprop="name">神经网络优化--学习率</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-15T13:43:53+08:00"
-              content="2018-08-15" >
-          08-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/15/opt_loss/" itemprop="url">
-              
-                <span itemprop="name">神经网络优化--损失函数</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-15T09:58:25+08:00"
-              content="2018-08-15" >
-          08-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>交叉验证（Cross Validation）是一种统计学上将数据样本切割成较小子集的实用方法。于是可以先在一个子集上做分析， 而其它子集则用来做后续对此分析的确认及验证。<br><a id="more"></a></p>
+<h3 id="1-训练-测试"><a href="#1-训练-测试" class="headerlink" title="1.训练-测试"></a>1.训练-测试</h3><p><img src="/uploads/cross_validation/cv01.png" alt="avatar"><br>调参过程围绕测试数据集，也有可能会出现过拟合现象。<br>如何解决？</p>
+<h3 id="2-训练-验证-测试"><a href="#2-训练-验证-测试" class="headerlink" title="2.训练-验证-测试"></a>2.训练-验证-测试</h3><p><img src="/uploads/cross_validation/cv02.png" alt="avatar"><br>&emsp;&emsp;训练数据训练好模型后，将验证数据集喂入模型，调整参数，找到对验证数据集来说最优的超参数。测试数据不参与训练，仅衡量模型的好坏。<br>但是，验证数据集也可能有极端数据，也会导致模型不准确。<br>如何解决？</p>
+<h3 id="3-交叉验证"><a href="#3-交叉验证" class="headerlink" title="3.交叉验证"></a>3.交叉验证</h3><p>交叉验证，顾名思义，将数据分成K份，每份都参与训练和验证。<br><img src="/uploads/cross_validation/cv03.png" alt="avatar"><br>K一般取3，5，10。<br>交叉验证一般要尽量满足：<br>1）训练集的比例要足够多，一般大于一半<br>2）训练集和测试集要均匀抽样</p>
+<h4 id="k-folds交叉验证"><a href="#k-folds交叉验证" class="headerlink" title="k-folds交叉验证"></a>k-folds交叉验证</h4><p>&emsp;&emsp;k个子集，每个子集均做一次测试集，其余的作为训练集。交叉验证重复k次，每次选择一个子集作为测试集，并将k次的平均交叉验证识别正确率作为结果。<br>&emsp;&emsp;优点：所有的样本都被作为训练集和测试集，每个样本都被验证一次。10-folder通常被使用。<br>&emsp;&emsp;缺点：训练k个模型，整体慢k倍。</p>
+<h4 id="留一法（loo-cv-least-one-out-cross-validation）"><a href="#留一法（loo-cv-least-one-out-cross-validation）" class="headerlink" title="留一法（loo-cv,least-one-out cross-validation）"></a>留一法（loo-cv,least-one-out cross-validation）</h4><p>&emsp;&emsp;n个样本，就分成n份，那LOOCV也就是n-CV，意思是每个样本单独作为一次测试集，剩余n-1个样本则做为训练集。<br>&emsp;&emsp;优点：接近母体，最接近分布，可靠。<br>&emsp;&emsp;缺点：训练计算量巨大。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/14/nn_back/" itemprop="url">
-              
-                <span itemprop="name">搭建神经网络--反向传播</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-14T19:36:33+08:00"
-              content="2018-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/14/nn_before/" itemprop="url">
-              
-                <span itemprop="name">搭建神经网络--前向传播</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-14T19:31:09+08:00"
-              content="2018-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/14/nn_introduce/" itemprop="url">
-              
-                <span itemprop="name">什么是神经网络</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-14T18:26:40+08:00"
-              content="2018-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/14/tf/" itemprop="url">
-              
-                <span itemprop="name">ubuntu Tensorflow 环境搭建</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-14T13:43:34+08:00"
-              content="2018-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/13/python/" itemprop="url">
-              
-                <span itemprop="name">Python基础知识</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-13T20:56:31+08:00"
-              content="2018-08-13" >
-          08-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/13/pandas/" itemprop="url">
-              
-                <span itemprop="name">Pandas</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-13T15:35:24+08:00"
-              content="2018-08-13" >
-          08-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/fitting/" rel="next" title="过拟合,欠拟合,学习曲线">
+                <i class="fa fa-chevron-left"></i> 过拟合,欠拟合,学习曲线
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/29/bias_variance/" rel="prev" title="偏差和方差">
+                偏差和方差 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/08/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/08/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -669,6 +453,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODgzOC8xNTM2Ng=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -689,8 +482,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -754,6 +556,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-训练-测试"><span class="nav-number">1.</span> <span class="nav-text">1.训练-测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-训练-验证-测试"><span class="nav-number">2.</span> <span class="nav-text">2.训练-验证-测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-交叉验证"><span class="nav-number">3.</span> <span class="nav-text">3.交叉验证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#k-folds交叉验证"><span class="nav-number">3.1.</span> <span class="nav-text">k-folds交叉验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#留一法（loo-cv-least-one-out-cross-validation）"><span class="nav-number">3.2.</span> <span class="nav-text">留一法（loo-cv,least-one-out cross-validation）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -882,6 +700,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -910,6 +732,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
