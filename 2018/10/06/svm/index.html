@@ -79,18 +79,33 @@
 
 
 
-<meta name="description" content="支持向量机(Support Vector Machine)，">
+<meta name="description" content="支持向量机(Support Vector Machine)，一种二类分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化.">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="支持向量机">
 <meta property="og:url" content="http://yoursite.com/2018/10/06/svm/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="支持向量机(Support Vector Machine)，">
+<meta property="og:description" content="支持向量机(Support Vector Machine)，一种二类分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-06T07:33:44.273Z">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm02.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm03.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm04.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm07.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm05.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm06.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm08.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm09.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm10.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm11.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm14.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm12.png">
+<meta property="og:image" content="http://yoursite.com/uploads/svm/svm13.png">
+<meta property="og:updated_time" content="2018-10-09T06:30:12.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机">
-<meta name="twitter:description" content="支持向量机(Support Vector Machine)，">
+<meta name="twitter:description" content="支持向量机(Support Vector Machine)，一种二类分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化.">
+<meta name="twitter:image" content="http://yoursite.com/uploads/svm/svm01.png">
 
 
 
@@ -373,7 +388,18 @@
       
 
       
-        <p>支持向量机(Support Vector Machine)，</p>
+        <p>支持向量机(Support Vector Machine)，一种二类分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化.<br><a id="more"></a></p>
+<h3 id="1-思想本质"><a href="#1-思想本质" class="headerlink" title="1.思想本质"></a>1.思想本质</h3><p>找到一条决策边界，使距离决策边界最近的点尽可能的远，同时这条线还能很好地分类。<br><img src="/uploads/svm/svm01.png" alt="avatar"><br><strong>Hard Margin SVM</strong></p>
+<ul>
+<li>线性可分</li>
+<li>存在直线（超平面）可以将点划分</li>
+</ul>
+<p><strong>Soft Margin SVM</strong></p>
+<ul>
+<li>线性不可分</li>
+</ul>
+<h3 id="2-Margin"><a href="#2-Margin" class="headerlink" title="2.Margin"></a>2.Margin</h3><p>Margin=2d<br>回忆解析几何中，点到直线的距离：<br><img src="/uploads/svm/svm02.png" alt="avatar"><br>拓展到n维空间：<br><img src="/uploads/svm/svm03.png" alt="avatar"><br>那么这个公式是怎么得到的呢？这里介绍一下点到超平面的距离：<br>对于超平面w<sup>T</sup>x+b=0,假设x’为超平面上任意一点，显然满足：<br><img src="/uploads/svm/svm04.png" alt="avatar"><br>对于空间上任意一点 x，到平面 A 的距离 H，等于 x 到超平面的法向量长度，也就是向量 xx’ 在垂直方向上（即法向量）上的投影。而计算投影，将 xx’ 乘以法向量 w 即可。并且，我们不光要投影，还要计算单位，即使用单位为 1 的投影。也就是在分母除以 || w ||。所以，距离 H 可以表示为：<br><img src="/uploads/svm/svm07.png" alt="avatar"><br><img src="/uploads/svm/svm05.png" alt="avatar"><br>又因为w<sup>T</sup>x=-b<br>所以距离为：<br><img src="/uploads/svm/svm06.png" alt="avatar"><br>对SVM来说，两类点到决策边界的点都应该&gt;=d，化简得到。<br><img src="/uploads/svm/svm08.png" alt="avatar"><br>对于任意支撑向量，要让d最大：<br><img src="/uploads/svm/svm09.png" alt="avatar"><br>即为：<br><img src="/uploads/svm/svm10.png" alt="avatar"><br>于是SVM问题，即为求最优：<br><img src="/uploads/svm/svm11.png" alt="avatar"><br>有条件的最优问题。<br>以上是Hard Margin SVM。</p>
+<h3 id="3-Soft-Margin-SVM"><a href="#3-Soft-Margin-SVM" class="headerlink" title="3.Soft Margin SVM"></a>3.Soft Margin SVM</h3><p>SVM得到的决策边界有一定的容错能力，一定情况下，可以把一些点错误地分类，使结果泛化能力高。<br><img src="/uploads/svm/svm14.png" alt="avatar"><br>本质为添加一个宽松项：<br><img src="/uploads/svm/svm12.png" alt="avatar"><br>L1正则和L2正则：<br><img src="/uploads/svm/svm13.png" alt="avatar"></p>
 
       
     </div>
@@ -469,8 +495,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -534,6 +569,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-思想本质"><span class="nav-number">1.</span> <span class="nav-text">1.思想本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Margin"><span class="nav-number">2.</span> <span class="nav-text">2.Margin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Soft-Margin-SVM"><span class="nav-number">3.</span> <span class="nav-text">3.Soft Margin SVM</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
