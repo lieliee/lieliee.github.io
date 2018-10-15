@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://yoursite.com/uploads/knn/weight.png">
 <meta property="og:image" content="http://yoursite.com/uploads/knn/06.png">
 <meta property="og:image" content="http://yoursite.com/uploads/knn/p.png">
-<meta property="og:updated_time" content="2018-09-08T12:35:37.000Z">
+<meta property="og:updated_time" content="2018-10-15T07:34:34.290Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="K近邻算法—KNN">
 <meta name="twitter:description" content="KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。">
@@ -382,7 +382,7 @@
       
 
       
-        <p>KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。<br><a id="more"></a><br>kNN算法的核心思想是如果一个样本在特征空间中的k个最相邻的样本中的大多数属于某一个类别，则该样本也属于这个类别，并具有这个类别上样本的特性。其中K通常是不大于20的整数。###</p>
+        <p>KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。<br><a id="more"></a><br>kNN算法的核心思想是如果一个样本在特征空间中的k个最相邻的样本中的大多数属于某一个类别，则该样本也属于这个类别，并具有这个类别上样本的特性。其中K通常是不大于20的整数。</p>
 <h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>绿色圆要被决定赋予哪个类，是红色三角形还是蓝色四方形？如果K=3，由于红色三角形所占比例为2/3，绿色圆将被赋予红色三角形那个类，如果K=5，由于蓝色四方形比例为3/5，因此绿色圆被赋予蓝色四方形类。<br><img src="/uploads/knn/01.png" alt="avatar"><br>由此也说明了KNN算法的结果很大程度取决于K的选择。</p>
 <h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：<br>1、思想简单，理论成熟，既可以用来做分类也可以用来做回归；<br>2、可用于非线性分类；<br>3、训练时间复杂度为O(n)；<br>4、准确度高，对数据没有假设，对outlier(离群值)不敏感；<br>缺点：<br>1、计算量大；<br>2、样本不平衡问题（即有些类别的样本数量很多，而其它样本的数量很少）；<br>3、需要大量的内存；</p>
 <h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>1.计算测试数据与各个训练数据之间的距离（欧式距离）；<br>2.按照距离的递增关系进行排序；<br>3.选取距离最小的K个点；<br>4.确定前K个点所在类别的出现频率；<br>5.返回前K个点中出现频率最高的类别作为测试数据的预测分类。</p>
