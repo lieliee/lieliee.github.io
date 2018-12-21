@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="算法," />
+  <meta name="keywords" content="大数据," />
 
 
 
@@ -79,27 +79,21 @@
 
 
 
-<meta name="description" content="KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。">
-<meta name="keywords" content="算法">
+<meta name="description" content="Spark是一种基于内存的大数据并行处理框架。">
+<meta name="keywords" content="大数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="K近邻算法—KNN">
-<meta property="og:url" content="http://yoursite.com/2018/09/08/knn/index.html">
+<meta property="og:title" content="Spark学习">
+<meta property="og:url" content="http://yoursite.com/2018/12/21/spark/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。">
+<meta property="og:description" content="Spark是一种基于内存的大数据并行处理框架。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/01.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/02.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/04.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/05.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/k.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/weight.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/06.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/p.png">
-<meta property="og:updated_time" content="2018-10-15T07:34:34.290Z">
+<meta property="og:image" content="http://yoursite.com/uploads/spark/spark01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/spark/spark02.png">
+<meta property="og:updated_time" content="2018-12-21T10:48:23.338Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="K近邻算法—KNN">
-<meta name="twitter:description" content="KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。">
-<meta name="twitter:image" content="http://yoursite.com/uploads/knn/01.png">
+<meta name="twitter:title" content="Spark学习">
+<meta name="twitter:description" content="Spark是一种基于内存的大数据并行处理框架。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/spark/spark01.png">
 
 
 
@@ -129,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/08/knn/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/21/spark/"/>
 
 
 
 
 
-  <title>K近邻算法—KNN | 烈烈</title>
+  <title>Spark学习 | 烈烈</title>
   
 
 
@@ -282,7 +276,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/08/knn/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/spark/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lieliee">
@@ -299,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">K近邻算法—KNN</h1>
+          <h1 class="post-title" itemprop="name headline">Spark学习</h1>
         
 
         <div class="post-meta">
@@ -311,8 +305,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T09:26:04+08:00">
-                2018-09-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T17:50:44+08:00">
+                2018-12-21
               </time>
             
 
@@ -334,8 +328,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
                   </a>
                 </span>
 
@@ -351,7 +345,7 @@
 
           
           
-             <span id="/2018/09/08/knn/" class="leancloud_visitors" data-flag-title="K近邻算法—KNN">
+             <span id="/2018/12/21/spark/" class="leancloud_visitors" data-flag-title="Spark学习">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -382,18 +376,18 @@
       
 
       
-        <p>KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。<br><a id="more"></a><br>kNN算法的核心思想是如果一个样本在特征空间中的k个最相邻的样本中的大多数属于某一个类别，则该样本也属于这个类别，并具有这个类别上样本的特性。其中K通常是不大于20的整数。</p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>绿色圆要被决定赋予哪个类，是红色三角形还是蓝色四方形？如果K=3，由于红色三角形所占比例为2/3，绿色圆将被赋予红色三角形那个类，如果K=5，由于蓝色四方形比例为3/5，因此绿色圆被赋予蓝色四方形类。<br><img src="/uploads/knn/01.png" alt="avatar"><br>由此也说明了KNN算法的结果很大程度取决于K的选择。</p>
-<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：<br>1、思想简单，理论成熟，既可以用来做分类也可以用来做回归；<br>2、可用于非线性分类；<br>3、训练时间复杂度为O(n)；<br>4、准确度高，对数据没有假设，对outlier(离群值)不敏感；<br>缺点：<br>1、计算量大；<br>2、样本不平衡问题（即有些类别的样本数量很多，而其它样本的数量很少）；<br>3、需要大量的内存；</p>
-<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>1.计算测试数据与各个训练数据之间的距离（欧式距离）；<br>2.按照距离的递增关系进行排序；<br>3.选取距离最小的K个点；<br>4.确定前K个点所在类别的出现频率；<br>5.返回前K个点中出现频率最高的类别作为测试数据的预测分类。</p>
-<h4 id="距离类型"><a href="#距离类型" class="headerlink" title="距离类型"></a>距离类型</h4><p><img src="/uploads/knn/02.png" alt="avatar"><br>曼哈顿距离：<br>也可叫出租车距离，红蓝黄皆为曼哈顿距离。<br><img src="/uploads/knn/04.png" alt="avatar"><br>欧式距离：<br>两点之间距离最短，绿色为欧式距离。<br><img src="/uploads/knn/05.png" alt="avatar"></p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>KNN算法可自己编写进行实现，同时scikit-learn也对KNN算法进行了封装（只需要自己加载数据集），这里给出手动编写的KNN。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment">#自定义数据集</span></span><br><span class="line">raw_data_X = [ [<span class="number">3</span>,<span class="number">2</span>],</span><br><span class="line">               [<span class="number">3</span>,<span class="number">1</span>],</span><br><span class="line">               [<span class="number">1</span>,<span class="number">3</span>], </span><br><span class="line">               [<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">               [<span class="number">2</span>,<span class="number">2</span>],</span><br><span class="line">               [<span class="number">7</span>,<span class="number">4</span>], </span><br><span class="line">               [<span class="number">5</span>,<span class="number">3</span>],</span><br><span class="line">               [<span class="number">9</span>,<span class="number">2</span>],</span><br><span class="line">               [<span class="number">7</span>,<span class="number">3</span>],</span><br><span class="line">               [<span class="number">7</span>,<span class="number">0</span>] ]</span><br><span class="line"><span class="comment">#给数据集分类</span></span><br><span class="line">raw_data_y = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line">X_train = np.array(raw_data_X)</span><br><span class="line">y_train = np.array(raw_data_y)</span><br><span class="line"><span class="comment">#设置待分类的点</span></span><br><span class="line">x = np.array([<span class="number">8</span>,<span class="number">3</span>])</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"><span class="comment">#计算待分类的点与各点的距离</span></span><br><span class="line">distances = []</span><br><span class="line"><span class="keyword">for</span> x_train <span class="keyword">in</span> X_train:</span><br><span class="line">    d = sqrt(np.sum((x_train - x)**<span class="number">2</span>))</span><br><span class="line">    distances.append(d)</span><br><span class="line">    np.argsort(distances)</span><br><span class="line"><span class="comment">#由近到远排列</span></span><br><span class="line">nearest = np.argsort(distances)</span><br><span class="line"><span class="comment">#取前6个点</span></span><br><span class="line">k = <span class="number">6</span></span><br><span class="line">topK_y = [y_train[i] <span class="keyword">for</span> i <span class="keyword">in</span> nearest[:k]]</span><br><span class="line"><span class="comment">#看前6个点每个类别有多少个点</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter </span><br><span class="line">Counter(topK_y)</span><br><span class="line">votes = Counter(topK_y)</span><br><span class="line"><span class="comment">#取出现最多的类别</span></span><br><span class="line">votes.most_common(<span class="number">1</span>)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"><span class="comment">#结果为1</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="超参数"><a href="#超参数" class="headerlink" title="超参数"></a>超参数</h4><p>超参数：在算法运行前需要决定的参数。<br>模型参数：算法过程中学习的参数。<br>KNN算法中没有模型参数。<br>KNN中常见超参数：</p>
-<h5 id="K-近邻点的个数："><a href="#K-近邻点的个数：" class="headerlink" title="K-近邻点的个数："></a>K-近邻点的个数：</h5><p>KNN算法中，K值需要提前指定，如何取得最优K值呢，可以使用for循环对分类器结果进行比较取得最优K。<br><img src="/uploads/knn/k.png" alt="avatar"></p>
-<h5 id="weight-距离的权重："><a href="#weight-距离的权重：" class="headerlink" title="weight-距离的权重："></a>weight-距离的权重：</h5><p>weight的取值有两个(考虑权重或不考虑权重)：<br>uniform(默认，即不考虑距离)：一致的权重；<br>distance：距离的倒数作为权重<br><img src="/uploads/knn/weight.png" alt="avatar"></p>
-<h5 id="p-明可夫斯基距离中的P值："><a href="#p-明可夫斯基距离中的P值：" class="headerlink" title="p-明可夫斯基距离中的P值："></a>p-明可夫斯基距离中的P值：</h5><p><img src="/uploads/knn/06.png" alt="avatar"><br>超参数存在相互依赖关系,因为考虑p的前提是weight=distance，如果weight=uniform，则不会考虑p的值。<br>p=1:即欧式距离；p=2:即曼哈顿距离。<br><img src="/uploads/knn/p.png" alt="avatar"></p>
-<h4 id="网格搜索"><a href="#网格搜索" class="headerlink" title="网格搜索"></a>网格搜索</h4><p>更好的确定最优的超参数。</p>
-<h4 id="数据归一化"><a href="#数据归一化" class="headerlink" title="数据归一化"></a>数据归一化</h4><p>将所有的数据映射到同一个尺度中。</p>
+        <p>Spark是一种基于内存的大数据并行处理框架。<br><a id="more"></a></p>
+<h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><ul>
+<li>速度快。数据保存到内存，使用DAG调度程序。</li>
+<li>易用。支持scala，java,python等语言编写程序。</li>
+<li>通用。结合Spark SQL,Spark Streaming,Spark Core,MLlib,Graphx无缝集成。</li>
+<li>到处运行。Spark可以运行在hadoop，yarn，能够读取HDFS，Hbase。</li>
+</ul>
+<h5 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core:"></a>Spark Core:</h5><p>spark生态圈核心，是一个分布式大数据处理框架。<br>1.多种于行模式<br>2.提供DAG<br>3.引入RDD</p>
+<h5 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming:"></a>Spark Streaming:</h5><p>对实时数据进行高吞吐，高容错的流处理系统。<br>1.动态负载均衡，划分小数据。<br>2.快速故障恢复，某节点故障。<br>3.批处理，流处理，交互分析一体。</p>
+<h5 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h5><p>1.将数据按时间间隔分批，也就是离散化。（DStream）<br>2.每一段都通过Spark（此时理解成一个队列）转换成RDD。<br>3.对RDD进行处理。<br><img src="/uploads/spark/spark01.png" alt="avatar"></p>
+<h5 id="Spark-SQL："><a href="#Spark-SQL：" class="headerlink" title="Spark SQL："></a>Spark SQL：</h5><p>主要用于结构化数据处理。<br>前身是Shark，Shark即Hive on Spark。Shark依赖Hive，MR，存在瓶颈。<br>数据集有：RDD，DataFram<br>Spark MLlib:机器学习组件。<br>Spark GraphX:分布式图计算框架。</p>
+<h5 id="Spark运行架构"><a href="#Spark运行架构" class="headerlink" title="Spark运行架构"></a>Spark运行架构</h5><p><img src="/uploads/spark/spark02.png" alt="avatar"><br>1.Driver和master连接并申请资源。<br>2.master进行资源调度。<br>3.master跟Worker进行RPC通信，让Worker启动Executor。<br>4.启动Executor。<br>5.Executor进行通信。<br>6.RDD依赖生成DAG图。<br>7.RDD触发Action，从后往前，宽依赖就shuffe切分stage。由ADG Scheduler完成。每个stage里有一个或多个任务，每个stage是一个调度阶段。<br>8.Task Scheduler接收来自DAG Scheduler的任务集，以任务的形式一个个分发到Woker的Executor中运行。（序列化）<br>9.Executor接收到Task，将Task反序列化，执行任务。</p>
 
       
     </div>
@@ -411,7 +405,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
+            <a href="/tags/大数据/" rel="tag"># 大数据</a>
           
         </div>
       
@@ -424,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/07/me/" rel="next" title="我的">
-                <i class="fa fa-chevron-left"></i> 我的
+              <a href="/2018/12/21/hive/" rel="next" title="Hive学习">
+                <i class="fa fa-chevron-left"></i> Hive学习
               </a>
             
           </div>
@@ -433,10 +427,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/09/ercheng/" rel="prev" title="最小二乘法">
-                最小二乘法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -577,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优缺点"><span class="nav-number">2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程"><span class="nav-number">3.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#距离类型"><span class="nav-number">4.</span> <span class="nav-text">距离类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">5.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超参数"><span class="nav-number">6.</span> <span class="nav-text">超参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#K-近邻点的个数："><span class="nav-number">6.1.</span> <span class="nav-text">K-近邻点的个数：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#weight-距离的权重："><span class="nav-number">6.2.</span> <span class="nav-text">weight-距离的权重：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#p-明可夫斯基距离中的P值："><span class="nav-number">6.3.</span> <span class="nav-text">p-明可夫斯基距离中的P值：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网格搜索"><span class="nav-number">7.</span> <span class="nav-text">网格搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据归一化"><span class="nav-number">8.</span> <span class="nav-text">数据归一化</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#特点："><span class="nav-number">1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-Core"><span class="nav-number">2.</span> <span class="nav-text">Spark Core:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-Streaming"><span class="nav-number">3.</span> <span class="nav-text">Spark Streaming:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理流程"><span class="nav-number">4.</span> <span class="nav-text">处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-SQL："><span class="nav-number">5.</span> <span class="nav-text">Spark SQL：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark运行架构"><span class="nav-number">6.</span> <span class="nav-text">Spark运行架构</span></a></li></ol></div>
             
 
           </div>
