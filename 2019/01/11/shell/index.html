@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关学习。">
+<meta name="description" content="shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关使用。">
 <meta name="keywords" content="脚本语言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shell学习">
 <meta property="og:url" content="http://yoursite.com/2019/01/11/shell/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关学习。">
+<meta property="og:description" content="shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关使用。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T09:24:10.788Z">
+<meta property="og:updated_time" content="2019-01-11T09:26:22.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell学习">
-<meta name="twitter:description" content="shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关学习。">
+<meta name="twitter:description" content="shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关使用。">
 
 
 
@@ -373,7 +373,7 @@
       
 
       
-        <p>shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关学习。<br><a id="more"></a></p>
+        <p>shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关使用。<br><a id="more"></a></p>
 <h4 id="1-第一个脚本程序"><a href="#1-第一个脚本程序" class="headerlink" title="1.第一个脚本程序"></a>1.第一个脚本程序</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 上面中的 #! 是一种约定标记, 它可以告诉系统这个脚本需要什么样的解释器来执行;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Hello, world!"</span></span><br></pre></td></tr></table></figure>
 <h4 id="2-变量"><a href="#2-变量" class="headerlink" title="2.变量"></a>2.变量</h4><h5 id="2-1-定义变量"><a href="#2-1-定义变量" class="headerlink" title="2.1 定义变量"></a>2.1 定义变量</h5><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">country=<span class="string">"China"</span></span><br><span class="line">Number=100</span><br><span class="line"><span class="section">注意: 1,变量名和等号之间不能有空格;</span></span><br></pre></td></tr></table></figure>
 <h5 id="2-2-使用变量"><a href="#2-2-使用变量" class="headerlink" title="2.2 使用变量"></a>2.2 使用变量</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">country=<span class="string">"China"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$country</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;country&#125;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"I love my <span class="variable">$&#123;country&#125;</span>abcd!"</span>   </span><br><span class="line"><span class="comment">#这个需要有｛｝的，识别边界；</span></span><br></pre></td></tr></table></figure>
