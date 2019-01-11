@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="烈烈">
 <meta property="og:description" content="shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关使用。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T09:28:08.654Z">
+<meta property="og:updated_time" content="2019-01-11T09:37:42.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shell学习">
 <meta name="twitter:description" content="shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关使用。">
@@ -465,19 +465,137 @@
 </tbody>
 </table>
 <h5 id="3-2-命令替换"><a href="#3-2-命令替换" class="headerlink" title="3.2 命令替换"></a>3.2 命令替换</h5><p>它的意思就是说我们把一个命令的输出赋值给一个变量,方法为把命令用反引号(在Esc下方)引起来。比如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">directory=`<span class="built_in">pwd</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$directory</span></span><br></pre></td></tr></table></figure></p>
-<h5 id="3-3-变量替换"><a href="#3-3-变量替换" class="headerlink" title="3.3 变量替换"></a>3.3 变量替换</h5><p>可以根据变量的状态（是否为空、是否定义等）来改变它的值。<br>形式|说明<br>—|—<br>${var}    |变量本来的值<br>${var:-word}    |如果变量 var 为空或已被删除(unset)，那么返回 word，但不改变 var 的值。<br>${var:=word}    |如果变量 var 为空或已被删除(unset)，那么返回 word，并将 var 的值设置为 word。<br>${var:?message}    |如果变量 var 为空或已被删除(unset)，那么将消息 message 送到标准错误输出，可以用来检测变量 var 是否可以被正常赋值。<br>若此替换出现在Shell脚本中，那么脚本将停止运行。<br>${var:+word}    |如果变量 var 被定义，那么返回 word，但不改变 var 的值。</p>
-<h4 id="4-shell运算符"><a href="#4-shell运算符" class="headerlink" title="4.shell运算符"></a>4.shell运算符</h4><h5 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h5><p>原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr。 下面使用expr进行；expr是一款表达式计算工具，使用它可以完成表达式的求值操作。<br>运算符|说明|举例|<br>:-: | :-: | :-:<br>+|加法|<code>expr $a + $b</code> 结果为 30。</p>
-<ul>
-<li>|减法    |<code>expr $a - $b</code> 结果为 10。</li>
-</ul>
-<ul>
-<li>|    乘法|<code>expr $a \* $b</code> 结果为  200。<br>/|    除法|<code>expr $b / $a</code> 结果为 2。<br>%|    取余|<code>expr $b % $a</code> 结果为 0。<br>=|    赋值|a=$b 将把变量 b 的值赋给 a。<br>==|    相等。用于比较两个数字，相同则返回 true。    |[ $a == $b ] 返回 false。<br>!=|不相等。用于比较两个数字，不相同则返回 true。    |[ $a != $b ] 返回 true。<br>比如：</li>
-</ul>
+<h5 id="3-3-变量替换"><a href="#3-3-变量替换" class="headerlink" title="3.3 变量替换"></a>3.3 变量替换</h5><p>可以根据变量的状态（是否为空、是否定义等）来改变它的值。</p>
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${var}</td>
+<td>变量本来的值</td>
+</tr>
+<tr>
+<td>${var:-word}</td>
+<td>如果变量 var 为空或已被删除(unset)，那么返回 word，但不改变 var 的值。</td>
+</tr>
+<tr>
+<td>${var:=word}</td>
+<td>如果变量 var 为空或已被删除(unset)，那么返回 word，并将 var 的值设置为 word。</td>
+</tr>
+<tr>
+<td>${var:?message}</td>
+<td>如果变量 var 为空或已被删除(unset)，那么将消息 message 送到标准错误输出，可以用来检测变量 var 是否可以被正常赋值。若此替换出现在Shell脚本中，那么脚本将停止运行。</td>
+</tr>
+<tr>
+<td>${var:+word}</td>
+<td>如果变量 var 被定义，那么返回 word，但不改变 var 的值。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-shell运算符"><a href="#4-shell运算符" class="headerlink" title="4.shell运算符"></a>4.shell运算符</h4><h5 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h5><p>原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr。 下面使用expr进行；expr是一款表达式计算工具，使用它可以完成表达式的求值操作。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">举例  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">加法</td>
+<td style="text-align:center"><code>expr $a + $b</code> 结果为 30。</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">减法</td>
+<td style="text-align:center"><code>expr $a - $b</code> 结果为 10。</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">乘法</td>
+<td style="text-align:center"><code>expr $a \* $b</code> 结果为  200。</td>
+</tr>
+<tr>
+<td style="text-align:center">/</td>
+<td style="text-align:center">除法</td>
+<td style="text-align:center"><code>expr $b / $a</code> 结果为 2。</td>
+</tr>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:center">取余</td>
+<td style="text-align:center"><code>expr $b % $a</code> 结果为 0。</td>
+</tr>
+<tr>
+<td style="text-align:center">=</td>
+<td style="text-align:center">赋值</td>
+<td style="text-align:center">a=$b 将把变量 b 的值赋给 a。</td>
+</tr>
+<tr>
+<td style="text-align:center">==</td>
+<td style="text-align:center">相等。用于比较两个数字，相同则返回 true。</td>
+<td style="text-align:center">[ $a == $b ] 返回 false。</td>
+</tr>
+<tr>
+<td style="text-align:center">!=</td>
+<td style="text-align:center">不相等。用于比较两个数字，不相同则返回 true。</td>
+<td style="text-align:center">[ $a != $b ] 返回 true。</td>
+</tr>
+</tbody>
+</table>
+<p>比如：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">a</span>=10</span><br><span class="line"><span class="attribute">b</span>=20</span><br><span class="line">expr <span class="variable">$a</span> + <span class="variable">$b</span></span><br><span class="line">expr <span class="variable">$a</span> - <span class="variable">$b</span></span><br><span class="line">expr <span class="variable">$a</span> \* <span class="variable">$b</span></span><br><span class="line">expr <span class="variable">$a</span> / <span class="variable">$b</span></span><br><span class="line">expr <span class="variable">$a</span> % <span class="variable">$b</span></span><br><span class="line"><span class="attribute">a</span>=<span class="variable">$b</span></span><br></pre></td></tr></table></figure>
 <p>注意:<br>1.在expr中的乖号为：* </p>
 <p>2.在 expr中的 表达式与运算符之间要有空格，否则错误； </p>
 <p>3.在[ $a == $b ]与[ $a != $b ]中，要需要在方括号与变量以及变量与运算符之间也需要有括号， 否则为错误的。     </p>
-<h5 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h5><p>只支持数字，不支持字符串，除非字符串的值是数字。常见的有：<br>运算符|说明|举例<br>-|-|-<br>-eq    |检测两个数是否相等，相等返回 true。|    [ $a -eq $b ] 返回 true。<br>-ne    |检测两个数是否相等，不相等返回 true。|    [ $a -ne $b ] 返回 true。<br>-gt    |检测左边的数是否大于右边的，如果是，则返回 true。|[ $a -gt $b ] 返回 false。<br>-lt    |检测左边的数是否小于右边的，如果是，则返回 true。    |[ $a -lt $b ] 返回 true。<br>-ge    |检测左边的数是否大等于右边的，如果是，则返回 true。|[ $a -ge $b ] 返回 false。<br>-le    |检测左边的数是否小于等于右边的，如果是，则返回 true。    |[ $a -le $b ] 返回 true。<br>注意：也别忘记了空格；</p>
+<h5 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h5><p>只支持数字，不支持字符串，除非字符串的值是数字。常见的有：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-eq</td>
+<td>检测两个数是否相等，相等返回 true。</td>
+<td>[ $a -eq $b ] 返回 true。</td>
+</tr>
+<tr>
+<td>-ne</td>
+<td>检测两个数是否相等，不相等返回 true。</td>
+<td>[ $a -ne $b ] 返回 true。</td>
+</tr>
+<tr>
+<td>-gt</td>
+<td>检测左边的数是否大于右边的，如果是，则返回 true。</td>
+<td>[ $a -gt $b ] 返回 false。</td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>检测左边的数是否小于右边的，如果是，则返回 true。</td>
+<td>[ $a -lt $b ] 返回 true。</td>
+</tr>
+<tr>
+<td>-ge</td>
+<td>检测左边的数是否大等于右边的，如果是，则返回 true。</td>
+<td>[ $a -ge $b ] 返回 false。</td>
+</tr>
+<tr>
+<td>-le</td>
+<td>检测左边的数是否小于等于右边的，如果是，则返回 true。</td>
+<td>[ $a -le $b ] 返回 true。</td>
+</tr>
+</tbody>
+</table>
+<p>注意：也别忘记了空格；</p>
 <h5 id="布尔运算符："><a href="#布尔运算符：" class="headerlink" title="布尔运算符："></a>布尔运算符：</h5><table>
 <thead>
 <tr>
@@ -540,7 +658,83 @@
 </tr>
 </tbody>
 </table>
-<h5 id="文件测试运算符"><a href="#文件测试运算符" class="headerlink" title="文件测试运算符:"></a>文件测试运算符:</h5><p>检测Unix文件的各种属性。<br>操作符|说明|举例<br>-|-|-<br>-b file    |检测文件是否是块设备文件，如果是，则返回 true。|    [ -b $file ] 返回 false。<br>-c file    |检测文件是否是字符设备文件，如果是，则返回 true。|    [ -b $file ] 返回 false。<br>-d file    |检测文件是否是目录，如果是，则返回 true。|[ -d $file ] 返回 false。<br>-f file    |检测文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true。    |[ -f $file ] 返回 true。<br>-g file|    检测文件是否设置了 SGID 位，如果是，则返回 true。|[ -g $file ] 返回 false。<br>-k file    |检测文件是否设置了粘着位(Sticky Bit)，如果是，则返回 true。|[ -k $file ] 返回 false。<br>-p file|检测文件是否是具名管道，如果是，则返回 true。    |[ -p $file ] 返回 false。<br>-u file|    检测文件是否设置了 SUID 位，如果是，则返回 true。|[ -u $file ] 返回 false。<br>-r file    |检测文件是否可读，如果是，则返回 true。|[ -r $file ] 返回 true。<br>-w file    |检测文件是否可写，如果是，则返回 true。|[ -w $file ] 返回 true。<br>-x file    |检测文件是否可执行，如果是，则返回 true。|[ -x $file ] 返回 true。<br>-s file    |检测文件是否为空（文件大小是否大于0），不为空返回 true。|[ -s $file ] 返回 true。<br>-e file    |检测文件（包括目录）是否存在，如果是，则返回 true。|[ -e $file ] 返回 true。</p>
+<h5 id="文件测试运算符"><a href="#文件测试运算符" class="headerlink" title="文件测试运算符:"></a>文件测试运算符:</h5><p>检测Unix文件的各种属性。</p>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-b file</td>
+<td>检测文件是否是块设备文件，如果是，则返回 true。</td>
+<td>[ -b $file ] 返回 false。</td>
+</tr>
+<tr>
+<td>-c file</td>
+<td>检测文件是否是字符设备文件，如果是，则返回 true。</td>
+<td>[ -b $file ] 返回 false。</td>
+</tr>
+<tr>
+<td>-d file</td>
+<td>检测文件是否是目录，如果是，则返回 true。</td>
+<td>[ -d $file ] 返回 false。</td>
+</tr>
+<tr>
+<td>-f file</td>
+<td>检测文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true。</td>
+<td>[ -f $file ] 返回 true。</td>
+</tr>
+<tr>
+<td>-g file</td>
+<td>检测文件是否设置了 SGID 位，如果是，则返回 true。</td>
+<td>[ -g $file ] 返回 false。</td>
+</tr>
+<tr>
+<td>-k file</td>
+<td>检测文件是否设置了粘着位(Sticky Bit)，如果是，则返回 true。</td>
+<td>[ -k $file ] 返回 false。</td>
+</tr>
+<tr>
+<td>-p file</td>
+<td>检测文件是否是具名管道，如果是，则返回 true。</td>
+<td>[ -p $file ] 返回 false。</td>
+</tr>
+<tr>
+<td>-u file</td>
+<td>检测文件是否设置了 SUID 位，如果是，则返回 true。</td>
+<td>[ -u $file ] 返回 false。</td>
+</tr>
+<tr>
+<td>-r file</td>
+<td>检测文件是否可读，如果是，则返回 true。</td>
+<td>[ -r $file ] 返回 true。</td>
+</tr>
+<tr>
+<td>-w file</td>
+<td>检测文件是否可写，如果是，则返回 true。</td>
+<td>[ -w $file ] 返回 true。</td>
+</tr>
+<tr>
+<td>-x file</td>
+<td>检测文件是否可执行，如果是，则返回 true。</td>
+<td>[ -x $file ] 返回 true。</td>
+</tr>
+<tr>
+<td>-s file</td>
+<td>检测文件是否为空（文件大小是否大于0），不为空返回 true。</td>
+<td>[ -s $file ] 返回 true。</td>
+</tr>
+<tr>
+<td>-e file</td>
+<td>检测文件（包括目录）是否存在，如果是，则返回 true。</td>
+<td>[ -e $file ] 返回 true。</td>
+</tr>
+</tbody>
+</table>
 <h4 id="5-shell中的字符串"><a href="#5-shell中的字符串" class="headerlink" title="5.shell中的字符串"></a>5.shell中的字符串</h4><p>单引号的限制：</p>
 <p>1.单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的；<br>2.单引号字串中不能出现单引号（对单引号使用转义符后也不行）。   </p>
 <p>双引号的优点：<br>1.双引号里可以有变量<br>2.双引号里可以出现转义字符<br>拼接字符串：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">country=<span class="string">"China"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"hello, <span class="variable">$country</span>"</span></span><br><span class="line"><span class="comment">#也可以</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"hello, "</span><span class="variable">$country</span><span class="string">" "</span></span><br></pre></td></tr></table></figure></p>
