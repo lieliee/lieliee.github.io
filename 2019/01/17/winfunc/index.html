@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="概述窗口函数语句简洁且功能强大，但并不被大家熟知。">
+<meta name="description" content="窗口函数语句简洁且功能强大，但并不被大家熟知。">
 <meta name="keywords" content="大数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hive窗口函数">
 <meta property="og:url" content="http://yoursite.com/2019/01/17/winfunc/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="概述窗口函数语句简洁且功能强大，但并不被大家熟知。">
+<meta property="og:description" content="窗口函数语句简洁且功能强大，但并不被大家熟知。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/uploads/winfunc/win01.png">
-<meta property="og:updated_time" content="2019-01-17T07:25:07.227Z">
+<meta property="og:updated_time" content="2019-01-17T07:26:18.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hive窗口函数">
-<meta name="twitter:description" content="概述窗口函数语句简洁且功能强大，但并不被大家熟知。">
+<meta name="twitter:description" content="窗口函数语句简洁且功能强大，但并不被大家熟知。">
 <meta name="twitter:image" content="http://yoursite.com/uploads/winfunc/win01.png">
 
 
@@ -375,7 +375,8 @@
       
 
       
-        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>窗口函数语句简洁且功能强大，但并不被大家熟知。<br><a id="more"></a><br>hive中的窗口函数和sql中的窗口函数类似，都是用来做一些数据分析类的工作，一般用于olap分析。<br>理解窗口函数可以从理解聚合函数开始，我们知道聚合函数的概念，就是将某列多行中的值按照聚合规则合并为一行，比如说Sum、AVG等等，简单的概念如图1所示。<br><img src="/uploads/winfunc/win01.png" alt="avatar"><br>通常来说，聚合后的行数都要小于聚合前的行数。<br>在sql中有一类函数叫做聚合函数，例如sum()、avg()、max()等等,这类函数可以将多行数据按照规则聚集为一行，一般来讲聚集后的行数是要少于聚集前的行数的。但是有时我们想要<font color="#FF0000">既显示聚集前的数据,又要显示聚集后的数据</font>，这时我们便引入了窗口函数。<br><strong>特性和好处：</strong></p>
+        <p>窗口函数语句简洁且功能强大，但并不被大家熟知。<br><a id="more"></a></p>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>hive中的窗口函数和sql中的窗口函数类似，都是用来做一些数据分析类的工作，一般用于olap分析。<br>理解窗口函数可以从理解聚合函数开始，我们知道聚合函数的概念，就是将某列多行中的值按照聚合规则合并为一行，比如说Sum、AVG等等，简单的概念如图1所示。<br><img src="/uploads/winfunc/win01.png" alt="avatar"><br>通常来说，聚合后的行数都要小于聚合前的行数。<br>在sql中有一类函数叫做聚合函数，例如sum()、avg()、max()等等,这类函数可以将多行数据按照规则聚集为一行，一般来讲聚集后的行数是要少于聚集前的行数的。但是有时我们想要<font color="#FF0000">既显示聚集前的数据,又要显示聚集后的数据</font>，这时我们便引入了窗口函数。<br><strong>特性和好处：</strong></p>
 <ul>
 <li>类似Group By的聚合</li>
 <li>非顺序的访问数据</li>
