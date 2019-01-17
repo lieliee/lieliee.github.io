@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="内心," />
+  <meta name="keywords" content="大数据," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="有些青春，要慢慢结束了。">
-<meta name="keywords" content="内心">
+<meta name="description" content="概述窗口函数语句简洁且功能强大，但并不被大家熟知。">
+<meta name="keywords" content="大数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="经历着">
-<meta property="og:url" content="http://yoursite.com/2018/11/03/jlz/index.html">
+<meta property="og:title" content="Hive窗口函数">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/winfunc/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="有些青春，要慢慢结束了。">
+<meta property="og:description" content="概述窗口函数语句简洁且功能强大，但并不被大家熟知。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-04T03:13:05.087Z">
+<meta property="og:image" content="http://yoursite.com/uploads/winfunc/win01.png">
+<meta property="og:updated_time" content="2019-01-17T07:25:07.227Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="经历着">
-<meta name="twitter:description" content="有些青春，要慢慢结束了。">
+<meta name="twitter:title" content="Hive窗口函数">
+<meta name="twitter:description" content="概述窗口函数语句简洁且功能强大，但并不被大家熟知。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/winfunc/win01.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/03/jlz/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/17/winfunc/"/>
 
 
 
 
 
-  <title>经历着 | 烈烈</title>
+  <title>Hive窗口函数 | 烈烈</title>
   
 
 
@@ -273,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/03/jlz/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/winfunc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lieliee">
@@ -290,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">经历着</h1>
+          <h1 class="post-title" itemprop="name headline">Hive窗口函数</h1>
         
 
         <div class="post-meta">
@@ -302,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-03T20:43:35+08:00">
-                2018-11-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T11:42:44+08:00">
+                2019-01-17
               </time>
             
 
@@ -325,8 +327,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/数据仓库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据仓库</span>
                   </a>
                 </span>
 
@@ -342,7 +344,7 @@
 
           
           
-             <span id="/2018/11/03/jlz/" class="leancloud_visitors" data-flag-title="经历着">
+             <span id="/2019/01/17/winfunc/" class="leancloud_visitors" data-flag-title="Hive窗口函数">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -373,12 +375,273 @@
       
 
       
-        <p>有些青春，要慢慢结束了。<br><a id="more"></a><br>&emsp;&emsp;今天IG拿了S8冠军，心情好像一下退回到15年EDG拿到MSI冠军的那天，宿舍集体逃了英语课，围在一台电脑前，热情又温馨。</p>
-<p>&emsp;&emsp;7年，S1到S8，终于赢了，Rookie的话让人很感动，“谢谢你们，有你们才有今天的我”。</p>
-<p>&emsp;&emsp;或许多年以后，我们在不同的地方做着不同的事情，会想起今天，也会微微笑起来吧。一个有阳光下午，一起为IG加油，三个人挤在一个工位，激动又不敢大声说话，这种心境，以后可能不会再有。</p>
-<p>&emsp;&emsp;离开我以后，你变了很多，不再带眼镜了，头发也不再扎在一起了，每天都会化妆呢，其实我想和你说总带隐形眼镜对眼睛不好。你好像不再是之前的小女孩了，我喜欢的那个小女孩，慢慢不见了，有一点失落。可是你喜欢，就按自己的方式活吧。</p>
-<p>&emsp;&emsp;一个男孩要经历多少才能成为一个男人呢，我多希望，你还是那个你，那个扎着头发，带着眼镜，不爱化妆，傻笑的你。</p>
-<p>&emsp;&emsp;想想，能做到巧巧一样的，这世上能有几个人呢。</p>
+        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>窗口函数语句简洁且功能强大，但并不被大家熟知。<br><a id="more"></a><br>hive中的窗口函数和sql中的窗口函数类似，都是用来做一些数据分析类的工作，一般用于olap分析。<br>理解窗口函数可以从理解聚合函数开始，我们知道聚合函数的概念，就是将某列多行中的值按照聚合规则合并为一行，比如说Sum、AVG等等，简单的概念如图1所示。<br><img src="/uploads/winfunc/win01.png" alt="avatar"><br>通常来说，聚合后的行数都要小于聚合前的行数。<br>在sql中有一类函数叫做聚合函数，例如sum()、avg()、max()等等,这类函数可以将多行数据按照规则聚集为一行，一般来讲聚集后的行数是要少于聚集前的行数的。但是有时我们想要<font color="#FF0000">既显示聚集前的数据,又要显示聚集后的数据</font>，这时我们便引入了窗口函数。<br><strong>特性和好处：</strong></p>
+<ul>
+<li>类似Group By的聚合</li>
+<li>非顺序的访问数据</li>
+<li>可以对于窗口函数使用分析函数、聚合函数和排名函数</li>
+<li>简化了SQL代码（消除Join）</li>
+<li>消除中间表</li>
+</ul>
+<h4 id="hive开窗函数over-partition-by-……-用法"><a href="#hive开窗函数over-partition-by-……-用法" class="headerlink" title="hive开窗函数over(partition by ……)用法"></a>hive开窗函数over(partition by ……)用法</h4><p>一、over(partition by ……)<br>主要和聚合函数sum()、count()、avg()等结合使用，实现分组聚合的功能<br>示例:根据day_id日期和mac_id机器码进行聚合分组求每一天的该机器的销量和即sum_num，hive sql语句:<br>select day_id,mac_id,mac_color,day_num,sum(day_num)over(partition by day_id,mac_id order by day_id) sum_num from test_temp_mac_id;<br>注:day_id,mac_id,mac_color,day_num为查询原有数据,sum_num为计算结果</p>
+<table>
+<thead>
+<tr>
+<th>day_id</th>
+<th>mac_id</th>
+<th>mac_color</th>
+<th>day_num</th>
+<th>sum_num</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20171011</td>
+<td>1292</td>
+<td>金色</td>
+<td>1</td>
+<td>89</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>1292</td>
+<td>金色</td>
+<td>14</td>
+<td>89</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>1292</td>
+<td>金色</td>
+<td>2</td>
+<td>89</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>1292</td>
+<td>金色</td>
+<td>11</td>
+<td>89</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>1292</td>
+<td>黑色</td>
+<td>2</td>
+<td>89</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>1292</td>
+<td>粉金</td>
+<td>58</td>
+<td>89</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>1292</td>
+<td>金色</td>
+<td>1</td>
+<td>89</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>2013</td>
+<td>金色</td>
+<td>10</td>
+<td>22</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>2013</td>
+<td>金色</td>
+<td>9</td>
+<td>22</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>2013</td>
+<td>金色</td>
+<td>2</td>
+<td>22</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>2013</td>
+<td>金色</td>
+<td>1</td>
+<td>22</td>
+</tr>
+<tr>
+<td>20171012</td>
+<td>1292</td>
+<td>金色</td>
+<td>5</td>
+<td>18</td>
+</tr>
+<tr>
+<td>20171012</td>
+<td>1292</td>
+<td>金色</td>
+<td>7</td>
+<td>18</td>
+</tr>
+<tr>
+<td>20171012</td>
+<td>1292</td>
+<td>金色</td>
+<td>5</td>
+<td>18</td>
+</tr>
+<tr>
+<td>20171012</td>
+<td>1292</td>
+<td>粉金</td>
+<td>1</td>
+<td>18</td>
+</tr>
+<tr>
+<td>20171012</td>
+<td>2013</td>
+<td>粉金</td>
+<td>1</td>
+<td>7</td>
+</tr>
+<tr>
+<td>20171012</td>
+<td>2013</td>
+<td>金色</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr>
+<td>20171013</td>
+<td>1292</td>
+<td>黑色</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>20171013</td>
+<td>2013</td>
+<td>粉金</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>12460</td>
+<td>茶花金</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>二、over(partition by ……)与group by 区别<br>如果用group by实现一中根据day_id日期和mac_id机器码进行聚合分组求每一天的该机器的销量和即sum_num,<br>则hive sql语句为:<br>select day_id,mac_id,sum(day_num) sum_num from test_temp_mac_id group by day_id,mac_id order by day_id;<br>注:我们可以观察到group by可以实现同样的分组聚合功能，<font color="#FF0000">但sql语句不能写与分组聚合无关的字段，否则会报错</font>，即group by 与over(partition by ……)主要区别为，带上group by的hive sql语句只能显示与分组聚合相关的字段，而带上over(partition by ……)的hive sql语句能显示所有字段。</p>
+<table>
+<thead>
+<tr>
+<th>day_id</th>
+<th>mac_id</th>
+<th>sum_num</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20171011</td>
+<td>124609</td>
+<td>1</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>20130</td>
+<td>22</td>
+</tr>
+<tr>
+<td>20171011</td>
+<td>12922</td>
+<td>89</td>
+</tr>
+<tr>
+<td>20171012</td>
+<td>12922</td>
+<td>18</td>
+</tr>
+<tr>
+<td>20171012</td>
+<td>20130</td>
+<td>7</td>
+</tr>
+<tr>
+<td>20171013</td>
+<td>12922</td>
+<td>1</td>
+</tr>
+<tr>
+<td>20171013</td>
+<td>20130</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h4 id="hive中三个排序函数rank、row-number、dense-rank三者的区别"><a href="#hive中三个排序函数rank、row-number、dense-rank三者的区别" class="headerlink" title="hive中三个排序函数rank、row_number、dense_rank三者的区别"></a>hive中三个排序函数rank、row_number、dense_rank三者的区别</h4><p>1、rank()函数<br>此排序方法进行排序时，相同的排序是一样的，而且下一个不同值是跳着排序的。<br>2、row_number()函数<br>此方法不管排名是否有相同的，都按照顺序1，2，3…..n<br>3、dense_rank()函数<br>此方法对于排名相同的名次一样，且后面名次不跳跃</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>row_number</th>
+<th>rank</th>
+<th>dense_rank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>C</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>D</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>B</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>E</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr>
+<td>F</td>
+<td>6</td>
+<td>6</td>
+<td>5</td>
+</tr>
+<tr>
+<td>G</td>
+<td>7</td>
+<td>7</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<h4 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h4><h5 id="unix时间戳"><a href="#unix时间戳" class="headerlink" title="unix时间戳"></a>unix时间戳</h5><p>unix时间戳是从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数，不考虑闰秒。<br>一个小时表示为UNIX时间戳格式为：3600秒；一天表示为UNIX时间戳为86400秒，闰秒不计算。</p>
+<h5 id="FROM-UNIXTIME-unix-timestamp-format"><a href="#FROM-UNIXTIME-unix-timestamp-format" class="headerlink" title="FROM_UNIXTIME(unix_timestamp,format)"></a>FROM_UNIXTIME(unix_timestamp,format)</h5><p>把unix时间戳转换成date格式<br>示例：<br>hive&gt;SELECT FROM_UNIXTIME( 1249488000, ‘%Y%m%d’ )<br>-&gt; 20071120</p>
+<h5 id="UNIX-TIMESTAMP"><a href="#UNIX-TIMESTAMP" class="headerlink" title="UNIX_TIMESTAMP"></a>UNIX_TIMESTAMP</h5><p>UNIX_TIMESTAMP()<br>UNIX_TIMESTAMP(date)<br>如 果没有参数调用，返回一个Unix时间戳记(从’1970-01-01 00:00:00’GMT开始的秒数)。如果UNIX_TIMESTAMP()用一个date参数被调用，它返回从’1970-01-01 00:00:00’ GMT开始的秒数值。date可以是一个DATE字符串、一个DATETIME字符串、一个TIMESTAMP或以YYMMDD或YYYYMMDD格式的 本地时间的一个数字。<br>示例：<br>hive&gt; select UNIX_TIMESTAMP();<br>-&gt; 882226357<br>hive&gt; select UNIX_TIMESTAMP(‘1997-10-04 22:23:00’);<br>-&gt; 875996580<br>hive&gt;select UNIX_TIMESTAMP(‘20071014’,’YYYYMMdd’)<br>-&gt; 1169568500</p>
 
       
     </div>
@@ -396,7 +659,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/内心/" rel="tag"># 内心</a>
+            <a href="/tags/大数据/" rel="tag"># 大数据</a>
           
         </div>
       
@@ -409,8 +672,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/22/world/" rel="next" title="在人间">
-                <i class="fa fa-chevron-left"></i> 在人间
+              <a href="/2019/01/11/shell/" rel="next" title="Shell学习">
+                <i class="fa fa-chevron-left"></i> Shell学习
               </a>
             
           </div>
@@ -418,10 +681,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/16/hadoop/" rel="prev" title="Hadoop学习">
-                Hadoop学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -478,8 +737,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -543,6 +811,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hive开窗函数over-partition-by-……-用法"><span class="nav-number">2.</span> <span class="nav-text">hive开窗函数over(partition by ……)用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hive中三个排序函数rank、row-number、dense-rank三者的区别"><span class="nav-number">3.</span> <span class="nav-text">hive中三个排序函数rank、row_number、dense_rank三者的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间戳"><span class="nav-number">4.</span> <span class="nav-text">时间戳</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#unix时间戳"><span class="nav-number">4.1.</span> <span class="nav-text">unix时间戳</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#FROM-UNIXTIME-unix-timestamp-format"><span class="nav-number">4.2.</span> <span class="nav-text">FROM_UNIXTIME(unix_timestamp,format)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UNIX-TIMESTAMP"><span class="nav-number">4.3.</span> <span class="nav-text">UNIX_TIMESTAMP</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
