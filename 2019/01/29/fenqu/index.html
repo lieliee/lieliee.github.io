@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="分区是一种根据分区列的（partition column，如日期等）的值对表进行粗略划分的机制。采用的其实也是hadoop分而治之的思想。">
+<meta name="description" content="分区是一种根据分区列的（partition column，如日期等）的值对表进行粗略划分的机制。采用的也是hadoop分而治之的思想。">
 <meta name="keywords" content="大数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hive分区与实例">
 <meta property="og:url" content="http://yoursite.com/2019/01/29/fenqu/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="分区是一种根据分区列的（partition column，如日期等）的值对表进行粗略划分的机制。采用的其实也是hadoop分而治之的思想。">
+<meta property="og:description" content="分区是一种根据分区列的（partition column，如日期等）的值对表进行粗略划分的机制。采用的也是hadoop分而治之的思想。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/uploads/fenqu/fq01.png">
 <meta property="og:image" content="http://yoursite.com/uploads/fenqu/fq03.png">
 <meta property="og:image" content="http://yoursite.com/uploads/fenqu/fq02.png">
-<meta property="og:updated_time" content="2019-01-29T06:54:10.101Z">
+<meta property="og:updated_time" content="2019-03-04T09:18:29.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hive分区与实例">
-<meta name="twitter:description" content="分区是一种根据分区列的（partition column，如日期等）的值对表进行粗略划分的机制。采用的其实也是hadoop分而治之的思想。">
+<meta name="twitter:description" content="分区是一种根据分区列的（partition column，如日期等）的值对表进行粗略划分的机制。采用的也是hadoop分而治之的思想。">
 <meta name="twitter:image" content="http://yoursite.com/uploads/fenqu/fq01.png">
 
 
@@ -377,7 +377,7 @@
       
 
       
-        <p>分区是一种根据分区列的（partition column，如日期等）的值对表进行粗略划分的机制。采用的其实也是hadoop分而治之的思想。<br><a id="more"></a></p>
+        <p>分区是一种根据分区列的（partition column，如日期等）的值对表进行粗略划分的机制。采用的也是hadoop分而治之的思想。<br><a id="more"></a></p>
 <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>&emsp;&emsp;我们知道，hive的表存储在hdfs之上，建立一个数据库，会在/user/hive/warehouse/目录下生成一个.db文件夹，如果继续在此数据库中添加表，则会在.db文件下创建子文件夹。<br>&emsp;&emsp;如果不使用分区表，一张表下只有一个文件，创建分区后表一张表下会有多个文件。分区就是在hdfs上建立文件夹，把分区数据放在不同文件夹下，这样查询的时候就不用扫描整张表，扫描分区就行了，加快了查询速度。</p>
 <h4 id="实例演示："><a href="#实例演示：" class="headerlink" title="实例演示："></a>实例演示：</h4><p>&emsp;&emsp;下图是没进行分区的表info，因为我直接load本地文件，所以是一个txt文件。<br>&emsp;&emsp;注意：hive是数据仓库，不支持insert，需要从本地或者hdfs进行load，或者选择其他的表overwrite。<br><img src="/uploads/fenqu/fq01.png" alt="avatar"><br>接下来创建一个分区表info_part，使用overwrite语句在info表中选择数据进行加载。<br><img src="/uploads/fenqu/fq03.png" alt="avatar"></p>
 <h4 id="两类分区"><a href="#两类分区" class="headerlink" title="两类分区"></a>两类分区</h4><p>hive中支持两类分区，静态分区和动态分区，平时用的比较多的是动态分区，因为静态分区比较费时费力。<br>静态分区是自己指定分区的参数，而动态则可以根据某个字段自动分区。<br>静态分区：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> overwrite <span class="keyword">table</span> info_part <span class="keyword">PARTITION</span> (addr=<span class="string">'qiqihaer'</span>)  <span class="keyword">select</span> <span class="keyword">name</span>,age,sex <span class="keyword">from</span> info;</span><br></pre></td></tr></table></figure></p>
