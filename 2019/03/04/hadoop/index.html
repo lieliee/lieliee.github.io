@@ -79,21 +79,23 @@
 
 
 
-<meta name="description" content="YARN(Yet Another Resource Negotiator)，另一种资源协调器，在Hadoop 2.x之后出现，是一种新的Hadoop资源管理器。">
+<meta name="description" content="熟悉大数据的同学，对Hadoop一定不会陌生，Hadoop是Apache的顶级项目。">
 <meta name="keywords" content="大数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Yarn学习">
-<meta property="og:url" content="http://yoursite.com/2018/12/21/yarn/index.html">
+<meta property="og:title" content="Hadoop学习">
+<meta property="og:url" content="http://yoursite.com/2019/03/04/hadoop/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="YARN(Yet Another Resource Negotiator)，另一种资源协调器，在Hadoop 2.x之后出现，是一种新的Hadoop资源管理器。">
+<meta property="og:description" content="熟悉大数据的同学，对Hadoop一定不会陌生，Hadoop是Apache的顶级项目。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/uploads/yarn/yarn01.png">
-<meta property="og:image" content="http://yoursite.com/uploads/yarn/yarn02.png">
-<meta property="og:updated_time" content="2018-12-21T07:21:05.487Z">
+<meta property="og:image" content="http://yoursite.com/uploads/hadoop/hadoop01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/hadoop/hadoop02.png">
+<meta property="og:image" content="http://yoursite.com/uploads/hadoop/hadoop03.png">
+<meta property="og:image" content="http://yoursite.com/uploads/hadoop/hadoop04.png">
+<meta property="og:updated_time" content="2019-03-04T02:36:36.880Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yarn学习">
-<meta name="twitter:description" content="YARN(Yet Another Resource Negotiator)，另一种资源协调器，在Hadoop 2.x之后出现，是一种新的Hadoop资源管理器。">
-<meta name="twitter:image" content="http://yoursite.com/uploads/yarn/yarn01.png">
+<meta name="twitter:title" content="Hadoop学习">
+<meta name="twitter:description" content="熟悉大数据的同学，对Hadoop一定不会陌生，Hadoop是Apache的顶级项目。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/hadoop/hadoop01.png">
 
 
 
@@ -123,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/21/yarn/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/04/hadoop/"/>
 
 
 
 
 
-  <title>Yarn学习 | 烈烈</title>
+  <title>Hadoop学习 | 烈烈</title>
   
 
 
@@ -276,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/yarn/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/hadoop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lieliee">
@@ -293,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Yarn学习</h1>
+          <h1 class="post-title" itemprop="name headline">Hadoop学习</h1>
         
 
         <div class="post-meta">
@@ -305,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T10:18:01+08:00">
-                2018-12-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T10:36:36+08:00">
+                2019-03-04
               </time>
             
 
@@ -345,7 +347,7 @@
 
           
           
-             <span id="/2018/12/21/yarn/" class="leancloud_visitors" data-flag-title="Yarn学习">
+             <span id="/2019/03/04/hadoop/" class="leancloud_visitors" data-flag-title="Hadoop学习">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -376,31 +378,15 @@
       
 
       
-        <p>YARN(Yet Another Resource Negotiator)，另一种资源协调器，在Hadoop 2.x之后出现，是一种新的Hadoop资源管理器。<br><a id="more"></a><br>将资源管理和任务调度工作分离开，减少MR中JobTracker压力。<br>MR缺陷：<br>1.Job Tracker存在单点故障。<br>2.JR任务多，内存开销大，不能合理跟踪TaskTracker，可伸缩性差。<br>3.一种类型一个集群，集群资源利用率低，不支持多种框架。<br>YARN优势：<br>1.资源管理与任务调度分开，减轻单点压力，更合理。<br>2.向后兼容性，MR.1作业无需修改即可运行在YARN上。<br>3.支持多个框架，MR，Storm，Spark等。<br>4.框架升级更容易，被封装，升客户端即可。<br>5.集群资源利用率更高，一个框架未用，资源框架使用。<br>YARN架构：<br><img src="/uploads/yarn/yarn01.png" alt="avatar"><br>1个RM + N个NM<br>Resource Manager:负责整个集群的资源管理和分配：</p>
-<ul>
-<li>处理Client请求。</li>
-<li>启动式监控AM。</li>
-<li>监控NM。</li>
-<li>资源管理。</li>
-</ul>
-<p>Application Master:用户提交的每个应用程序都包含一个AM：</p>
-<ul>
-<li>数据切分。</li>
-<li>为应用程序向RM申请资源。</li>
-<li>任务的监控与容错。</li>
-<li>与NM用心启停task，task运行在container。</li>
-</ul>
-<p>Node Manager:管理YARN集群每个节点，监控节点健康：</p>
-<ul>
-<li>单个节点的资源管理，任务调度。</li>
-<li>定期向RM回报节点资源使用情况和容器状态。</li>
-<li>接收饼处理AM的container启停等请求。</li>
-</ul>
-<p>Container:资源抽象，AM向RM申请资源时，RM为AM返回的资源是使用Container表示的。YARN为每个任务分配一个Container:</p>
-<ul>
-<li>对任务环境进行封装。封装CPU，内存等多维度的资源及环境变量等。</li>
-</ul>
-<p>YARN执行过程：<br><img src="/uploads/yarn/yarn02.png" alt="avatar"><br>1.Client向Yarn提交Job，找RM分配任务。RM开启一个Container，在Contain中运行一个APP Manager。<br>2,3.App Manager找一台NM启动App Master，进行任务计算。<br>4.App Master向App Manager申请资源。<br>5.RS将资源封装发给App Manager申请资源。<br>6.App Master将获取的资源分配各各个NM。<br>7.NM得到资源执行任务Map task,reduce task。<br>8.将结果反馈给App Master。<br>9.App Master将任务直观性结果反馈给App Manager。</p>
+        <p>熟悉大数据的同学，对Hadoop一定不会陌生，Hadoop是Apache的顶级项目。<br><a id="more"></a></p>
+<h4 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h4><p>&emsp;&emsp;Hadoop是一个对大型数据集进行存储和计算的软件系统，单个–&gt;前台计算机，联合进行计算和存储。</p>
+<h4 id="2-Hadoop模块"><a href="#2-Hadoop模块" class="headerlink" title="2.Hadoop模块"></a>2.Hadoop模块</h4><h5 id="Hadoop-Common"><a href="#Hadoop-Common" class="headerlink" title="Hadoop Common:"></a>Hadoop Common:</h5><p>&emsp;&emsp;支持其他Hadoop模块的常用程序。</p>
+<h5 id="Hadoop-HDFS-Hadoop-Distributed-File-System"><a href="#Hadoop-HDFS-Hadoop-Distributed-File-System" class="headerlink" title="Hadoop HDFS(Hadoop Distributed File System):"></a>Hadoop HDFS(Hadoop Distributed File System):</h5><p>&emsp;&emsp;Hadoop分布式文件系统，提供应用程序数据的高吞吐量访问。HDFS有着高容错性的特点，并且设计用来部署在低廉的硬件上。</p>
+<h5 id="YARN"><a href="#YARN" class="headerlink" title="YARN:"></a>YARN:</h5><p>&emsp;&emsp;作业调度和集群资源管理的框架。</p>
+<h5 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce:"></a>MapReduce:</h5><p>&emsp;&emsp;一种计算模型，并行处理大型数据集。Map生成键值，Reduce对中间结果中相同的“键”进行“值”归约。</p>
+<h5 id="核心：HDFS-MapReduce"><a href="#核心：HDFS-MapReduce" class="headerlink" title="核心：HDFS,MapReduce"></a>核心：HDFS,MapReduce</h5><h4 id="3-HDFS架构"><a href="#3-HDFS架构" class="headerlink" title="3.HDFS架构"></a>3.HDFS架构</h4><p>主/从结构<br>1个Master带N个Slaves<br>1:NameNode<br>N:DataNode<br>DN定期向NN发送心跳信息，汇报自身及所有block信息，健康状况。<br><strong>NameNode：</strong><br>文件系统的命名空间管理（打开，关闭，重命名文件或目录）。<br>对文件的访问操作。<br><strong>DataNode:</strong><br>管理存储的数据。<br>处理文件系统的客户端读写请求。<br>NameNode统一调度进数据块的创建，删除，复制。<br>1个文件被拆成多个block，默认保存3份，默认每个block为128M。<br>130–&gt;2个，1个128M，1个2M<br>如图：<br><img src="/uploads/hadoop/hadoop01.png" alt="avatar"></p>
+<h4 id="4-HDFS副本机制"><a href="#4-HDFS副本机制" class="headerlink" title="4.HDFS副本机制"></a>4.HDFS副本机制</h4><p>block默认保存3份。<br>block大小和备份份数都可以配置。<br>除了最后一个block(块)，前面的块相同。<br>128m|128m|2m<br>一个DataNode存储多个block<br>NameNode(Filename,numReplicas,block=ids,…)<br>/users/sameerp/data/part-0,r:2,{1,3},…<br>/users/sameerp/data/part-0,r:3,{2,4,5},…<br>如图：<br><img src="/uploads/hadoop/hadoop02.png" alt="avatar"></p>
+<h4 id="5-分布式计算框架MapReduce-并行编程模式，将任务分不到上千台集群节点"><a href="#5-分布式计算框架MapReduce-并行编程模式，将任务分不到上千台集群节点" class="headerlink" title="5.分布式计算框架MapReduce(并行编程模式，将任务分不到上千台集群节点)"></a>5.分布式计算框架MapReduce(并行编程模式，将任务分不到上千台集群节点)</h4><p>采用“分而治之”的思想，把大规模数据集拆分吗，并行计算<br>多个子任务汇总。主要靠：<br>Map:把任务分解成多个任务。<br>Reduce:把分解后的多任务处理的结果汇总。<br>MapReduce编程模型<br>·input<br>·map&amp;reduce<br>·output<br>距离词频统计WordCount：<br><img src="/uploads/hadoop/hadoop03.png" alt="avatar"><br>Input–&gt;             //输入数据<br>Splitting–&gt;         //分割数据，每行一块，按空格分割单词<br>Mapping–&gt;             //每块每个单词处理下出现的次数<br>Shuffling–&gt;         //相同单词分一起，每个单词出现一次<br>Reducing–&gt;             //每个单词的次数求和<br>Final Result–&gt;         //结果汇总<br>MapReduce体系结构：<br><img src="/uploads/hadoop/hadoop04.png" alt="avatar"><br>Client:用户编写的MR程序通过Client提交到JobTracker端。<br>Job Tracker：负责资源调度作业，监控所有TaskTrack和Job的健康状况。失败则转移到其他节点。跟踪任务的执行进度，资源使用，把这些信息高速TaskTracker(任务调度器)，调度何时选择task执行。<br>TraskTracker:周期通过“心跳”（主从节点的通信时间间隔）,向Job Tracker汇报任务进度，资源使用，同时接收Job Tracker的命令。如启动新Task，杀旧Task。<br><strong>从节点仅负责由主节点指派的任务。</strong><br>Task:Map Task,Rduce均由TrackTracker启动。<br><strong>MR特点：</strong><br>易于编程<br>良好的扩展性<br>高容错性<br>海量数据的离线处理<br><strong>MR不擅长：</strong><br>实时计算<br>流式计算<br>DAG计算</p>
 
       
     </div>
@@ -431,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/03/jlz/" rel="next" title="经历着">
-                <i class="fa fa-chevron-left"></i> 经历着
+              <a href="/2019/01/29/fenqu/" rel="next" title="Hive分区与实例">
+                <i class="fa fa-chevron-left"></i> Hive分区与实例
               </a>
             
           </div>
@@ -440,10 +426,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/21/hive/" rel="prev" title="Hive学习">
-                Hive学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -500,8 +482,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -565,6 +556,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Hadoop模块"><span class="nav-number">2.</span> <span class="nav-text">2.Hadoop模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hadoop-Common"><span class="nav-number">2.1.</span> <span class="nav-text">Hadoop Common:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Hadoop-HDFS-Hadoop-Distributed-File-System"><span class="nav-number">2.2.</span> <span class="nav-text">Hadoop HDFS(Hadoop Distributed File System):</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#YARN"><span class="nav-number">2.3.</span> <span class="nav-text">YARN:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce"><span class="nav-number">2.4.</span> <span class="nav-text">MapReduce:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#核心：HDFS-MapReduce"><span class="nav-number">2.5.</span> <span class="nav-text">核心：HDFS,MapReduce</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-HDFS架构"><span class="nav-number">3.</span> <span class="nav-text">3.HDFS架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-HDFS副本机制"><span class="nav-number">4.</span> <span class="nav-text">4.HDFS副本机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-分布式计算框架MapReduce-并行编程模式，将任务分不到上千台集群节点"><span class="nav-number">5.</span> <span class="nav-text">5.分布式计算框架MapReduce(并行编程模式，将任务分不到上千台集群节点)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
