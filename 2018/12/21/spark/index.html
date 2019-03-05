@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/uploads/spark/spark01.png">
 <meta property="og:image" content="http://yoursite.com/uploads/spark/spark02.png">
-<meta property="og:updated_time" content="2019-03-04T09:31:32.122Z">
+<meta property="og:updated_time" content="2019-03-05T09:00:02.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark">
 <meta name="twitter:description" content="Spark是一种基于内存的大数据并行处理框架。">
@@ -383,7 +383,7 @@
 <li>通用。结合Spark SQL,Spark Streaming,Spark Core,MLlib,Graphx无缝集成。</li>
 <li>到处运行。Spark可以运行在hadoop，yarn，能够读取HDFS，Hbase。</li>
 </ul>
-<h5 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core:"></a>Spark Core:</h5><p>spark生态圈核心，是一个分布式大数据处理框架。<br>1.多种于行模式<br>2.提供DAG<br>3.引入RDD</p>
+<h5 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core:"></a>Spark Core:</h5><p>spark生态圈核心，是一个分布式大数据处理框架。<br>1.多种并行模式<br>2.提供DAG<br>3.引入RDD</p>
 <h5 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming:"></a>Spark Streaming:</h5><p>对实时数据进行高吞吐，高容错的流处理系统。<br>1.动态负载均衡，划分小数据。<br>2.快速故障恢复，某节点故障。<br>3.批处理，流处理，交互分析一体。</p>
 <h5 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h5><p>1.将数据按时间间隔分批，也就是离散化。（DStream）<br>2.每一段都通过Spark（此时理解成一个队列）转换成RDD。<br>3.对RDD进行处理。<br><img src="/uploads/spark/spark01.png" alt="avatar"></p>
 <h5 id="Spark-SQL："><a href="#Spark-SQL：" class="headerlink" title="Spark SQL："></a>Spark SQL：</h5><p>主要用于结构化数据处理。<br>前身是Shark，Shark即Hive on Spark。Shark依赖Hive，MR，存在瓶颈。<br>数据集有：RDD，DataFram<br>Spark MLlib:机器学习组件。<br>Spark GraphX:分布式图计算框架。</p>
