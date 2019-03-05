@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/uploads/hive/hive01.png">
 <meta property="og:image" content="http://yoursite.com/uploads/hive/hive02.png">
 <meta property="og:image" content="http://yoursite.com/uploads/hive/hive03.png">
-<meta property="og:updated_time" content="2019-03-04T09:31:17.179Z">
+<meta property="og:updated_time" content="2019-03-05T02:02:22.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hive">
 <meta name="twitter:description" content="Hive是由Facebook实现并开源，基于hadoop的一个数据仓库工具。">
@@ -383,7 +383,7 @@
 <h5 id="2-Hive架构"><a href="#2-Hive架构" class="headerlink" title="2.Hive架构"></a>2.Hive架构</h5><p><img src="/uploads/hive/hive02.png" alt="avatar"></p>
 <h6 id="用户接口："><a href="#用户接口：" class="headerlink" title="用户接口："></a>用户接口：</h6><p>CLI:shell命令行，最常用。<br>JDBC/ODBC：开发过程连接 Hive Server。<br>WEB UI：浏览器访问。</p>
 <h6 id="跨语言服务："><a href="#跨语言服务：" class="headerlink" title="跨语言服务："></a>跨语言服务：</h6><p>Thrift Server，常用hiveserver2，能让不同的编程语言调用Hiver接口。</p>
-<h6 id="驱动程序"><a href="#驱动程序" class="headerlink" title="驱动程序"></a>驱动程序</h6><p><img src="/uploads/hive/hive03.png" alt="avatar"><br>（1）解释器解析SQL语句并生成一个抽象语法树(AST)，他描述了为生成结果所必须执行的逻辑运算，例如SELECT、JOIN、UNION、分组、投影等。<br>（2）规划器在Hive Metastore中检索表的元数据，包括HDFS文件的位置、存储格式、行数等。<br>（3）查询优化器使用AST和表的元数据，生成一个物理运算树，即所谓的执行计划，它描述了为检索数据所必须执行的所有无理运算，例如嵌套循环链接、排序合并连接等。<br><strong>查询优化器生成的执行计划最终决定了将在Hadoop集群上执行的任务。</strong><br>（4）元数据<br>即对数据的描述，表的行，列，属性。<br>是存储在Mysql或Derby数据库中（RDMS）。</p>
+<h6 id="驱动程序"><a href="#驱动程序" class="headerlink" title="驱动程序"></a>驱动程序</h6><p><img src="/uploads/hive/hive03.png" alt="avatar"><br>（1）解释器解析SQL语句并生成一个抽象语法树(AST)，他描述了为生成结果所必须执行的逻辑运算，例如SELECT、JOIN、UNION、分组、投影等。<br>（2）规划器在Hive Metastore中检索表的元数据，包括HDFS文件的位置、存储格式、行数等。<br>（3）查询优化器使用AST和表的元数据，生成一个物理运算树，即所谓的执行计划，它描述了为检索数据所必须执行的所有物理运算，例如嵌套循环链接、排序合并连接等。<br><strong>查询优化器生成的执行计划最终决定了将在Hadoop集群上执行的任务。</strong><br>（4）元数据<br>即对数据的描述，表的行，列，属性。<br>是存储在Mysql或Derby数据库中（RDMS）。</p>
 <h4 id="3-Hive和RDMS对比"><a href="#3-Hive和RDMS对比" class="headerlink" title="3.Hive和RDMS对比"></a>3.Hive和RDMS对比</h4><table>
 <thead>
 <tr>
