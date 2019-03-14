@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Hive]]></title>
+    <url>%2F2019%2F03%2F04%2Fhive%2F</url>
+    <content type="text"><![CDATA[Hive是由Facebook实现并开源，基于hadoop的一个数据仓库工具。Hive可以将结构化的数据映射为一张数据库表，提供Hive SQL查询，底层数据存储在HDFS之上。Hive的实质是将SQL语句转换为MR任务运行。基于HDFS的计算框架，对HDFS上的数据分析和管理。 1.为什么使用Hive直接使用MR的问题：1.学习成本高2.MR实现复杂查询开发难度大 Hive优点：1.可扩展：自由宽展几圈规模，一般不需要重启。2.延展性：Hive支持自定义函数。3.良好容错性：保证有节点出现问题，SQL语句仍可完成执行。 2.Hive架构 用户接口：CLI:shell命令行，最常用。JDBC/ODBC：开发过程连接 Hive Server。WEB UI：浏览器访问。 跨语言服务：Thrift Server，常用hiveserver2，能让不同的编程语言调用Hiver接口。 驱动程序（1）解释器解析SQL语句并生成一个抽象语法树(AST)，他描述了为生成结果所必须执行的逻辑运算，例如SELECT、JOIN、UNION、分组、投影等。（2）规划器在Hive Metastore中检索表的元数据，包括HDFS文件的位置、存储格式、行数等。（3）查询优化器使用AST和表的元数据，生成一个物理运算树，即所谓的执行计划，它描述了为检索数据所必须执行的所有物理运算，例如嵌套循环链接、排序合并连接等。查询优化器生成的执行计划最终决定了将在Hadoop集群上执行的任务。（4）元数据即对数据的描述，表的行，列，属性。是存储在Mysql或Derby数据库中（RDMS）。 3.Hive和RDMS对比 Hive RDMS 查询语言 SQL RDMS 数据存储 HDFS Raw Device or Local FS 执行器 MapReduce Executor 数据插入 支持批量导入单条导入 支持单条批量导入 数据操作 覆盖追加 行级更新删除 处理数据规模 大 小 执行延迟 高 低 分区 支持 支持 索引 0.8之后加入简单索引 支持复杂索引 扩展性 高（好） 有限（差） 数据加载模式 读时模式（快） 写时模式（慢） 应用场景 海量数据查询 实时查询]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>大数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hadoop]]></title>
+    <url>%2F2019%2F03%2F04%2Fhadoop%2F</url>
+    <content type="text"><![CDATA[熟悉大数据的同学，对Hadoop一定不会陌生，Hadoop是Apache的顶级项目。 1.概述&emsp;&emsp;Hadoop是一个对大型数据集进行存储和计算的软件系统，单个–&gt;前台计算机，联合进行计算和存储。 2.Hadoop模块Hadoop Common:&emsp;&emsp;支持其他Hadoop模块的常用程序。 Hadoop HDFS(Hadoop Distributed File System):&emsp;&emsp;Hadoop分布式文件系统，提供应用程序数据的高吞吐量访问。HDFS有着高容错性的特点，并且设计用来部署在低廉的硬件上。 YARN:&emsp;&emsp;作业调度和集群资源管理的框架。 MapReduce:&emsp;&emsp;一种计算模型，并行处理大型数据集。Map生成键值，Reduce对中间结果中相同的“键”进行“值”归约。 核心：HDFS,MapReduce3.HDFS架构主/从结构1个Master带N个Slaves1:NameNodeN:DataNodeDN定期向NN发送心跳信息，汇报自身及所有block信息，健康状况。NameNode：文件系统的命名空间管理（打开，关闭，重命名文件或目录）。对文件的访问操作。DataNode:管理存储的数据。处理文件系统的客户端读写请求。NameNode统一调度进数据块的创建，删除，复制。1个文件被拆成多个block，默认保存3份，默认每个block为128M。130–&gt;2个，1个128M，1个2M如图： 4.HDFS副本机制block默认保存3份。block大小和备份份数都可以配置。除了最后一个block(块)，前面的块相同。128m|128m|2m一个DataNode存储多个blockNameNode(Filename,numReplicas,block=ids,…)/users/sameerp/data/part-0,r:2,{1,3},…/users/sameerp/data/part-0,r:3,{2,4,5},…如图： 5.分布式计算框架MapReduce(并行编程模式，将任务分不到上千台集群节点)采用“分而治之”的思想，把大规模数据集拆分吗，并行计算多个子任务汇总。主要靠：Map:把任务分解成多个任务。Reduce:把分解后的多任务处理的结果汇总。MapReduce编程模型·input·map&amp;reduce·output距离词频统计WordCount：Input–&gt; //输入数据Splitting–&gt; //分割数据，每行一块，按空格分割单词Mapping–&gt; //每块每个单词处理下出现的次数Shuffling–&gt; //相同单词分一起，每个单词出现一次Reducing–&gt; //每个单词的次数求和Final Result–&gt; //结果汇总MapReduce体系结构：Client:用户编写的MR程序通过Client提交到JobTracker端。Job Tracker：负责资源调度作业，监控所有TaskTrack和Job的健康状况。失败则转移到其他节点。跟踪任务的执行进度，资源使用，把这些信息高速TaskTracker(任务调度器)，调度何时选择task执行。TraskTracker:周期通过“心跳”（主从节点的通信时间间隔）,向Job Tracker汇报任务进度，资源使用，同时接收Job Tracker的命令。如启动新Task，杀旧Task。从节点仅负责由主节点指派的任务。Task:Map Task,Rduce均由TrackTracker启动。MR特点：易于编程良好的扩展性高容错性海量数据的离线处理MR不擅长：实时计算流式计算DAG计算]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>大数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hive分区与实例]]></title>
+    <url>%2F2019%2F01%2F29%2Ffenqu%2F</url>
+    <content type="text"><![CDATA[分区是一种根据分区列的（partition column，如日期等）的值对表进行粗略划分的机制。采用的也是hadoop分而治之的思想。 简介&emsp;&emsp;我们知道，hive的表存储在hdfs之上，建立一个数据库，会在/user/hive/warehouse/目录下生成一个.db文件夹，如果继续在此数据库中添加表，则会在.db文件下创建子文件夹。&emsp;&emsp;如果不使用分区表，一张表下只有一个文件，创建分区后表一张表下会有多个文件。分区就是在hdfs上建立文件夹，把分区数据放在不同文件夹下，这样查询的时候就不用扫描整张表，扫描分区就行了，加快了查询速度。 实例演示：&emsp;&emsp;下图是没进行分区的表info，因为我直接load本地文件，所以是一个txt文件。&emsp;&emsp;注意：hive是数据仓库，不支持insert，需要从本地或者hdfs进行load，或者选择其他的表overwrite。接下来创建一个分区表info_part，使用overwrite语句在info表中选择数据进行加载。 两类分区hive中支持两类分区，静态分区和动态分区，平时用的比较多的是动态分区，因为静态分区比较费时费力。静态分区是自己指定分区的参数，而动态则可以根据某个字段自动分区。静态分区：1insert overwrite table info_part PARTITION (addr='qiqihaer') select name,age,sex from info; 动态分区：1insert overwrite table info_part PARTITION (addr) select name,age,sex,addr from info; 我们可以看到在info_part文件夹下，每个分区都是一个文件夹。注意：使用动态分区要设置两个选项：set hive.exec.dynamic.partition=true;默认值：false描述：是否允许动态分区set hive.exec.dynamic.partition.mode=nonstrict;默认值：strict描述：strict是避免全分区字段是动态的，必须有至少一个分区字段是指定有值的]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>大数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ODS、DW和DM层区分]]></title>
+    <url>%2F2019%2F01%2F17%2Fqufen%2F</url>
+    <content type="text"><![CDATA[ODS、DW和DM是数据仓库体系结构的三个部分。ODS——操作性数据(Operational Data Store) DW——数据仓库(Data Warehouse) DM——数据集市(Data Mart) 1.数据中心整体架构数据仓库的整理架构，各个系统的元数据通过ETL同步到操作性数据仓库ODS中，对ODS数据进行面向主题域建模形成DW（数据仓库），DM是针对某一个业务领域建立模型，具体用户（决策层）查看DM生成的报表。 2.数据仓库的ODS、DW和DM概念 3.ODS、DW、DM协作层次图 4.通过一个简单例子看这几层的协作关系 5.ODS到DW的集成示例]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>大数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hive窗口函数]]></title>
+    <url>%2F2019%2F01%2F17%2Fwinfunc%2F</url>
+    <content type="text"><![CDATA[窗口函数语句简洁且功能强大，但并不被大家熟知。 概述hive中的窗口函数和sql中的窗口函数类似，都是用来做一些数据分析类的工作，一般用于olap分析。理解窗口函数可以从理解聚合函数开始，我们知道聚合函数的概念，就是将某列多行中的值按照聚合规则合并为一行，比如说Sum、AVG等等，简单的概念如图1所示。通常来说，聚合后的行数都要小于聚合前的行数。在sql中有一类函数叫做聚合函数，例如sum()、avg()、max()等等,这类函数可以将多行数据按照规则聚集为一行，一般来讲聚集后的行数是要少于聚集前的行数的。但是有时我们想要既显示聚集前的数据,又要显示聚集后的数据，这时我们便引入了窗口函数。特性和好处： 类似Group By的聚合 非顺序的访问数据 可以对于窗口函数使用分析函数、聚合函数和排名函数 简化了SQL代码（消除Join） 消除中间表 hive开窗函数over(partition by ……)用法一、over(partition by ……)主要和聚合函数sum()、count()、avg()等结合使用，实现分组聚合的功能示例:根据day_id日期和mac_id机器码进行聚合分组求每一天的该机器的销量和即sum_num，hive sql语句:select day_id,mac_id,mac_color,day_num,sum(day_num)over(partition by day_id,mac_id order by day_id) sum_num from test_temp_mac_id;注:day_id,mac_id,mac_color,day_num为查询原有数据,sum_num为计算结果 day_id mac_id mac_color day_num sum_num 20171011 1292 金色 1 89 20171011 1292 金色 14 89 20171011 1292 金色 2 89 20171011 1292 金色 11 89 20171011 1292 黑色 2 89 20171011 1292 粉金 58 89 20171011 1292 金色 1 89 20171011 2013 金色 10 22 20171011 2013 金色 9 22 20171011 2013 金色 2 22 20171011 2013 金色 1 22 20171012 1292 金色 5 18 20171012 1292 金色 7 18 20171012 1292 金色 5 18 20171012 1292 粉金 1 18 20171012 2013 粉金 1 7 20171012 2013 金色 6 7 20171013 1292 黑色 1 1 20171013 2013 粉金 2 2 20171011 12460 茶花金 1 1 二、over(partition by ……)与group by 区别如果用group by实现一中根据day_id日期和mac_id机器码进行聚合分组求每一天的该机器的销量和即sum_num,则hive sql语句为:select day_id,mac_id,sum(day_num) sum_num from test_temp_mac_id group by day_id,mac_id order by day_id;注:我们可以观察到group by可以实现同样的分组聚合功能，但sql语句不能写与分组聚合无关的字段，否则会报错，即group by 与over(partition by ……)主要区别为，带上group by的hive sql语句只能显示与分组聚合相关的字段，而带上over(partition by ……)的hive sql语句能显示所有字段。 day_id mac_id sum_num 20171011 124609 1 20171011 20130 22 20171011 12922 89 20171012 12922 18 20171012 20130 7 20171013 12922 1 20171013 20130 2 hive中三个排序函数rank、row_number、dense_rank三者的区别1、rank()函数此排序方法进行排序时，相同的排序是一样的，而且下一个不同值是跳着排序的。2、row_number()函数此方法不管排名是否有相同的，都按照顺序1，2，3…..n3、dense_rank()函数此方法对于排名相同的名次一样，且后面名次不跳跃 a row_number rank dense_rank A 1 1 1 C 2 2 2 D 3 3 3 B 4 3 3 E 5 5 4 F 6 6 5 G 7 7 6 时间戳unix时间戳unix时间戳是从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数，不考虑闰秒。一个小时表示为UNIX时间戳格式为：3600秒；一天表示为UNIX时间戳为86400秒，闰秒不计算。 FROM_UNIXTIME(unix_timestamp,format)把unix时间戳转换成date格式示例：hive&gt;SELECT FROM_UNIXTIME( 1249488000, ‘%Y%m%d’ )-&gt; 20071120 UNIX_TIMESTAMPUNIX_TIMESTAMP()UNIX_TIMESTAMP(date)如 果没有参数调用，返回一个Unix时间戳记(从’1970-01-01 00:00:00’GMT开始的秒数)。如果UNIX_TIMESTAMP()用一个date参数被调用，它返回从’1970-01-01 00:00:00’ GMT开始的秒数值。date可以是一个DATE字符串、一个DATETIME字符串、一个TIMESTAMP或以YYMMDD或YYYYMMDD格式的 本地时间的一个数字。示例：hive&gt; select UNIX_TIMESTAMP();-&gt; 882226357hive&gt; select UNIX_TIMESTAMP(‘1997-10-04 22:23:00’);-&gt; 875996580hive&gt;select UNIX_TIMESTAMP(‘20071014’,’YYYYMMdd’)-&gt; 1169568500]]></content>
+      <categories>
+        <category>数据仓库</category>
+      </categories>
+      <tags>
+        <tag>大数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Shell]]></title>
+    <url>%2F2019%2F01%2F11%2Fshell%2F</url>
+    <content type="text"><![CDATA[shell是一种脚本语言，在日常工作中用到较多，无论是管理airflow调度，还是管理集群，都需要进行shell脚本的编写。今天抽时间整理了一下shell的相关使用。 1.第一个脚本程序123#!/bin/bash# 上面中的 #! 是一种约定标记, 它可以告诉系统这个脚本需要什么样的解释器来执行;echo "Hello, world!" 2.变量2.1 定义变量123country="China"Number=100注意: 1,变量名和等号之间不能有空格; 2.2 使用变量12345country="China"echo $countryecho $&#123;country&#125;echo "I love my $&#123;country&#125;abcd!" #这个需要有｛｝的，识别边界； 2.3 重定义变量变量重新赋值就可以了：12country="China"country="ribenguizi" 2.4 删除变量删除变量: 使用unset命令可以删除变量，但是不能删除只读的变量。用法：1unset variable_name 2.5 变量类型1) 局部变量局部变量在脚本或命令中定义，仅在当前shell实例中有效，其他shell启动的程序不能访问局部变量。2) 环境变量所有的程序，包括shell启动的程序，都能访问环境变量，有些程序需要环境变量来保证其正常运行。必要的时候shell脚本也可以定义环境变量。3) shell变量shell变量是由shell程序设置的特殊变量。shell变量中有一部分是环境变量，有一部分是局部变量，这些变量保证了shell的正常运行4）只读变量1234readonly country="China"#或country="China"readonly country 特殊变量： 变量 含义 $0 当前脚本的文件名 $n 传递给脚本或函数的参数。n 是一个数字，表示第几个参数。例如，第一个参数是$1，第二个参数是$2。 $# 传递给脚本或函数的参数个数。 $* 传递给脚本或函数的所有参数。 $@ 传递给脚本或函数的所有参数。被双引号(“ “)包含时，与 $* 稍有不同，下面将会讲到。 $? 上个命令的退出状态，或函数的返回值。 $$ 当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。 3.shell替换3.1转义字符如果表达式中包含特殊字符，Shell 将会进行替换。例如，在双引号中使用变量就是一种替换，转义字符也是一种替换。举例：123#!/bin/basha=10echo -e "Value of a is $a \n" 运行结果：1Value of a is 10 这里 -e 表示对转义字符进行替换。如果不使用 -e 选项，将会原样输出：1Value of a is 10\n 下面的转义字符都可以用在echo中： 转义字符 含义 \ 反斜杠 \a 警报，响铃 \b 退格（删除键） \f 换页(FF)，将当前位置移到下页开头 \n 换行 \r 回车 \t 水平制表符（tab键） \v 垂直制表符 3.2 命令替换它的意思就是说我们把一个命令的输出赋值给一个变量,方法为把命令用反引号(在Esc下方)引起来。比如:12directory=`pwd`echo $directory 3.3 变量替换可以根据变量的状态（是否为空、是否定义等）来改变它的值。 形式 说明 ${var} 变量本来的值 ${var:-word} 如果变量 var 为空或已被删除(unset)，那么返回 word，但不改变 var 的值。 ${var:=word} 如果变量 var 为空或已被删除(unset)，那么返回 word，并将 var 的值设置为 word。 ${var:?message} 如果变量 var 为空或已被删除(unset)，那么将消息 message 送到标准错误输出，可以用来检测变量 var 是否可以被正常赋值。若此替换出现在Shell脚本中，那么脚本将停止运行。 ${var:+word} 如果变量 var 被定义，那么返回 word，但不改变 var 的值。 4.shell运算符算数运算符原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr。 下面使用expr进行；expr是一款表达式计算工具，使用它可以完成表达式的求值操作。 运算符 说明 举例 + 加法 expr $a + $b 结果为 30。 - 减法 expr $a - $b 结果为 10。 * 乘法 expr $a \* $b 结果为 200。 / 除法 expr $b / $a 结果为 2。 % 取余 expr $b % $a 结果为 0。 = 赋值 a=$b 将把变量 b 的值赋给 a。 == 相等。用于比较两个数字，相同则返回 true。 [ $a == $b ] 返回 false。 != 不相等。用于比较两个数字，不相同则返回 true。 [ $a != $b ] 返回 true。 比如： 12345678a=10b=20expr $a + $bexpr $a - $bexpr $a \* $bexpr $a / $bexpr $a % $ba=$b 注意:1.在expr中的乖号为：* 2.在 expr中的 表达式与运算符之间要有空格，否则错误； 3.在[ $a == $b ]与[ $a != $b ]中，要需要在方括号与变量以及变量与运算符之间也需要有括号， 否则为错误的。 关系运算符只支持数字，不支持字符串，除非字符串的值是数字。常见的有： 运算符 说明 举例 -eq 检测两个数是否相等，相等返回 true。 [ $a -eq $b ] 返回 true。 -ne 检测两个数是否相等，不相等返回 true。 [ $a -ne $b ] 返回 true。 -gt 检测左边的数是否大于右边的，如果是，则返回 true。 [ $a -gt $b ] 返回 false。 -lt 检测左边的数是否小于右边的，如果是，则返回 true。 [ $a -lt $b ] 返回 true。 -ge 检测左边的数是否大等于右边的，如果是，则返回 true。 [ $a -ge $b ] 返回 false。 -le 检测左边的数是否小于等于右边的，如果是，则返回 true。 [ $a -le $b ] 返回 true。 注意：也别忘记了空格； 布尔运算符： 运算符 说明 举例 ! 非运算，表达式为 true 则返回 false，否则返回 true。 [ ! false ] 返回 true。 -o 或运算，有一个表达式为 true 则返回 true。 [ $a -lt 20 -o $b -gt 100 ] 返回 true。 -a 与运算，两个表达式都为 true 才返回 true。 [ $a -lt 20 -a $b -gt 100 ] 返回 false。 字符串运算符 运算符 说明 举例 = 检测两个字符串是否相等，相等返回 true。 [ $a = $b ] 返回 false。 != 检测两个字符串是否相等，不相等返回 true。 [ $a != $b ] 返回 true。 -z 检测字符串长度是否为0，为0返回 true。 [ -z $a ] 返回 false。 -n 检测字符串长度是否为0，不为0返回 true。 [ -z $a ] 返回 true。 str 检测字符串是否为空，不为空返回 true。 [ $a ] 返回 true。 文件测试运算符:检测Unix文件的各种属性。 操作符 说明 举例 -b file 检测文件是否是块设备文件，如果是，则返回 true。 [ -b $file ] 返回 false。 -c file 检测文件是否是字符设备文件，如果是，则返回 true。 [ -b $file ] 返回 false。 -d file 检测文件是否是目录，如果是，则返回 true。 [ -d $file ] 返回 false。 -f file 检测文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true。 [ -f $file ] 返回 true。 -g file 检测文件是否设置了 SGID 位，如果是，则返回 true。 [ -g $file ] 返回 false。 -k file 检测文件是否设置了粘着位(Sticky Bit)，如果是，则返回 true。 [ -k $file ] 返回 false。 -p file 检测文件是否是具名管道，如果是，则返回 true。 [ -p $file ] 返回 false。 -u file 检测文件是否设置了 SUID 位，如果是，则返回 true。 [ -u $file ] 返回 false。 -r file 检测文件是否可读，如果是，则返回 true。 [ -r $file ] 返回 true。 -w file 检测文件是否可写，如果是，则返回 true。 [ -w $file ] 返回 true。 -x file 检测文件是否可执行，如果是，则返回 true。 [ -x $file ] 返回 true。 -s file 检测文件是否为空（文件大小是否大于0），不为空返回 true。 [ -s $file ] 返回 true。 -e file 检测文件（包括目录）是否存在，如果是，则返回 true。 [ -e $file ] 返回 true。 5.shell中的字符串单引号的限制： 1.单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的；2.单引号字串中不能出现单引号（对单引号使用转义符后也不行）。 双引号的优点：1.双引号里可以有变量2.双引号里可以出现转义字符拼接字符串：1234country="China"echo "hello, $country"#也可以echo "hello, "$country" " 获取字符串长度:12string="abcd"echo $&#123;#string&#125; #输出 4 提取子字符串:12string="alibaba is a great company"echo $&#123;string:1:4&#125; #输出liba 查找子字符串:12string="alibaba is a great company"echo `expr index "$string" is` 处理路经的字符串：例如：当一个路径为 /home/xiaoming/1.txt时，如何怎么它的路径（不带文件) 和如何得到它的文件名？？得到文件名使用 bashname命令：12345678910# 参数：# -a,表示处理多个路径；# -s, 用于去掉指定的文件的后缀名； basename /home/yin/1.txt -&gt; 1.txt basename -a /home/yin/1.txt /home/zhai/2.sh -&gt; 1.txt2.sh basename -s .txt /home/yin/1.txt -&gt; 1 basename /home/yin/1.txt .txt -&gt; 1 得到路径名（不带文件名）使用 dirname命令：12345678参数：没有啥参数；//例子： dirname /usr/bin/ -&gt; /usr dirname dir1/str dir2/str -&gt; dir1dir2 dirname stdio.h -&gt; . 6.shell的数组 bash支持一维数组, 不支持多维数组, 它的下标从0开始编号. 用下标[n] 获取数组元素； 定义数组：在shell中用括号表示数组，元素用空格分开。 如：1array_name=(value0 value1 value2 value3) 也可以单独定义数组的各个分量，可以不使用连续的下标，而且下标的范围没有限制。如：123array_name[0]=value0array_name[1]=value1array_name[2]=value2 读取数组：读取某个下标的元素一般格式为:1$&#123;array_name[index]&#125; 读取数组的全部元素，用@或*12$&#123;array_name[*]&#125;$&#123;array_name[@]&#125; 获取数组的信息：取得数组元素的个数：123length=$&#123;#array_name[@]&#125;#或length=$&#123;#array_name[*]&#125; 获取数组的下标：123length=$&#123;!array_name[@]&#125;#或length=$&#123;!array_name[*]&#125; 取得数组单个元素的长度:1lengthn=$&#123;#array_name[n]&#125; 7.条件语句if else语句Shell 有三种 if … else 语句： if … fi 语句； if … else … fi 语句； if … elif … else … fi 语句。 例子：12345678a=10b=20if [ $a == $b ]then echo "a is equal to b"else echo "a is not equal to b"fi 另外：if … else 语句也可以写成一行，以命令的方式来运行，像这样：1if test $[2*3] -eq $[1+5]; then echo 'The two numbers are equal!'; fi; 其中，test 命令用于检查某个条件是否成立，与方括号([ ])类似。 case …… esac语句case … esac 与其他语言中的 switch … case 语句类似，是一种多分枝选择结构。case语句格式如下：1234567891011121314151617case 值 in模式1) command1 command2 command3 ;;模式2） command1 command2 command3 ;;*) command1 command2 command3 ;;esac 其中， 1. 取值后面必须为关键字 in，每一模式必须以右括号结束。取值可以为变量或常数。匹配发现取值符合某一模式后，其间所有命令开始执行直至 ;;。;; 与其他语言中的 break 类似，意思是跳到整个 case 语句的最后。2. 如果无一匹配模式，使用星号 * 捕获该值，再执行后面的命令。 8.循环语句for 循环一般格式为： 1234567for 变量 in 列表do command1 command2 ... commandNdone 注意：列表是一组值（数字、字符串等）组成的序列，每个值通过空格分隔。每循环一次，就将列表中的下一个值赋给变量。例如：顺序输出当前列表的数字：1234for loop in 1 2 3 4 5do echo "The value is: $loop"done 显示主目录下以 .bash 开头的文件：12345#!/bin/bashfor FILE in $HOME/.bash*do echo $FILEdone while循环一般格式为：1234while commanddo Statement(s) to be executed if command is truedone 例如：123456COUNTER=0while [ $COUNTER -lt 5 ]do COUNTER='expr $COUNTER+1' echo $COUNTERdone until 循环until 循环执行一系列命令直至条件为 true 时停止。until 循环与 while 循环在处理方式上刚好相反。 常用格式为：1234until commanddo Statement(s) to be executed until command is truedone command 一般为条件表达式，如果返回值为 false，则继续执行循环体内的语句，否则跳出循环。类似地， 在循环中使用 break 与continue 跳出循环。 另外，break 命令后面还可以跟一个整数，表示跳出第几层循环。 函数Shell函数必须先定义后使用，定义如下，1234function_name () &#123; list of commands [ return value ]&#125; 也可以加上function关键字：1234function function_name () &#123; list of commands [ return value ]&#125; 注意:1.调用函数只需要给出函数名，不需要加括号。2.函数返回值，可以显式增加return语句；如果不加，会将最后一条命令运行结果作为返回值。3.Shell 函数返回值只能是整数，一般用来表示函数执行成功与否，0表示成功，其他值表示失败。4.函数的参数可以通过 $n 得到.如:123456789funWithParam()&#123; echo "The value of the first parameter is $1 !" echo "The value of the second parameter is $2 !" echo "The value of the tenth parameter is $&#123;10&#125; !" echo "The value of the eleventh parameter is $&#123;11&#125; !" echo "The amount of the parameters is $# !" # 参数个数 echo "The string of the parameters is $* !" # 传递给函数的所有参数&#125;funWithParam 1 2 3 4 5 6 7 8 9 34 73 5.像删除变量一样，删除函数也可以使用 unset 命令，不过要加上 .f 选项，如下所示：1unset .f function_name shell的文件包含Shell 也可以包含外部脚本，将外部脚本的内容合并到当前脚本。使用：123. filename#或source filename 两种方式的效果相同，简单起见，一般使用点号(.)，但是注意点号(.)和文件名中间有一空格。 被包含脚本不需要有执行权限。]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>脚本语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[这一年]]></title>
+    <url>%2F2018%2F12%2F31%2Fyear2018%2F</url>
+    <content type="text"><![CDATA[甘苦与共，是浮生茶，也是人生路。&emsp;&emsp;想来这一年，是不寻常的一年，我是不是也是有故事的人了？&emsp;&emsp;这一年有笑有泪，有苦有甜，这些所有，也都是我的人生。&emsp;&emsp;谢谢小武，小鑫，在我难过的时候给我安慰。谢谢老喵一直以来的关照。&emsp;&emsp;第一次心理咨询，谢谢老师能和我聊天，老师笑起来，让人温暖。&emsp;&emsp;这一年，看了两部很棒的国产动画，刺客伍六七，罗小黑战记。刺客伍六七我已经记不起看了多少遍了，我喜欢伍六七，也喜欢里面的音乐。动画里的每个角色有好有坏，可是细细看来，他们都在守护自己认为重要的东西，他们都在努力生活。&emsp;&emsp;我喜欢努力生活的人。金地路口每天中午准时出现的卖煎甜饼的大哥；每天早上和我打招呼，聊天，会给我留好吃的的老乡保洁阿姨；沃尔玛的保洁大哥会很轻很轻地收拾吃过饭的桌子；同事一个人在北京打拼，自己搬家，看见朋友圈里她的笑容，真美；。。。身边还有很多认真生活的人，看到他们都在努力，真好啊。&emsp;&emsp;在这里，认识了很多厉害的人，天大，人大，北理工，有点不好意思说自己的学校，大家都很厉害，自己有点菜，还要更加努力才行。&emsp;&emsp;后来，慢慢养成了早睡早起的习惯，多喝水，不会吃那么多零食，不会再熬夜，也瘦了一些，买的裤子变得好宽，瘦之前喜欢穿紧一些的衣服，因为看着瘦，现在喜欢穿宽松一些的衣服，因为觉得舒服。&emsp;&emsp;今年冬天的北京，格外的冷，想想在南方的时候，冬天是温柔的冷，在北京，是硬核的冷，居然有点不适应了。&emsp;&emsp;剪发的小哥从平乐园搬到了十里河，找他剪头发的话要坐挺久的车。让他剪了这么久，以后要是不找他，他会不会伤心。&emsp;&emsp;来到这里，还没拿到第一个月的工资，拿到的话，给家里人每人买一条围巾，一家四口带着一样的围巾出门，是不是很霸气。昨天和家里人视频，看到小妹又长高了。其实在我脑海里，小妹一直是那个流着鼻涕，扎着小辫，需要喂饭的大眼睛小女孩。现在的小妹，快和我一般高了。小妹，能够看着你一点点长大，是我欣慰而且幸福的事情。&emsp;&emsp;最近读到一首诗，也写在这里吧：&emsp;&emsp;少年听雨歌楼上，红烛昏罗帐。&emsp;&emsp;壮年听雨客舟中，江阔云低，断雁叫西风。&emsp;&emsp;而今听雨僧庐下，鬓已星星也。&emsp;&emsp;悲欢离合总无情，一任阶前点滴到天明。&emsp;&emsp;不同的时期会有不同的心境。&emsp;&emsp;路不同的人和事，就不要坚持了。&emsp;&emsp;要有一些小目标，慢慢去实现。&emsp;&emsp;请好好努力。]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>内心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spark]]></title>
+    <url>%2F2018%2F12%2F21%2Fspark%2F</url>
+    <content type="text"><![CDATA[Spark是一种基于内存的大数据并行处理框架。 特点： 速度快。数据保存到内存，使用DAG调度程序。 易用。支持scala，java,python等语言编写程序。 通用。结合Spark SQL,Spark Streaming,Spark Core,MLlib,Graphx无缝集成。 到处运行。Spark可以运行在hadoop，yarn，能够读取HDFS，Hbase。 Spark Core:spark生态圈核心，是一个分布式大数据处理框架。1.多种并行模式2.提供DAG3.引入RDD Spark Streaming:对实时数据进行高吞吐，高容错的流处理系统。1.动态负载均衡，划分小数据。2.快速故障恢复，某节点故障。3.批处理，流处理，交互分析一体。 处理流程1.将数据按时间间隔分批，也就是离散化。（DStream）2.每一段都通过Spark（此时理解成一个队列）转换成RDD。3.对RDD进行处理。 Spark SQL：主要用于结构化数据处理。前身是Shark，Shark即Hive on Spark。Shark依赖Hive，MR，存在瓶颈。数据集有：RDD，DataFramSpark MLlib:机器学习组件。Spark GraphX:分布式图计算框架。 Spark运行架构1.Driver和master连接并申请资源。2.master进行资源调度。3.master跟Worker进行RPC通信，让Worker启动Executor。4.启动Executor。5.Executor进行通信。6.RDD依赖生成DAG图。7.RDD触发Action，从后往前，宽依赖就shuffe切分stage。由ADG Scheduler完成。每个stage里有一个或多个任务，每个stage是一个调度阶段。8.Task Scheduler接收来自DAG Scheduler的任务集，以任务的形式一个个分发到Woker的Executor中运行。（序列化）9.Executor接收到Task，将Task反序列化，执行任务。]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>大数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Yarn]]></title>
+    <url>%2F2018%2F12%2F21%2Fyarn%2F</url>
+    <content type="text"><![CDATA[YARN(Yet Another Resource Negotiator)，另一种资源协调器，在Hadoop 2.x之后出现，是一种新的Hadoop资源管理器。将资源管理和任务调度工作分离开，减少MR中JobTracker压力。MR缺陷：1.Job Tracker存在单点故障。2.JR任务多，内存开销大，不能合理跟踪TaskTracker，可伸缩性差。3.一种类型一个集群，集群资源利用率低，不支持多种框架。YARN优势：1.资源管理与任务调度分开，减轻单点压力，更合理。2.向后兼容性，MR.1作业无需修改即可运行在YARN上。3.支持多个框架，MR，Storm，Spark等。4.框架升级更容易，被封装，升客户端即可。5.集群资源利用率更高，一个框架未用，资源框架使用。YARN架构：1个RM + N个NMResource Manager:负责整个集群的资源管理和分配： 处理Client请求。 启动式监控AM。 监控NM。 资源管理。 Application Master:用户提交的每个应用程序都包含一个AM： 数据切分。 为应用程序向RM申请资源。 任务的监控与容错。 与NM用心启停task，task运行在container。 Node Manager:管理YARN集群每个节点，监控节点健康： 单个节点的资源管理，任务调度。 定期向RM回报节点资源使用情况和容器状态。 接收饼处理AM的container启停等请求。 Container:资源抽象，AM向RM申请资源时，RM为AM返回的资源是使用Container表示的。YARN为每个任务分配一个Container: 对任务环境进行封装。封装CPU，内存等多维度的资源及环境变量等。 YARN执行过程：1.Client向Yarn提交Job，找RM分配任务。RM开启一个Container，在Contain中运行一个APP Manager。2,3.App Manager找一台NM启动App Master，进行任务计算。4.App Master向App Manager申请资源。5.RS将资源封装发给App Manager申请资源。6.App Master将获取的资源分配各各个NM。7.NM得到资源执行任务Map task,reduce task。8.将结果反馈给App Master。9.App Master将任务直观性结果反馈给App Manager。]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>大数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[经历着]]></title>
+    <url>%2F2018%2F11%2F03%2Fjlz%2F</url>
+    <content type="text"><![CDATA[有些青春，要慢慢结束了。&emsp;&emsp;今天IG拿了S8冠军，心情好像一下退回到15年EDG拿到MSI冠军的那天，宿舍集体逃了英语课，围在一台电脑前，热情又温馨。 &emsp;&emsp;7年，S1到S8，终于赢了，Rookie的话让人很感动，“谢谢你们，有你们才有今天的我”。 &emsp;&emsp;或许多年以后，我们在不同的地方做着不同的事情，会想起今天，也会微微笑起来吧。一个有阳光下午，一起为IG加油，三个人挤在一个工位，激动又不敢大声说话，这种心境，以后可能不会再有。 &emsp;&emsp;离开我以后，你变了很多，不再带眼镜了，头发也不再扎在一起了，每天都会化妆呢，其实我想和你说总带隐形眼镜对眼睛不好。你好像不再是之前的小女孩了，我喜欢的那个小女孩，慢慢不见了，有一点失落。可是你喜欢，就按自己的方式活吧。 &emsp;&emsp;一个男孩要经历多少才能成为一个男人呢，我多希望，你还是那个你，那个扎着头发，带着眼镜，不爱化妆，傻笑的你。 &emsp;&emsp;想想，能做到巧巧一样的，这世上能有几个人呢。]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>内心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在人间]]></title>
+    <url>%2F2018%2F10%2F22%2Fworld%2F</url>
+    <content type="text"><![CDATA[以前不喜欢王菲，现在才发现是没到年纪。今天有些疲惫，心也有些许累，去了一趟西二旗，真远呀，好像去了郊区。见到了下班之后软件园涌出的大批年轻人，有那么一瞬间恍惚。在梦想面前，其他的都可以放一放吧。 回去的路上，许久不说话的本科宿舍群热闹了起来，有个同学快结婚了，在成都。自己说那我去成都要去你家吃饭，他说，好呀，我做饭给你吃。看到这句话，站在地铁上的我一下笑了，感觉有点幸福。一下子，回忆全上来了。一块逃课看MSI，一块冒着大雨去买可爱多，一块开黑，一块改系统，一块蹲在楼梯上背考试题，一块吃螺蛳粉，一块买菜买肉吃火锅，一块大扫除。。130的弟兄们，不知道你们过得怎么样。成都，长沙，深圳，义乌，北京，什么时候能聚到一起，好想见你们。 有时候感觉自己好迷茫，总要有自己方向对吗，其实心早有方向，可是会很难，也会犹豫该不该继续。既然是自己认定的，就要努力前进，会看见彩虹。 也会流泪，会难过，会一下失了神，有些时候只能自己度过。今天傍晚的北京风很大，又感受到了一次“风再大都绕过我灵魂”。 人会一直成长，会慢慢懂得那些道理。 听了这么多歌，最扎心的是年少有为。 但愿你的眼睛 只看得到笑容但愿你流下每一滴泪都让人感动但愿你以后每一个梦不会一场空 你是否过得还好 2018年10月22日于北京]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>内心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[贝叶斯定理]]></title>
+    <url>%2F2018%2F10%2F14%2Fbayes%2F</url>
+    <content type="text"><![CDATA[贝叶斯定理是18世纪英国数学家托马斯·贝叶斯提出得重要概率论理论，在机器学习中应用十分广泛。 我们从一个故事开始吧。有一个场景：1.数学家开着车，行驶在笔直的大道上，快速向下一个路口驶去。数学家知道，下一个路口就要右转。2.事情很简单，在驾驶室内，看到下一个路口，向右打方向盘就好了。3.突然挡风玻璃碎了，无法看清前面的路，那何时右转呢？4.开车的数学家纸上及时上线，估计在这条路上，5%是十字路口，剩余的95是直道。也就意味着，随意右转，95%是错误的。5.数学家后视镜看去，发现后面有一辆车打右转向灯，他意识到在十字路口，25%的车会打右转向灯，剩下的直行，左转，或者不打左转向灯。数学家意识到，此时如果右转，错误的概率比之前小很多。这种思考方式，就是贝叶斯理论所阐述的思考方法。 结合开车来理解贝叶斯公式贝叶斯公式为：把刚才的开车符号化：A：十字路口B：打右转向灯A|B：打右转向灯的时候在十字路口B|A：在十字路口的时候打右转向灯如果我们知道，在整个车辆行驶过程中，会有2%的概率打右转弯灯，即P(B)=2% ，我们就可以计算P(A|B)了。因此贝叶斯公式实际上阐述了这么一个事情：新信息出现后的A概率=A概率x信息带来的调整后验概率＝先验概率 ｘ 调整因子再通过韦恩图来理解一下这个事情：一个点已经落入B，那么落入A的概率就大增。 推导我们可以从条件概率的定义推导出贝叶斯定理。根据条件概率的定义，在事件 B 发生的条件下事件 A 发生的概率为：同样地，在事件 A 发生的条件下事件 B 发生的概率为：结合这两个方程式，我们可以得到：这个引理有时称作概率乘法规则。上式两边同除以 P(A)，若P(A)是非零，我们可以得到贝叶斯定理: 解释贝叶斯公式的用途在于通过己知三个概率来推测第四个概率。它的内容是：在 B 出现的前提下，A 出现的概率等于 A 出现的前提下 B 出现的概率乘以 A 出现的概率再除以 B 出现的概率。通过联系 A 与 B，计算从一个事件发生的情况下另一事件发生的概率，即从结果上溯到源头（也即逆向概率）。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[决策树]]></title>
+    <url>%2F2018%2F10%2F10%2Fdecision_tree%2F</url>
+    <content type="text"><![CDATA[决策树是一种基本的分类与回归方法。优点:计算复杂度不高，输出结果易于理解，对中间值缺失不敏感，可以处理不相关特征数据。缺点：肯能会产生过度匹配问题。适用数据类型：数值型和标称型。 信息熵问题：每个节点在哪个维度做划分？某个维度在哪个值上做划分？熵在信息论中代表随机变量不确定度的度量。一组数据，越不确定，越随机，相应的，信息熵就越大。熵越大，数据的不确定性越高。熵越小，数据的不确定性越低。香农提出的信息熵公式：举例：写成如下形式：划分之后使信息熵降低。 ID3算法ID3算法是决策树的一种，它是基于奥卡姆剃刀原理的，即用尽量用较少的东西做更多的事。从信息论知识中我们直到，期望信息越小，信息增益越大，从而纯度越高。所以ID3算法的核心思想就是以信息增益度量属性选择，选择分裂后信息增益最大的属性进行分裂。下面先定义几个要用到的概念。信息熵前面已经介绍。现在我们假设将训练元组D按属性A进行划分，则A对D划分的期望信息为：而信息增益即为两者的差值：ID3算法就是在每次需要分裂时，计算每个属性的增益率，然后选择增益率最大的属性进行分裂。下面我们继续用SNS社区中不真实账号检测的例子说明如何使用ID3算法构造决策树。介绍一下这里面的专有名词： 日至密度、好友密度、是否使用真实的头像——条件属性。 账号是否为真实——决策属性。 其中s、m和l分别表示小、中和大。设L、F、H和R表示日志密度、好友密度、是否使用真实头像和账号是否真实，下面计算各属性的信息增益。因此日志密度的信息增益是0.276。用同样方法得到H和F的信息增益分别为0.033和0.553。因为F具有最大的信息增益，所以第一次分裂选择F为分裂属性，分裂后的结果如下图表示：在上图的基础上，再递归使用这个方法计算子节点的分裂属性，最终就可以得到整个决策树。 上面为了简便，将特征属性离散化了，其实日志密度和好友密度都是连续的属性。对于特征属性为连续值，可以如此使用ID3算法： 先将D中元素按照特征属性排序，则每两个相邻元素的中间点可以看做潜在分裂点，从第一个潜在分裂点开始，分裂D并计算两个集合的期望信息，具有最小期望信息的点称为这个属性的最佳分裂点，其信息期望作为此属性的信息期望。 ID3算法存在一些问题：(1)信息增益的计算依赖于特征数目较多的特征，而属性取值最多的属性并不一定最优。(2)ID3是非递增算法。(3)ID3是单变量决策树(在分枝节点上只考虑单个属性)，许多复杂概念的表达困难，属性相互关系强调不够，容易导致决策树中子树的重复或有些属性在决策树的某一路径上被检验多次。(4)抗噪性差，训练例子中正例和反例的比例较难控制。 由于ID3算法在实际应用中存在一些问题，于是Quilan提出了C4.5算法，严格上说C4.5只能是ID3的一个改进算法。 C4.5算法ID3算法存在一个问题，就是偏向于多值属性，例如，如果存在唯一标识属性ID，则ID3会选择它作为分裂属性，这样虽然使得划分充分纯净，但这种划分对分类几乎毫无用处。ID3的后继算法C4.5使用增益率（gain ratio）的信息增益扩充，试图克服这个偏倚。C4.5算法首先定义了“分裂信息”，其定义可以表示成：其中各符号意义与ID3算法相同，然后，增益率被定义为：C4.5选择具有最大增益率的属性作为分裂属性，其具体应用与ID3类似，不再赘述。 优点：（1）通过信息增益率选择分裂属性，克服了ID3算法中通过信息增益倾向于选择拥有多个属性值的属性作为分裂属性的不足；（2）能够处理离散型和连续型的属性类型，即将连续型的属性进行离散化处理；（3）构造决策树之后进行剪枝操作；（4）能够处理具有缺失属性值的训练数据。 缺点：（1）算法的计算效率较低，特别是针对含有连续属性值的训练样本时表现的尤为突出。（2）算法在选择分裂属性时没有考虑到条件属性间的相关性。 CART算法CART和C4.5的主要区别： CART决策树的生成就是递归地构建二叉决策树的过程。 CART决策树既可以用于分类也可以用于回归。 当CART是分类树时，采用GINI值作为节点分裂的依据；当CART是回归树时，采用样本的最小方差作为节点分裂的依据 C4.5采用信息增益率来作为分支特征的选择标准，而CART则采用基尼（Gini）系数； C4.5不一定是二叉树，但CART一定是二叉树。基尼系数的公式为：基尼系数越高，随机性越强。基尼系数越低，数据确定性越强。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[支持向量机]]></title>
+    <url>%2F2018%2F10%2F06%2Fsvm%2F</url>
+    <content type="text"><![CDATA[支持向量机(Support Vector Machine)，一种二类分类模型，其基本模型定义为特征空间上的间隔最大的线性分类器，其学习策略便是间隔最大化。 1.思想本质找到一条决策边界，使距离决策边界最近的点尽可能的远，同时这条线还能很好地分类。Hard Margin SVM 线性可分 存在直线（超平面）可以将点划分 Soft Margin SVM 线性不可分 2.MarginMargin=2d回忆解析几何中，点到直线的距离：拓展到n维空间：那么这个公式是怎么得到的呢？这里介绍一下点到超平面的距离：对于超平面wTx+b=0,假设x’为超平面上任意一点，显然满足：对于空间上任意一点 x，到平面 A 的距离 H，等于 x 到超平面的法向量长度，也就是向量 xx’ 在垂直方向上（即法向量）上的投影。而计算投影，将 xx’ 乘以法向量 w 即可。并且，我们不光要投影，还要计算单位，即使用单位为 1 的投影。也就是在分母除以 || w ||。所以，距离 H 可以表示为：又因为wTx=-b所以距离为：对SVM来说，两类点到决策边界的点都应该&gt;=d，化简得到。对于任意支撑向量，要让d最大：即为：于是SVM问题，即为求最优：有条件的最优问题。以上是Hard Margin SVM。 3.Soft Margin SVMSVM得到的决策边界有一定的容错能力，一定情况下，可以把一些点错误地分类，使结果泛化能力高。本质为添加一个宽松项：L1正则和L2正则：]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[逻辑回归]]></title>
+    <url>%2F2018%2F10%2F01%2Flogistic_regression%2F</url>
+    <content type="text"><![CDATA[逻辑回归算法是各领域使用最多的机器学习算法，不难，并且很实用。 1.介绍逻辑回归：解决分类问题回归问题怎么解决分类问题？将样本的特征和样本发生的概率联系起来。 机器学习本质，是 求一个f(x)，样本x进来，经过f(x)运算，得到一个预测值y。线性回归，或者多线性回归中，这个y值就是我们本身关心的值，比如房价预测，这个y就是房价，学生成绩预测，y就是成绩。在逻辑回归中，y的值是一个概率值，p来表示。样本先扔给f(x)得到概率值p，随后根据p来分类。逻辑回归既可以看做是回归算法，也可以看做是分类算法。通常作为分类算法用，只可以解决二分类问题。 2.什么样的方式得到概率值在线性回归中：值域是(-∞,+∞),可能是任意数而概率的值域为[0,1]如何得到概率的值呢？我们需要乘一个Sigmoid函数：图像为：公式变为：例如：对病人患有良性还是恶性肿瘤分类，先：（1）训练样本得到一组θ值。（2）新病人的数据Xb+1乘θT，得到一个数。（3）这个数扔给Sigmoid函数。（4）得到即为概率。问题：对于给定的样本数据集X，y，如何找到参数θ，使得用这样的方式，可以最大程度获得样本数据集X对应的分类输出y？线性回归中可以用MSE判断拟合度，逻辑回归解决分类问题，不行。 3.逻辑回归中的损失函数：逻辑回归的损失函数使用极大似然估计，而不是使用最小二乘法。因为如果用最小二乘法，目标函数是非凸的，不容易求解，会得到局部最优解。如果使用最大似然估计，目标函数是凸函数，可以用梯度下降法求最优解。结合Sigmoid函数图像看，得到损失函数的图像：合成一个函数：m个样本对应的损失函数：p_hat是：带入之后：这个式子没有公式解，只能使用梯度下降法求解。这里求得逻辑回归的梯度：对这个式子计算梯度，搜索出相应的θ值。 3.决策边界对于鸢尾花数据集，有以下分类结果：]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[正则化]]></title>
+    <url>%2F2018%2F09%2F29%2Fregularization%2F</url>
+    <content type="text"><![CDATA[机器学习中几乎都可以看到损失函数后面会添加一个额外项，常用的额外项一般有两种，L1正则化和L2正则化，或者L1范数和L2范数。 1.概述使用L1正则化的模型建叫做Lasso回归，使用L2正则化的模型叫做Ridge回归（岭回归）。Lasso回归的损失函数，式中加号后面一项α||w||1即为L1正则化项。Ridge回归的损失函数，式中加号后面一项α||w||22即为L2正则化项。 2.说明一般回归分析中回归w表示特征的系数，从上式可以看到正则化项是对系数做了处理（限制）。L1正则化和L2正则化的说明如下： L1正则化是指权值向量w中各个元素的绝对值之和，通常表示为||w||1 L2正则化是指权值向量w中各个元素的平方和然后再求平方根（可以看到Ridge回归的L2正则化项有平方符号），通常表示为||w||2 一般都会在正则化项之前添加一个系数，Python中用α表示，一些文章也用λ表示。这个系数需要用户指定。 那添加L1和L2正则化有什么用？下面是L1正则化和L2正则化的作用，这些表述可以在很多文章中找到。 L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择 L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合 稀疏模型与特征选择&emsp;&emsp;上面提到L1正则化有助于生成一个稀疏权值矩阵，进而可以用于特征选择。为什么要生成一个稀疏矩阵？ &emsp;&emsp;稀疏矩阵指的是很多元素为0，只有少数元素是非零值的矩阵，即得到的线性回归模型的大部分系数都是0. 通常机器学习中特征数量很多。在预测或分类时，那么多特征显然难以选择，但是如果代入这些特征得到的模型是一个稀疏模型，表示只有少数特征对这个模型有贡献，绝大部分特征是没有贡献的，或者贡献微小（因为它们前面的系数是0或者是很小的值，即使去掉对模型也没有什么影响），此时我们就可以只关注系数是非零值的特征。这就是稀疏模型与特征选择的关系。 3.理解那么，如何解释L1正则化可以产生稀疏模型，L2正则化产生平滑的权值，防止过拟合呢？ 公式来看L1带正则化项的损失函数，J是MSE，α 是正则化系数：L2带正则化项的损失函数：去掉损失函数后，L1和L2的梯度(导数的反方向）为：所以(不失一般性，我们假定：w等于不为0的某个正的浮点数，学习速率η 为0.5)：L1的权值更新公式为w = w - η*1 = w - 0.5*1，也就是说权值每次更新都固定减少一个特定的值(比如0.5)，那么经过若干次迭代之后，权值就有可能减少到0。L2的权值更新公式为w = w - η*w = w - 0.5*w，也就是说权值每次都等于上一次的1/2，那么，虽然权值不断变小，但是因为每次都等于上一次的一半，所以很快会收敛到较小的值但不为0。 L1能产生等于0的权值，即能够剔除某些特征在模型中的作用（特征选择），即产生稀疏的效果。L2可以得迅速得到比较小的权值，但是难以收敛到0，所以产生的不是稀疏而是平滑的效果。 图像来看二维空间，图中等值线是J0的等值线，黑色方形和圆形是L函数的图形。左图是L1正则化，右图是L2正则化。L1正则化的函数有很多『突出的角』（二维情况下四个，多维情况下更多），J0与这些角接触的机率会远大于与L其它部位接触的机率，而在这些角上，会有很多权值等于0，这就是为什么L1正则化可以产生稀疏模型，进而可以用于特征选择。 下L2正则化的函数图形是个圆，与方形相比，被磨去了棱角。因此J0与L相交时使得w1或w2等于零的机率小了许多，这就是为什么L2正则化不具有稀疏性的原因。 L1中两个权值倾向于一个较大另一个为0，L2中两个权值倾向于均为非零的较小数。这也就是L1稀疏，L2平滑的效果。 4.总结L1正则化，也叫LASSO回归：有助于使特征带入模型后形成稀疏矩阵，过滤掉一些没有贡献的特征，可用于特征选择。 L2正则化，也叫岭回归：使参数更新更加平滑，过度更加缓和，使模型更加稳定，使模型的“抗扰动能力”更好，也就是可以防止过拟合。 L1和L2都有防止模型过拟合的作用。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[偏差和方差]]></title>
+    <url>%2F2018%2F09%2F29%2Fbias_variance%2F</url>
+    <content type="text"><![CDATA[学习算法的预测误差, 或者说泛化误差可以分解为三个部分: 偏差(bias), 方差(variance) 和噪声(noise)。在估计学习算法性能的过程中, 我们主要关注偏差与方差. 因为噪声属于不可约减的误差。 1.偏差和方差模型误差 = 偏差(bias) + 方差(Variance) + 不可避免的误差 方差方差度量了同样大小的训练集的变动所导致的学习性能的变化, 即刻画了数据扰动所造成的影响。数据的一点点扰动都会较大地影响模型。通常通常原因，使用的模型太复杂。如高阶多项式回归。方差大，过拟合overfitting。 偏差偏差度量了学习算法的期望预测与真实结果的偏离程度, 即刻画了学习算法本身的拟合能力。导致偏差的主要原因：对问题本身的假设不正确。如：非线性数据使用线性回归偏差大，欠拟合underfitting。 噪声噪声表达了在当前任务任何学习算法所能达到的期望泛化误差的下界, 即刻画了学习问题本身的难度。巧妇难为无米之炊, 给一堆很差的食材, 要想做出一顿美味, 肯定是很有难度的. 2.讨论非参数学习通常是高方差算法，如KNN。因为不对数据进行任何假设。参数学习通常是高偏差算法，如线性回归。因为线性回归具有极强的假设。 大多数算法具有相应的参数，可以调整偏差和方差。如KNN中的K。如线性回归中多项式回归中的阶数。 偏差和方差通常是矛盾的。降低偏差，会提高方差。降低方差，会提高偏差。 机器学习的主要挑战，来自于方差！解决高方差的通常手段：1.降低模型复杂度2.减少数据维度；降噪3.增加样本数4.使用验证集5.模型正则化]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[交叉验证]]></title>
+    <url>%2F2018%2F09%2F29%2Fcross_validation%2F</url>
+    <content type="text"><![CDATA[交叉验证（Cross Validation）是一种统计学上将数据样本切割成较小子集的实用方法。于是可以先在一个子集上做分析， 而其它子集则用来做后续对此分析的确认及验证。 1.训练-测试调参过程围绕测试数据集，也有可能会出现过拟合现象。如何解决？ 2.训练-验证-测试&emsp;&emsp;训练数据训练好模型后，将验证数据集喂入模型，调整参数，找到对验证数据集来说最优的超参数。测试数据不参与训练，仅衡量模型的好坏。但是，验证数据集也可能有极端数据，也会导致模型不准确。如何解决？ 3.交叉验证交叉验证，顾名思义，将数据分成K份，每份都参与训练和验证。K一般取3，5，10。交叉验证一般要尽量满足：1）训练集的比例要足够多，一般大于一半2）训练集和测试集要均匀抽样 k-folds交叉验证&emsp;&emsp;k个子集，每个子集均做一次测试集，其余的作为训练集。交叉验证重复k次，每次选择一个子集作为测试集，并将k次的平均交叉验证识别正确率作为结果。&emsp;&emsp;优点：所有的样本都被作为训练集和测试集，每个样本都被验证一次。10-folder通常被使用。&emsp;&emsp;缺点：训练k个模型，整体慢k倍。 留一法（loo-cv,least-one-out cross-validation）&emsp;&emsp;n个样本，就分成n份，那LOOCV也就是n-CV，意思是每个样本单独作为一次测试集，剩余n-1个样本则做为训练集。&emsp;&emsp;优点：接近母体，最接近分布，可靠。&emsp;&emsp;缺点：训练计算量巨大。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[过拟合,欠拟合,学习曲线]]></title>
+    <url>%2F2018%2F09%2F28%2Ffitting%2F</url>
+    <content type="text"><![CDATA[过拟合（over-fitting ）和欠拟合（under-fitting）是我们在机器学习建模中常会遇到的两种情况，文章会介绍两种情况出现的原因和解决方法。 欠拟合 under-fitting算法所训练的模型不能完整表达数据关系。原因： 特征量少 模型复杂度过低 解决： 增加新特征 增加模型复杂度 过拟合 over-fitting算法所训练的模型过多地表达了数据间的噪声关系。训练集表现好，测试集不能正确分类，泛化能力差。原因： 训练集和测试集特征不一致 数据噪声太大 特征量太多 模型太复杂 训练集占总数据比例小 解决： 重新清洗数据 增大数据训练量 使用正则化方法 学习曲线1.模型复杂度曲线我们想要找到泛化能力最好的地方。理论的模型，针对不同数据，不同模型，可能绘制不出这样清晰的曲线。例如KNN和多项式回归，不适合绘制，虽然它们内在符合这样的逻辑。后续的决策树适合绘制这样的曲线。2.学习曲线通过学习曲线，也可以清晰地看到模型的过拟合，欠拟合。学习曲线：随着训练样本的逐渐增多，算法训练出的模型的表现能力。横轴：样本训练数纵轴：损失函数MSE欠拟合与最佳学习曲线：欠拟合和最佳比较，train和test趋于稳定的位置更高，说明train和test误差都较大，模型有错误。过拟合与最佳学习曲线：训练数据集误差不大，测试数据集误差较大，测试和训练集离的远，差距较大，说明模型的泛化能力不好，对于新的数据来说，误差比较大。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[主成分分析]]></title>
+    <url>%2F2018%2F09%2F28%2Fpca%2F</url>
+    <content type="text"><![CDATA[PCA（Principal Component Analysis）是一个非监督的机器学习算法。主要用于数据的降维。通过降维，可以发现更便于人类理解的特征，也可用于可视化和去噪。 1.介绍这里用一个2维降到一维的例子引入PCA。在一个二维平面中，有两个特征：如何降到一维呢？方法是取1，2中的一个特征，把另一个特征扔掉。左边是舍弃特征1，保留特征2；右边是舍弃特征2，保留特征1。如果要选择一种，会选择第二种，因为样本间距离大，但这却不是最好。找到一根直线，让点映射到上面，1个轴，1个维度，距离更大，区分更好。如何找到这个样本间距最大的轴？如何定义样本间间距，使用方差（Variance）找到一个轴，使得样本空间的所有点映射到这个轴后，方差最大。 第一步，将样本的均值归0（demean），即所有的样本都减去样本的均值。 第二步，求一个轴的方向w=(w1,w2)对于多维空间：一个目标函数的最优化问题，使用梯度上升法解决。 2.数学方法设有m条n维数据。1）将原始数据按列组成n行m列矩阵X2）将X的每一行（代表一个属性字段）进行零均值化，即减去这一行的均值3）求出协方差矩阵C=1/mXX𝖳(X乘上X的转置)4）求出协方差矩阵的特征值及对应的特征向量5）将特征向量按对应特征值大小从上到下按行排列成矩阵，取前k行组成矩阵P6）Y=PX即为降维到k维后的数据 实例用PCA方法将这组二维数据其降到一维。（1）有5条记录组成的数据：（2）每行的均值分别为2，3，减去后：（3）求协方差矩阵：（4）求出特征值和特征向量：特征值：特征向量：正交化后：（5）这n个特征向量为e1,e2,⋯,enE=(e1e2⋯en)P=E𝖳（转置）所以P为：（6）P就是我们要找的矩阵。P乘上数据矩阵，就得到了降维后的数据： 降维后的投影结果：]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[梯度下降法]]></title>
+    <url>%2F2018%2F09%2F28%2Fgradient_descent%2F</url>
+    <content type="text"><![CDATA[梯度下降（Gradien Descent），严格来说不是一个机器学习算法，是一种基于搜索的最优方法，目的是最小化一个损失函数，找到最低点。 1.特征&emsp;&emsp;梯度下降法的基本思想可以类比为一个下山的过程。一个人在山上，想要下山，抵达山的最低点。他需要以他当前的所处的位置为基准，寻找这个位置最陡峭的地方，然后朝着山的高度下降的地方走，最后就能成功下山。一维函数可以直接用导数，对于多维函数，要对每个方向的分量分别求导，最终得到的方向是梯度。 2.学习率在前面人下山的举例中，如何描述人下山的速度呢，这里我们使用学习率η(learning rate)。 η的取值影响获得最优解的速度。 η取值不合适，得不到最优解。 η是梯度下降法中的一个超参数。 η太小：η太大： 问题并不是所有的函数都有唯一的极值点：解决：1.多次运行，随机化初始点2.梯度下降法的初始点也是一个超参数对于线性回归：线性回归的损失函数具有唯一的最优解。 3.模拟实现123456789101112131415161718192021222324//定义损失函数def J(theta) return (theta-2.5)*2-1//定义损失函数的导数def dJ(theta): return 2*(theta-2.5)//梯度下降的过程eta=0.1epsilon=1e-8//很小的数字theta=0.0while True: gedient=dJ(theta) last_theta=theta theta=theta=eta*gradient if(abs(J(theta)-J(last_theta))&lt;epsilon) break print(theta) print(J(theta))//输出：2.99-0.99 这样就完成了一个简单的梯度下降过程。 4.几种梯度下降方式常用的梯度下降法还具体包含有三种不同的形式，它们也各自有着不同的优缺点。下面我们以线性回归算法来对三种梯度下降法进行比较。一般线性回归函数的假设函数为：对应的能量函数（损失函数）形式为：下图为一个二维参数（θ0和θ1）组对应能量函数的可视化图： 批量梯度下降法BGD&emsp;&emsp;批量梯度下降法（Batch Gradient Descent，简称BGD）是梯度下降法最原始的形式，它的具体思路是在更新每一参数时都使用所有的样本来进行更新，其数学形式如下：(1) 对上述的能量函数求偏导：(2) 由于是最小化风险函数，所以按照每个参数θ的梯度负方向来更新每个θ：&emsp;&emsp;从上面公式可以注意到，它得到的是一个全局最优解，但是每迭代一步，都要用到训练集所有的数据，如果样本数目m很大，那么可想而知这种方法的迭代速度！所以，这就引入了另外一种方法，随机梯度下降。&emsp;&emsp;优点：全局最优解；易于并行实现；&emsp;&emsp;缺点：当样本数目很多时，训练过程会很慢。从迭代的次数上来看，BGD迭代的次数相对较少。其迭代的收敛曲线示意图可以表示如下： 随机梯度下降法SGD&emsp;&emsp;由于批量梯度下降法在更新每一个参数时，都需要所有的训练样本，所以训练过程会随着样本数量的加大而变得异常的缓慢。随机梯度下降法（Stochastic Gradient Descent，简称SGD）正是为了解决批量梯度下降法这一弊端而提出的。&emsp;&emsp;将上面的能量函数写为如下形式：利用每个样本的损失函数对θ求偏导得到对应的梯度，来更新θ：&emsp;&emsp;随机梯度下降是通过每个样本来迭代更新一次，如果样本量很大的情况（例如几十万），那么可能只用其中几万条或者几千条的样本，就已经将theta迭代到最优解了，对比上面的批量梯度下降，迭代一次需要用到十几万训练样本，一次迭代不可能最优，如果迭代10次的话就需要遍历训练样本10次。但是，SGD伴随的一个问题是噪音较BGD要多，使得SGD并不是每次迭代都向着整体最优化方向。&emsp;&emsp;优点：训练速度快；&emsp;&emsp;缺点：准确度下降，并不是全局最优；不易于并行实现。&emsp;&emsp;从迭代的次数上来看，SGD迭代的次数较多，在解空间的搜索过程看起来很盲目。其迭代的收敛曲线示意图可以表示如下： 小批量梯度下降法MBGD&emsp;&emsp;有上述的两种梯度下降法可以看出，其各自均有优缺点，那么能不能在两种方法的性能之间取得一个折衷呢？即，算法的训练过程比较快，而且也要保证最终参数训练的准确率，而这正是小批量梯度下降法（Mini-batch Gradient Descent，简称MBGD）的初衷。MBGD在每次更新参数时使用b个样本（b一般为10），其具体的伪代码形式为：Say b=10, m=1000. 总结批量梯度下降（Batch gradient descent）: 使用所有样本训练；随机梯度下降（Stochastic gradient descent）: 使用一个样本训练；小批量梯度下降（Mini-batch gradient descent）: 使用b个样本训练。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[岁月]]></title>
+    <url>%2F2018%2F09%2F27%2Fsh%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;很久没更博客了，说说最近吧。&emsp;&emsp;前面和好朋友去看了江湖儿女，开始的有看困了，后面越看越有味道，贾樟柯是一个厉害的导演，从天注定，到山河故人，再到江湖儿女，他的电影并不华丽，甚至能感觉到一种“土”的气息，可是却又扣人心弦，心疼在江湖中等斌哥巧巧。人的一生能有几个5年，平淡相守和情义才是江湖所在。 &emsp;&emsp;最近一直在听春风十里，觉得这些民谣歌手很厉害，鹿先森乐队，郭顶，粟先达，自己作曲填词，旋律轻轻，却朗朗上口。 &emsp;&emsp;肉体上的疼都不叫疼，对吗，从来都觉得自己是个坚强的人，从小到大的伤都没哭过，现在别人一句话自己就哭了，是不是有点好笑。在北京，有小武和小鑫一直在身边，开心，难过，能和你们分享，陪我喝酒，陪我聊天，真好，哈哈。等你俩结婚，我一定去参加你们婚礼，包一个大大的红包。 &emsp;&emsp;我喜欢和朋友们待在一起，有种默契，不说话，笑一下，想要说的就都懂了，每次回家都要和老朋友老同学喝一杯，幼儿园玩到现在的振，四中分校的发小，三中的好兄弟，315的SD网友，很高兴能认识你们。 &emsp;&emsp;人的一生，像一趟开往终点的列车，路途中会有很多站，很难有人从始至终的陪你。当陪伴你的人下车时，就算多么不舍，也要笑着挥手道别。余下的日子，我想你能开心，我想我们见面也能笑着打招呼，我想你也能有灿烂的一生。 &emsp;&emsp;假如真有来世，我愿生生世世为人，只做芸芸众生中的一个，哪怕一生贫困清苦，浪迹天涯，只要能爱恨歌哭，只要能心遂所愿。]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>内心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[衡量线性回归，分类算法的指标]]></title>
+    <url>%2F2018%2F09%2F10%2Flr_standard%2F</url>
+    <content type="text"><![CDATA[衡量线性回归算法好坏的指标主要有MSE，RMSE，MAE及R Squared。 分类问题在使用KNN解决分类问题时，我们将数据集分为训练数据集和测试数据集，比例通常为4：1，使用训练数据集训练出模型之后，使用测试数据集预测结果，将结果与原有数据集真实内容进行比较匹配，从而得到分类准确度，这种准确度通常用来衡量分类方法的好坏。 简单线性回归衡量的指标主要有： MSE 均方误差（Mean Squared Error） RMSE 均方根误差 (Root Squared Error) MAE 平均绝对误差 (Mean Absolute Error)我们常用的分类的准确度：1最好，0最差RMSE和MAE无法取得1和0之间的值，可能出现5，10等数字。这时需要另一种衡量标准。 R Squared]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[多元线性回归]]></title>
+    <url>%2F2018%2F09%2F10%2Flr%2F</url>
+    <content type="text"><![CDATA[多元线性回归指的是有多个样本特征，影响结果，例如影响房屋价格的因素，有位置，面积，人口密度等。简单线性回归存在一维空间中，特征只有一个，多元线性回归中，有多个维度的多个特征，共同影响结果。多元线性回归的目的和简单线性回归相同：多元线性回归中，将特征转提取置为列向量，构造一个X恒等于1，X是一个矩阵，每一行代表一个样本，每一列代表一个特征，X(i)代表在X矩阵中抽出一行，本身是一个行向量：最下的公式中，前半部分行转置为列，1m的行向量，后半部分m1的列向量：最小二乘法，对𝜃中每一个变量求使其为0，在矩阵中进行，导出结果，得出𝜃：不需要对数据归一化处理，运算过程中没有量纲的问题。KNN算法前对数据进行归一化处理，多元线性处理没必要。PS:数据归一化，一般是把数据变为（0，1）的小数，方便数据处理和运算。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[简单线性回归]]></title>
+    <url>%2F2018%2F09%2F10%2Fslr%2F</url>
+    <content type="text"><![CDATA[线性回归算法(Liner Regression)，线性回归与上一节的KNN不同，KNN主要解决分类问题，而LR主要解决回归问题。本篇介绍简单回归算法（SimpleLinearRegression）。思想简单，容易实现。许多强大的非线性模型的基础。结果具有很好的可解释性。蕴含机器学习中很多重要的思想。 简单线性回归样本特征只有一个，称为：简单线性回归。例如房屋和价格的关系：通过每个点，我们需要找到一条直线，最大程度的“拟合”样本特征和样本输出标记之间的关系：所以我们希望真值和预测值之间的差距尽量小： 至此，我们可以得到一类机器学习的基本思路损失函数（loss）尽可能小效用函数（utility function）尽可能大在简单线性回归中，应用最小二乘法，求得a,和b的值，最小二乘法推导过程见上一篇博客: python实现：1234567891011121314151617181920212223242526import numpy as npimport matplotlib.pyplot as plt#设置x = np.array([1. ,2. ,3. ,4., 5.])y = np.array([1., 3., 2., 3., 5.])##绘图plt.scatter(x,y)plt.axis([0, 6, 0, 6])plt.show()##接下来按照公式求解即可x_mean = np.mean(x)y_mean = np.mean(y)num = 0.0d = 0.0for x_i, y_i in zip(x, y): num += (x_i - x_mean) * (y_i - y_mean) d += (x_i - x_mean) ** 2##所解值a = num / db = y_mean -a * x_meany_hat = a * x + b##绘图plt.scatter(x, y)plt.plot(x, y_hat, color='r')plt.axis([0, 6, 0, 6])plt.show()]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[最小二乘法]]></title>
+    <url>%2F2018%2F09%2F09%2Fercheng%2F</url>
+    <content type="text"><![CDATA[最小二乘法通过最小化误差的平方和寻找数据的最佳函数匹配。利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小。最小二乘法还可用于曲线拟合及其他一些优化问题。 在简单线性回归中： a,b的推导过程如下：]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[K近邻算法—KNN]]></title>
+    <url>%2F2018%2F09%2F08%2Fknn%2F</url>
+    <content type="text"><![CDATA[KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。kNN算法的核心思想是如果一个样本在特征空间中的k个最相邻的样本中的大多数属于某一个类别，则该样本也属于这个类别，并具有这个类别上样本的特性。其中K通常是不大于20的整数。 原理绿色圆要被决定赋予哪个类，是红色三角形还是蓝色四方形？如果K=3，由于红色三角形所占比例为2/3，绿色圆将被赋予红色三角形那个类，如果K=5，由于蓝色四方形比例为3/5，因此绿色圆被赋予蓝色四方形类。由此也说明了KNN算法的结果很大程度取决于K的选择。 优缺点优点：1、思想简单，理论成熟，既可以用来做分类也可以用来做回归；2、可用于非线性分类；3、训练时间复杂度为O(n)；4、准确度高，对数据没有假设，对outlier(离群值)不敏感；缺点：1、计算量大；2、样本不平衡问题（即有些类别的样本数量很多，而其它样本的数量很少）；3、需要大量的内存； 过程1.计算测试数据与各个训练数据之间的距离（欧式距离）；2.按照距离的递增关系进行排序；3.选取距离最小的K个点；4.确定前K个点所在类别的出现频率；5.返回前K个点中出现频率最高的类别作为测试数据的预测分类。 距离类型曼哈顿距离：也可叫出租车距离，红蓝黄皆为曼哈顿距离。欧式距离：两点之间距离最短，绿色为欧式距离。 实现KNN算法可自己编写进行实现，同时scikit-learn也对KNN算法进行了封装（只需要自己加载数据集），这里给出手动编写的KNN。12345678910111213141516171819202122232425262728293031323334353637import numpy as np#自定义数据集raw_data_X = [ [3,2], [3,1], [1,3], [3,4], [2,2], [7,4], [5,3], [9,2], [7,3], [7,0] ]#给数据集分类raw_data_y = [0,0,0,0,0,1,1,1,1,1]X_train = np.array(raw_data_X)y_train = np.array(raw_data_y)#设置待分类的点x = np.array([8,3])from math import sqrt#计算待分类的点与各点的距离distances = []for x_train in X_train: d = sqrt(np.sum((x_train - x)**2)) distances.append(d) np.argsort(distances)#由近到远排列nearest = np.argsort(distances)#取前6个点k = 6topK_y = [y_train[i] for i in nearest[:k]]#看前6个点每个类别有多少个点from collections import Counter Counter(topK_y)votes = Counter(topK_y)#取出现最多的类别votes.most_common(1)[0][0]#结果为1 超参数超参数：在算法运行前需要决定的参数。模型参数：算法过程中学习的参数。KNN算法中没有模型参数。KNN中常见超参数： K-近邻点的个数：KNN算法中，K值需要提前指定，如何取得最优K值呢，可以使用for循环对分类器结果进行比较取得最优K。 weight-距离的权重：weight的取值有两个(考虑权重或不考虑权重)：uniform(默认，即不考虑距离)：一致的权重；distance：距离的倒数作为权重 p-明可夫斯基距离中的P值：超参数存在相互依赖关系,因为考虑p的前提是weight=distance，如果weight=uniform，则不会考虑p的值。p=1:即欧式距离；p=2:即曼哈顿距离。 网格搜索更好的确定最优的超参数。 数据归一化将所有的数据映射到同一个尺度中。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[我的]]></title>
+    <url>%2F2018%2F09%2F07%2Fme%2F</url>
+    <content type="text"><![CDATA[今天是9.7，本来是7个月的，我喜欢7，可是没有7了。我始终是个没安全感的人，或者，孩子。受了委屈，会憋不住，找人倾诉，别人安慰一下，会哭成泪人。会半夜给你发一堆消息，你还记得吗。 终于我们分开了，我做的不够好，你累了，不想和我一起了。最后的见面，在你宿舍楼下，匆匆的，你瘦了，我只想最后再看你几分钟，已经没机会了。目送你离开，你头也没回。 一个男生，不要哭呀，可是心疼到一定程度，怎么表达呢，眼泪不自觉就掉了呀。我从没想过离开你，而你早已下定了离开的决心。 我没想到，最后我们连朋友都做不成，你的坚决，像一下捏住了我的心脏，我没了心跳，挣扎不了。你划清了一切界限，我们半年的感情，好像没有丝毫可以留恋。我和你组队，你的一句‘别和这个人玩’，然后我被请出了队伍，我的胸口好像被什么堵住。我的回忆，在你看来变成了厌恶。 离开了我，你开心了不少，有人玩游戏，有人吃饭，也有人一起学习，而我还在沉迷，我好傻。看到你开始了新的生活，我早就该清醒不是吗。 我好怕遇见你，你还会和我打招呼吗，你挽着另一个人说笑，我该怎么面对。你一直和一个人玩游戏，那个人是谁呢，是你喜欢的人吗。 故事开始的美好，却结束的潦草，有人哭就会有人笑，心里认定可以走一辈子的人，终成了路人。 最近几天天气很好，还是会想起你，你在干什么呢，吃的什么呢，有没有吃早饭，你还好吗。 我的宿命分两段，未遇见你时，和遇见你以后。你治好我的忧郁，而后赐我悲伤。忧郁和悲伤之间的片刻欢喜，透支了我生命全部的热情储蓄。想饮一些酒，让灵魂失重，好被风吹走。可一想到终将是你的路人，便觉得，沦为整个世界的路人。风虽大，都绕过我灵魂。]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>内心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[神经网络优化--正则化]]></title>
+    <url>%2F2018%2F08%2F15%2Fopt_regular%2F</url>
+    <content type="text"><![CDATA[正则化是在损失函数中给每个参数 w 加上权重，引入模型复杂度指标，从而抑制模型噪声，减小过拟合。 过拟合:神经网络模型在训练数据集上的准确率较高，在新的数据进行预测或分类时准确率较 低，说明模型的泛化能力差。使用正则化后，损失函数 loss 变为两项之和:loss = loss(y 与 y_) + REGULARIZER*loss(w) 其中，第一项是预测结果与标准答案之间的差距，如之前讲过的交叉熵、均方误差等;第二项是正则化计算结果。 正则化计算方法:1 L1 正则化: 𝒍𝒐𝒔𝒔𝑳𝟏 = ∑𝒊|𝒘𝒊|用 Tesnsorflow 函数表示:loss(w) = tf.contrib.layers.l1_regularizer(REGULARIZER)(w) 2 L2 正则化: 𝒍𝒐𝒔𝒔𝑳𝟐 = ∑𝒊|𝒘𝒊|𝟐用 Tesnsorflow 函数表示:loss(w) = tf.contrib.layers.l2_regularizer(REGULARIZER)(w) √用 Tesnsorflow 函数实现正则化:tf.add_to_collection(‘losses’, tf.contrib.layers.l2_regularizer(regularizer)(w) loss = cem + tf.add_n(tf.get_collection(‘losses’))cem 的计算已在 4.1 节中给出。 举例：在本例子中，使用了之前未用过的模块与函数: matplotlib 模块:Python 中的可视化工具模块，实现函数可视化终端安装指令:sudo pip install matplotlib 函数 plt.scatter():利用指定颜色实现点(x,y)的可视化 plt.scatter (x 坐标, y 坐标, c=”颜色”)plt.show() 收集规定区域内所有的网格坐标点:xx, yy = np.mgrid[起:止:步长, 起:止:步长] #找到规定区域以步长为分辨率的行列网格坐标点 grid = np.c_[xx.ravel(), yy.ravel()] #收集规定区域内所有的网格坐标点 √plt.contour()函数:告知 x、y 坐标和各点高度，用 levels 指定高度的点描上颜色 plt.contour (x 轴坐标值, y 轴坐标值, 该点的高度, levels=[等高线的高度])plt.show()代码如下:123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109#coding:utf-8#0导入模块 ，生成模拟数据集import tensorflow as tfimport numpy as npimport matplotlib.pyplot as pltBATCH_SIZE = 30 seed = 2 #基于seed产生随机数rdm = np.random.RandomState(seed)#随机数返回300行2列的矩阵，表示300组坐标点（x0,x1）作为输入数据集X = rdm.randn(300,2)#从X这个300行2列的矩阵中取出一行,判断如果两个坐标的平方和小于2，给Y赋值1，其余赋值0#作为输入数据集的标签（正确答案）Y_ = [int(x0*x0 + x1*x1 &lt;2) for (x0,x1) in X]#遍历Y中的每个元素，1赋值'red'其余赋值'blue'，这样可视化显示时人可以直观区分Y_c = [['red' if y else 'blue'] for y in Y_]#对数据集X和标签Y进行shape整理，第一个元素为-1表示，随第二个参数计算得到，第二个元素表示多少列，把X整理为n行2列，把Y整理为n行1列X = np.vstack(X).reshape(-1,2)Y_ = np.vstack(Y_).reshape(-1,1)print Xprint Y_print Y_c#用plt.scatter画出数据集X各行中第0列元素和第1列元素的点即各行的（x0，x1），用各行Y_c对应的值表示颜色（c是color的缩写） plt.scatter(X[:,0], X[:,1], c=np.squeeze(Y_c)) plt.show()#定义神经网络的输入、参数和输出，定义前向传播过程 def get_weight(shape, regularizer): w = tf.Variable(tf.random_normal(shape), dtype=tf.float32) tf.add_to_collection('losses', tf.contrib.layers.l2_regularizer(regularizer)(w)) return wdef get_bias(shape): b = tf.Variable(tf.constant(0.01, shape=shape)) return b x = tf.placeholder(tf.float32, shape=(None, 2))y_ = tf.placeholder(tf.float32, shape=(None, 1))w1 = get_weight([2,11], 0.01) b1 = get_bias([11])y1 = tf.nn.relu(tf.matmul(x, w1)+b1)w2 = get_weight([11,1], 0.01)b2 = get_bias([1])y = tf.matmul(y1, w2)+b2 #定义损失函数loss_mse = tf.reduce_mean(tf.square(y-y_))loss_total = loss_mse + tf.add_n(tf.get_collection('losses'))#定义反向传播方法：不含正则化train_step = tf.train.AdamOptimizer(0.0001).minimize(loss_mse)with tf.Session() as sess: init_op = tf.global_variables_initializer() sess.run(init_op) STEPS = 40000 for i in range(STEPS): start = (i*BATCH_SIZE) % 300 end = start + BATCH_SIZE sess.run(train_step, feed_dict=&#123;x:X[start:end], y_:Y_[start:end]&#125;) if i % 2000 == 0: loss_mse_v = sess.run(loss_mse, feed_dict=&#123;x:X, y_:Y_&#125;) print("After %d steps, loss is: %f" %(i, loss_mse_v)) #xx在-3到3之间以步长为0.01，yy在-3到3之间以步长0.01,生成二维网格坐标点 xx, yy = np.mgrid[-3:3:.01, -3:3:.01] #将xx , yy拉直，并合并成一个2列的矩阵，得到一个网格坐标点的集合 grid = np.c_[xx.ravel(), yy.ravel()] #将网格坐标点喂入神经网络 ，probs为输出 probs = sess.run(y, feed_dict=&#123;x:grid&#125;) #probs的shape调整成xx的样子 probs = probs.reshape(xx.shape) print "w1:\n",sess.run(w1) print "b1:\n",sess.run(b1) print "w2:\n",sess.run(w2) print "b2:\n",sess.run(b2)plt.scatter(X[:,0], X[:,1], c=np.squeeze(Y_c))plt.contour(xx, yy, probs, levels=[.5])plt.show()#定义反向传播方法：包含正则化train_step = tf.train.AdamOptimizer(0.0001).minimize(loss_total)with tf.Session() as sess: init_op = tf.global_variables_initializer() sess.run(init_op) STEPS = 40000 for i in range(STEPS): start = (i*BATCH_SIZE) % 300 end = start + BATCH_SIZE sess.run(train_step, feed_dict=&#123;x: X[start:end], y_:Y_[start:end]&#125;) if i % 2000 == 0: loss_v = sess.run(loss_total, feed_dict=&#123;x:X,y_:Y_&#125;) print("After %d steps, loss is: %f" %(i, loss_v)) xx, yy = np.mgrid[-3:3:.01, -3:3:.01] grid = np.c_[xx.ravel(), yy.ravel()] probs = sess.run(y, feed_dict=&#123;x:grid&#125;) probs = probs.reshape(xx.shape) print "w1:\n",sess.run(w1) print "b1:\n",sess.run(b1) print "w2:\n",sess.run(w2) print "b2:\n",sess.run(b2)plt.scatter(X[:,0], X[:,1], c=np.squeeze(Y_c)) plt.contour(xx, yy, probs, levels=[.5])plt.show() 执行代码，效果如下:首先，数据集实现可视化，x0 + x1 &lt; 2 的点显示红色， x0 + x1 ≥2 的点显示蓝色，如图所示:接着，执行无正则化的训练过程，把红色的点和蓝色的点分开，生成曲线如下图所示:最后，执行有正则化的训练过程，把红色的点和蓝色的点分开，生成曲线如下图所示:对比无正则化与有正则化模型的训练结果，可看出有正则化模型的拟合曲线平滑，模型具有更好的泛化能力。代码实现参考Githubopt_regular.py]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>神经网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[神经网络优化--滑动平均]]></title>
+    <url>%2F2018%2F08%2F15%2Fopt_movingavg%2F</url>
+    <content type="text"><![CDATA[滑动平均:记录了一段时间内模型中所有参数 w 和 b 各自的平均值。利用滑动平均值可以增强模型的泛化能力。滑动平均值(影子)计算公式:影子 = 衰减率 影子 +(1 - 衰减率) 参数其中，衰减率用 Tesnsorflow 函数表示为:ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY，global_step)其中MOVING_AVERAGE_DECAY 表示滑动平均衰减率，一般会赋接近 1 的值global_step 表示当前 训练了多少轮。ema_op = ema.apply(tf.trainable_variables())其中，ema.apply()函数实现对括号内参数求滑动平均，tf.trainable_variables()函数实现把所有待训练参数汇总为列表。with tf.control_dependencies([train_step, ema_op]):&emsp;&emsp;train_op = tf.no_op(name=’train’)其中，该函数实现将滑动平均和训练过程同步运行。查看模型中参数的平均值，可以用 ema.average()函数。例如:在神经网络模型中，将 MOVING_AVERAGE_DECAY 设置为 0.99，参数 w1 设置为 0，w1 的滑动平均值设置为 0。1.开始时，轮数 global_step 设置为 0，参数 w1 更新为 1，则 w1 的滑动平均值为:w1 滑动平均值=min(0.99,1/10)0+(1– min(0.99,1/10)1 = 0.92.当轮数 global_step 设置为 100 时，参数 w1 更新为 10，以下代码 global_step 保持为 100，每次执行滑动平均操作影子值更新，则滑动平均值变为:w1 滑动平均值=min(0.99,101/110)0.9+(1– min(0.99,101/110)10 = 0.826+0.818=1.6443.再次运行，参数 w1 更新为 1.644，则滑动平均值变为:w1 滑动平均值=min(0.99,101/110)1.644+(1– min(0.99,101/110)10 = 2.3284.再次运行，参数 w1 更新为 2.328，则滑动平均值:w1 滑动平均值=2.95612345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788#coding:utf-8import tensorflow as tf#1. 定义变量及滑动平均类#定义一个32位浮点变量，初始值为0.0 这个代码就是不断更新w1参数，优化w1参数，滑动平均做了个w1的影子w1 = tf.Variable(0, dtype=tf.float32)#定义num_updates（NN的迭代轮数）,初始值为0，不可被优化（训练），这个参数不训练global_step = tf.Variable(0, trainable=False)#实例化滑动平均类，给衰减率为0.99，当前轮数global_stepMOVING_AVERAGE_DECAY = 0.99ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, global_step)#ema.apply后的括号里是更新列表，每次运行sess.run（ema_op）时，对更新列表中的元素求滑动平均值。#在实际应用中会使用tf.trainable_variables()自动将所有待训练的参数汇总为列表#ema_op = ema.apply([w1])ema_op = ema.apply(tf.trainable_variables())#2. 查看不同迭代中变量取值的变化。with tf.Session() as sess: # 初始化 init_op = tf.global_variables_initializer() sess.run(init_op) #用ema.average(w1)获取w1滑动平均值 （要运行多个节点，作为列表中的元素列出，写在sess.run中） #打印出当前参数w1和w1滑动平均值 print "current global_step:", sess.run(global_step) print "current w1", sess.run([w1, ema.average(w1)]) # 参数w1的值赋为1 sess.run(tf.assign(w1, 1)) sess.run(ema_op) print "current global_step:", sess.run(global_step) print "current w1", sess.run([w1, ema.average(w1)]) # 更新global_step和w1的值,模拟出轮数为100时，参数w1变为10, 以下代码global_step保持为100，每次执行滑动平均操作，影子值会更新 sess.run(tf.assign(global_step, 100)) sess.run(tf.assign(w1, 10)) sess.run(ema_op) print "current global_step:", sess.run(global_step) print "current w1:", sess.run([w1, ema.average(w1)]) # 每次sess.run会更新一次w1的滑动平均值 sess.run(ema_op) print "current global_step:" , sess.run(global_step) print "current w1:", sess.run([w1, ema.average(w1)]) sess.run(ema_op) print "current global_step:" , sess.run(global_step) print "current w1:", sess.run([w1, ema.average(w1)]) sess.run(ema_op) print "current global_step:" , sess.run(global_step) print "current w1:", sess.run([w1, ema.average(w1)]) sess.run(ema_op) print "current global_step:" , sess.run(global_step) print "current w1:", sess.run([w1, ema.average(w1)]) sess.run(ema_op) print "current global_step:" , sess.run(global_step) print "current w1:", sess.run([w1, ema.average(w1)]) sess.run(ema_op) print "current global_step:" , sess.run(global_step) print "current w1:", sess.run([w1, ema.average(w1)])#更改MOVING_AVERAGE_DECAY 为 0.1 看影子追随速度"""current global_step: 0current w1 [0.0, 0.0]current global_step: 0current w1 [1.0, 0.9]current global_step: 100current w1: [10.0, 1.6445453]current global_step: 100current w1: [10.0, 2.3281732]current global_step: 100current w1: [10.0, 2.955868]current global_step: 100current w1: [10.0, 3.532206]current global_step: 100current w1: [10.0, 4.061389]current global_step: 100current w1: [10.0, 4.547275]current global_step: 100current w1: [10.0, 4.9934072]""" 从运行结果可知，最初参数 w1 和滑动平均值都是 0;参数 w1 设定为 1 后，滑动平均值变为 0.9; 当迭代轮数更新为 100 轮时，参数 w1 更新为 10 后，滑动平均值变为 1.644。随后每执行一次，参数 w1 的滑动平均值都向参数 w1 靠近。可见，滑动平均追随参数的变化而变化。代码实现参考Githubopt_movingavg.py]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>神经网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[神经网络优化--学习率]]></title>
+    <url>%2F2018%2F08%2F15%2Fopt_learning_rate%2F</url>
+    <content type="text"><![CDATA[学习率learning_rate:表示了每次参数更新的幅度大小。学习率过大，会导致待优化的参数在最小值附近波动，不收敛;学习率过小，会导致待优化的参数收敛缓慢。在训练过程中，参数的更新向着损失函数梯度下降的方向。参数的更新公式为:1次 参数w:5 5 - 0.2 (2 5 + 2) = 2.62次 参数w:2.6 2.6 - 0.2 (2 2.6 + 2) = 1.163次 参数w:1.16 1.16 – 0.2 (2 1.16 + 2) = 0.2964次 参数 w:0.296损失函数 loss = (w + 1)^2 的图像为:由图可知，损失函数loss的最小值会在(-1,0)处得到，此时损失函数的导数为0,得到最终参数w = -1。 学习率的设置学习率过大，会导致待优化的参数在最小值附近波动，不收敛;学习率过小，会导致待优化的参数收敛缓慢。 指数衰减学习率学习率随着训练轮数变化而动态更新 学习率计算公式如下:用 Tensorflow 的函数表示为:global_step = tf.Variable(0, trainable=False)learning_rate = tf.train.exponential_decay(LEARNING_RATE_BASE,global_step,LEARNING_RATE_STEP, LEARNING_RATE_DECAY,staircase=True/False) 其中，LEARNING_RATE_BASE 为学习率初始值，LEARNING_RATE_DECAY 为学习率衰减率,global_step 记录了当前训练轮数，为不可训练型参数。学习率 learning_rate 更新频率为输入数据集总样本数除以每次喂入样本数。若 staircase 设置为 True 时，表示 global_step/learning rate step 取整数，学习率阶梯型衰减;若 staircase 设置为 false 时，学习率会是一条平滑下降的曲线。在本例中，模型训练过程不设定固定的学习率，使用指数衰减学习率进行训练。其中，学习率初值设 置为 0.1，学习率衰减率设置为 0.99，BATCH_SIZE 设置为 1。代码如下:123456789101112131415161718192021222324252627282930#coding:utf-8#设损失函数 loss=(w+1)^2, 令w初值是常数10。反向传播就是求最优w，即求最小loss对应的w值#使用指数衰减的学习率，在迭代初期得到较高的下降速度，可以在较小的训练轮数下取得更有收敛度。import tensorflow as tfLEARNING_RATE_BASE = 0.1 #最初学习率LEARNING_RATE_DECAY = 0.99 #学习率衰减率LEARNING_RATE_STEP = 1 #喂入多少轮BATCH_SIZE后，更新一次学习率，一般设为：总样本数/BATCH_SIZE#运行了几轮BATCH_SIZE的计数器，初值给0, 设为不被训练global_step = tf.Variable(0, trainable=False)#定义指数下降学习率learning_rate = tf.train.exponential_decay(LEARNING_RATE_BASE, global_step, LEARNING_RATE_STEP, LEARNING_RATE_DECAY, staircase=True)#定义待优化参数，初值给10w = tf.Variable(tf.constant(5, dtype=tf.float32))#定义损失函数lossloss = tf.square(w+1)#定义反向传播方法train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss, global_step=global_step)#生成会话，训练40轮with tf.Session() as sess: init_op=tf.global_variables_initializer() sess.run(init_op) for i in range(40): sess.run(train_step) learning_rate_val = sess.run(learning_rate) global_step_val = sess.run(global_step) w_val = sess.run(w) loss_val = sess.run(loss) print "After %s steps: global_step is %f, w is %f, learning rate is %f, loss is %f" % (i, global_step_val, w_val, learning_rate_val, loss_val) 由结果可以看出，随着训练轮数增加学习率在不断减小。代码实现参考Github:opt_learning_rate.pyopt_decay.py]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>神经网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[神经网络优化--损失函数]]></title>
+    <url>%2F2018%2F08%2F15%2Fopt_loss%2F</url>
+    <content type="text"><![CDATA[神经网络优化主要为通过反向传播算法训练网络参数，在反向传播中，通过优化损失函数，学习率，使用滑动平均，正则化等方法优化网络参数，使神经网络的预测更加准确。 1.基本网络上一篇中back.py中的网络模型：传统网络模型： 神经元模型:用数学公式表示为:𝐟(∑𝒊𝒙𝒊𝒘𝒊 + 𝐛)，f为激活函数。神经网络是以神经元为基本单元构成的。 激活函数:引入非线性激活因素，提高模型的表达力。常用的激活函数有relu、sigmoid、tanh等。激活函数relu: 在Tensorflow中，用tf.nn.relu()表示激活函数 sigmoid:在Tensorflow中，用tf.nn.sigmoid()表示激活函数tanh:在Tensorflow 中，用tf.nn.tanh()表示神经网络的复杂度:可用神经网络的层数和神经网络中待优化参数个数表示神经网路的层数:一般不计入输入层，层数 = n 个隐藏层 + 1 个输出层神经网路待优化的参数:神经网络中所有参数 w 的个数 + 所有参数 b 的个数例如:在该神经网络中，包含 1 个输入层、1 个隐藏层和 1 个输出层，该神经网络的层数为 2 层。 在该神经网络中，参数的个数是所有参数 w 的个数加上所有参数 b 的总数，第一层参数用三行四列的 二阶张量表示(即 12 个线上的权重 w)再加上 4 个偏置 b;第二层参数是四行两列的二阶张量()即 8 个线上的权重 w)再加上 2 个偏置 b。总参数 = 34+4 + 42+2 = 26。 2.损失函数损失函数(loss):用来表示预测值(y)与已知答案(y_)的差距。在训练神经网络时，通过不断改变神经网络中所有参数，使损失函数不断减小，从而训练出更高准确率的神经网络模型。常用的损失函数有均方误差、自定义和交叉熵等。 均方误差(mse):n个样本的预测值y与已知答案y_之差的平方和，再求平均值。在Tensorflow中用loss_mse = tf.reduce_mean(tf.square(y_ - y))例如:预测酸奶日销量 y，x1 和 x2 是影响日销量的两个因素。应提前采集的数据有:一段时间内，每日的 x1 因素、x2 因素和销量 y_。采集的数据尽量多。在本例中用销量预测产量，最优的产量应该等于销量。由于目前没有数据集，所以拟造了一套数据集。利用 Tensorflow 中函数随机生成 x1、 x2，制造标准答案 y_ = x1 + x2，为了更真实，求和后还加了正负 0.05 的随机噪声。我们把这套自制的数据集喂入神经网络，构建一个一层的神经网络，拟合预测酸奶日销量的函数。12345678910111213141516171819202122232425262728293031323334353637#coding:utf-8#预测多或预测少的影响一样#0导入模块，生成数据集import tensorflow as tfimport numpy as npBATCH_SIZE = 8SEED = 23455rdm = np.random.RandomState(SEED)X = rdm.rand(32,2)Y_ = [[x1+x2+(rdm.rand()/10.0-0.05)] for (x1, x2) in X]#1定义神经网络的输入、参数和输出，定义前向传播过程。x = tf.placeholder(tf.float32, shape=(None, 2))y_ = tf.placeholder(tf.float32, shape=(None, 1))w1= tf.Variable(tf.random_normal([2, 1], stddev=1, seed=1))y = tf.matmul(x, w1)#2定义损失函数及反向传播方法。#定义损失函数为MSE,反向传播方法为梯度下降。loss_mse = tf.reduce_mean(tf.square(y_ - y))train_step = tf.train.GradientDescentOptimizer(0.001).minimize(loss_mse)#3生成会话，训练STEPS轮with tf.Session() as sess: init_op = tf.global_variables_initializer() sess.run(init_op) STEPS = 20000 for i in range(STEPS): start = (i*BATCH_SIZE) % 32 end = (i*BATCH_SIZE) % 32 + BATCH_SIZE sess.run(train_step, feed_dict=&#123;x: X[start:end], y_: Y_[start:end]&#125;) if i % 500 == 0: print "After %d training steps, w1 is: " % (i) print sess.run(w1), "\n" print "Final w1 is: \n", sess.run(w1)#在本代码#2中尝试其他反向传播方法，看对收敛速度的影响 本例中神经网络预测模型为 y = w1x1 + w2x2，损失函数采用均方误差。通过使 损失函数值(loss)不断降低，神经网络模型得到最终参数 w1=0.98，w2=1.02，销量预测结果为 y = 0.98x1 + 1.02x2。由于在生成数据集时，标准答案为 y = x1+x2，因此，销量预测结果和标准 答案已非常接近，说明该神经网络预测酸奶日销量正确。 交叉熵(Cross Entropy):表示两个概率分布之间的距离。交叉熵越大，两个概率分布距离越远，两个概率分布越相异;交叉熵越小，两个概率分布距离越近，两个概率分布越相似。交叉熵计算公式:𝐇(𝐲_ , 𝐲) = −∑𝐲_ ∗ 𝒍𝒐𝒈 𝒚用Tensorflow函数表示为ce= -tf.reduce_mean(y_ tf.log(tf.clip_by_value(y, 1e-12, 1.0)))例如:两个神经网络模型解决二分类问题中，已知标准答案为 y_ = (1, 0)，第一个神经网络模型预测结果为y1=(0.6, 0.4)，第二个神经网络模型预测结果为 y2=(0.8, 0.2)，判断哪个神经网络模型预测的结果更接近标准答案。根据交叉熵的计算公式得:H1((1,0),(0.6,0.4)) = -(1log0.6 + 0log0.4) ≈ -(-0.222 + 0) = 0.222H2((1,0),(0.8,0.2)) = -(1log0.8 + 0*log0.2) ≈ -(-0.097 + 0) = 0.097由于 0.222&gt;0.097，所以预测结果 y2 与标准答案 y_更接近，y2 预测更准确。 自定义损失函数:根据问题的实际情况，定制合理的损失函数。代码实现参考Github:opt_loss.pyopt_mse.py]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>神经网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[搭建神经网络--反向传播]]></title>
+    <url>%2F2018%2F08%2F14%2Fnn_back%2F</url>
+    <content type="text"><![CDATA[反向传播算法是训练模型的核心算法，他可以根据定义好的损失函数优化神经网络中的参数取值，本篇在所有参数上用梯度下降，使NN模型在训练数据上的损失函数最小。 损失函数(loss):计算得到的预测值y与已知答案y_的差距。损失函数的计算有很多方法，均方误差MSE是比较常用的方法之一。 均方误差MSE:求前向传播计算结果与已知答案之差的平方再求平均。 反向传播训练方法:以减小loss值为优化目标，有梯度下降、momentum优化器、adam优化器等优化方法。这三种优化方法用 tensorflow 的函数可以表示为:train_step=tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)train_step=tf.train.MomentumOptimizer(learning_rate, momentum).minimize(loss)train_step=tf.train.AdamOptimizer(learning_rate).minimize(loss) 三种优化方法区别如下:1.tf.train.GradientDescentOptimizer()使用随机梯度下降算法，使参数沿着梯度的反方向，即总损失减小的方向移动，实现更新参数。参数更新公式是其中，𝐽(𝜃)为损失函数，𝜃为参数，𝛼为学习率。 2.tf.train.MomentumOptimizer()在更新参数时，利用了超参数，参数更新公式是 3.tf.train.AdamOptimizer()是利用自适应学习率的优化算法，Adam算法和随机梯度下降算法不同。随机梯度下降算法保持单一的学习率更新所有的参数，学 习率在训练过程中并不会改变。而Adam算法通过计算梯度的一阶矩估计和二阶矩估计而为不同的参数设计独立的自适应性学习率。 学习率:决定每次参数更新的幅度。优化器中都需要一个叫做学习率的参数，使用时，如果学习率选择过大会出现震 荡不收敛的情况，如果学习率选择过小，会出现收敛速度慢的情况。我们可以选个比较小的值填入，比如0.01、0.001。代码实现参考Github：back.py 进阶:反向传播参数更新推导过程(过程长且复杂，想要了解的小伙伴私信我)]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>神经网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[搭建神经网络--前向传播]]></title>
+    <url>%2F2018%2F08%2F14%2Fnn_before%2F</url>
+    <content type="text"><![CDATA[神经网络的实现需要四步：1、准备数据集，提取特征，作为输入喂给NN2、搭建NN结构，从输入到输出(先搭建计算图，再用会话执行)(NN前向传播算法，计算输出)3、大量特征数据喂给NN，迭代优化NN参数(NN反向传播算法，优化参数训练模型)4、使用训练好的模型预测和分类前向传播就是搭建模型的计算过程，让模型具有推理能力，可以针对一组输入给出相应的输出。 举例假如生产一批零件，体积为 x1，重量为 x2，体积和重量就是我们选择的特征， 把它们喂入神经网络，当体积和重量这组数据走过神经网络后会得到一个输出。假如输入的特征值是:体积 0.7 重量 0.5由搭建的神经网络可得，隐藏层节点a11=x1w11+x2w21=0.14+0.15=0.29，同理算得节点a12=0.32，a13=0.38，最终计算得到输出层Y=-0.015，这便实现了前向传播过程。 推导第一层X 是输入为 1X2 矩阵用x表示输入，是一个1行2列矩阵，表示一次输入一组特征，这组特征包含了体积和重量两个元素。对于第一层的w 前面有两个节点，后面有三个节点 w应该是个两行三列矩阵，表示为:神经网络共有几层(或当前是第几层网络)都是指的计算层，输入不是计算层，所以a为第一层网络，a是一个一行三列矩阵。表示为:第二层参数要满足前面三个节点，后面一个节点，所以 W(2) 是三行一列矩阵。表示为:把每层输入乘以线上的权重w，这样用矩阵乘法可以计算出输出y了。代码实现参考Github：before.py]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>神经网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[什么是神经网络]]></title>
+    <url>%2F2018%2F08%2F14%2Fnn_introduce%2F</url>
+    <content type="text"><![CDATA[神经网络(Neural Network,NN)，源于对生物脑神经元结构的研究。神经网络是一种运算模型，由大量节点(神经元)相互联接构成。每个节点代表一种特定的输出函数，称为激励函数。每两个节点间的连接都代表一个对于通过该连接信号的加权值，称之为权重。 基本概念基于Tensorflow的NN:用张量表示数据，用计算图搭建神经网络，用会话执行计算图，优化线上的权重(参数)，得到模型。 张量张量就是多维数组(列表)，用“阶”表示张量的维度。1 阶张量称作向量，表示一个一维数组;举例 V=[1,2,3]2 阶张量称作矩阵，表示一个二维数组，它可以有i行j列个元素，每个元素可以用行号和列号共同索引到;举例 m=[[1,2,3],[4,5,6],[7,8,9]]判断张量是几阶的，就通过张量右边的方括号数，0个是0阶，n个是n阶，张量可以表示0阶到n阶数组(列表);举例t=[ [ [… ] ] ]为3阶。 计算图(Graph)搭建神经网络的计算过程，是承载一个或多个计算节点的一 张图，只搭建网络，不运算。 神经元神经网络的基本模型是神经元，多个神经元组成的网络即为神经网络，神经元的基本模型其实就是数学中的乘、加运算。x1、x2 表示输入，w1、w2 分别是 x1 到 y 和 x2 到 y 的权重，y=x1w1+x2w2。]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>神经网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ubuntu Tensorflow 环境搭建]]></title>
+    <url>%2F2018%2F08%2F14%2Ftf%2F</url>
+    <content type="text"><![CDATA[TensorFlow是谷歌研发的第二代人工智能学习系统，具有快速、灵活、开源、适合大规模应用等特点，深得全球众多开发者的喜爱，是机器学习和深度学习的必备框架。 1.ubuntu安装推荐使用虚拟机安装ubuntu镜像。ubuntu 14.04 64位镜像下载：百度云 密码:cwj7 2.Tensorflow搭建首先安装pip：在终端输入sudo apt-get install python-pip 安装Tensorflow清华大学开源软件镜像网选择合适的镜像，可根据自己的实际情况选择，推荐稳定版本如下：安装完成后在终端输入python进入编程环境，随后输入如图所示则安装成功： ps:如果安装之后提示缺少模块，则可以使用pip或apt-get进行安装，推荐apt-get，稳定。]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>Tensorflow</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python基础知识]]></title>
+    <url>%2F2018%2F08%2F13%2Fpython%2F</url>
+    <content type="text"><![CDATA[无论是数据分析，还是机器学习，Python总是绕不开的重要语言，这里是自己整理的一些Python基础知识。推荐大家使用Python3。 1. 基本数据类型Number 数字String 字符串List 列表Tuple 元组Set 集合Dictionary 字典 其中 不可变数据：数字，字符串，元组可变数据：列表，字典，集合 2. 数字 Number类型：int,float,bool,complex数学函数：abs(x)绝对值 ceil(x)向上取整数 floor(x)向下取整 max(x1,x2,…)最大 min(x1,x2,…)最小 pow(x,y)x的y次方 round(x,[n])精确到x的n位随机数：random.choice(range(10)) 随机返回一个0~10的整数 random.uniform(1,3) 随机生成一个1到3的实数 3. 字符串 String3.1 访问var = &apos;hello word&apos; var[0]--h var[1:4]--ell 3.2 转义字符\000 空 \n 换行 \v 纵向制表符 \t 横向制表符 \r 回车 \f 换页 3.3 拼接+ 字符串拼接 * 重复输出，如a=&apos;x&apos;,a*2--xx 3.4 格式化%s 格式化字符串 %d 格式化整数 %f 格式化浮点数 3.5 函数count() 范围内字符出现次数 len() 返回长度 lower() 转为小写 upper() 转为大写 title() 标题化字符串，首字母大写 r min(str) 取最小字符串 man(str) 取最大字符串 find() 检查字符串是否在字符中 repleace(new,old,[max]) 替换old为new，如果max存在则不超过max次 strip() 删除空格 4. 列表使用方括号括起，用逗号隔开。 4.1 访问使用[],[:] 4.2 删除del list[] 也可指定位置 4.3 函数len(list) 元素个数 max(list) 最大值元素 min(list) 最小值元素 list(seq) 元组转换为列表 4.4 方法list.append(obj) 末尾添加新元素 list.count(obj) 同级元素出现次数 list.extend(seq) 新列表扩展旧列表 list.index(obj) 某个值第一个匹配项的索引位置 list.insert(index, obj) 将对象插入列表 list.pop([index=-1]) 移除列表中的一个元素（默认最后一个元素），并且返回该元素的值 list.remove(obj) 移除列表中某个值的第一个匹配项 list.reverse() 反向列表中元素 list.sort() 对原列表进行排序 list.sort(reverse=True) 反向排序 5. 元组元组与列表类似，但元组不能修改，元组使用小括号。访问，删除同列表。tuple(seq) 将列表转化为元组 6. 字典每个键值对用：分割，放在花括号{}中,在Pandas中会经常用到字典。12dict = &#123;key1:value1,key2:value2&#125;键唯一，值不必。 6.1 访问12dict=&#123;'name':'jack','age':7,'class':1&#125;dict['name']--jack 6.2 修改1dict['age']=8 6.3 删除123del dict['name']del dictdel.clear() 6.4 函数cmp(dict1, dict2) 比较两个字典元素 len(dict) 键的总数 str(dict) 输出字符串表示 type(variable) 返回输入的变量类型 6.5 方法dict.clear() 删除所有元素 dict.copy() 返回浅复制 dict.get(key, default=None) 返回指定键的值 dict.has_key(key) 键是否在字典 dict.items() 以列表返回可遍历的(键, 值) 元组数组 dict.keys() 以列表返回所有的键 dict.values() 以列表返回所有的值 dict.update(dict2) 把字典dict2的键/值对更新到dict里 pop(key[,default]) 删除字典给定键 key popitem() 随机返回并删除字典中的一对键和值 7. 条件控制和循环7.1 一般形式1234if 条件： 语句else： 语句 7.2 while循环123456while 条件： 语句 while 条件： 语句 else: 语句 7.3 for循环1234for 变量 in 序列: 语句else: 语句 7.4 遍历12for i in range(5): 同理#range(5,9),range(0,10,3) print(i) 输出 0到4 列表遍历：12for a in list: print(a) 字典遍历：12for k,v in dict: print(k,v)#也可分别遍历 7.5 break 和 continuebreak跳出循环，之后语句不再执行。continue跳过当前循环，继续指向下一循环。 7.6 pass语句pass 不做任何事情，一般用做占位语句。 8. 函数def 函数名(参数列表): 函数体 8.1参数必备参数必备参数须以正确的顺序传入函数。调用时的数量必须和声明时的一样。12345def printme( str ): print( str ); return; 调用:printme( str ); 关键字参数传参顺序不需指定。123456789def printinfo( name, age ): print("Name: ", name); print("Age ", age); return;调用:printinfo( age=50, name="miki" );输出：Name: mikiAge 50 缺省参数调用函数时，缺省参数的值如果没有传入，则被认为是默认值。12def printinfo( name, age = 35 ):printinfo( name="miki" )#则默认输出age=15; 不定长参数你可能需要一个函数能处理比当初声明时更多的参数。123456789def printinfo( arg1, *vartuple ): print("输出: ") print(arg1) for var in vartuple: print (var) return;调用:printinfo( 10 );printinfo( 70, 60, 50 ); 8.2 变量作用域L(Local)E(Enclosing)G(Global)B(Built-in)以L→E→G→B规则查找。 9. 输入和输出9.1 键盘读入12str = input("请输入：");print ("内容是: ", str) 9.2 文件读写读文件1234f = open("/tmp/foo.txt", "r")str = f.read()print(str)f.close() 写文件（覆盖）123f = open("/tmp/foo.txt", "w")f.write( "Python 非常好。\n是的!\n" )f.close() 写文件（追加）123f = open("/tmp/foo.txt", "a")f.write( "Python 非常好。\n是的!\n" )f.close() 10. 错误和异常异常处理12345678while True: try: x = int(input("输入数字")) break except ValueError: print("不是数字") else: print("数字是：",x) 带参异常123456def temp_convert(var): try: return int(var) except (ValueError) as Argument: print ("参数没有包含数字\n", Argument)temp_convert("xyz"); 抛出异常raise 唯一的一个参数指定了要被抛出的异常。它必须是一个异常的实例或者是异常的类（也就是 Exception 的子类）。如果你只想知道这是否抛出了一个异常，并不想去处理它，那么一个简单的 raise 语句就可以再次把它抛出。12345678910try: raise NameError('HiThere')except NameError: print('An exception flew by!') raiseAn exception flew by!Traceback (most recent call last): File "&lt;stdin&gt;", line 2, in ?NameError: HiThere 自定义异常12345678910111213141516class MyError(Exception): def __init__(self, value): self.value = value def __str__(self): return repr(self.value) try: raise MyError(2*2)except MyError as e: print('My exception occurred, value:', e.value) My exception occurred, value: 4raise MyError('oops!')Traceback (most recent call last): File "&lt;stdin&gt;", line 1, in ?__main__.MyError: 'oops!']]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>编程语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Pandas]]></title>
+    <url>%2F2018%2F08%2F13%2Fpandas%2F</url>
+    <content type="text"><![CDATA[无论是数据分析还是数据挖掘来说，Pandas是一个非常重要的Python包。它不仅提供了很多方法，使得数据处理非常简单，同时在数据处理速度上也做了很多优化，使得和Python内置方法相比时有了很大的优势。 import pandas as pd 导入数据pd.read_csv(filename)：从CSV文件导入数据pd.read_table(filename)：从限定分隔符的文本文件导入数据pd.read_excel(filename)：从Excel文件导入数据pd.read_sql(query, connection_object)：从SQL表/库导入数据pd.read_json(json_string)：从JSON格式的字符串导入数据pd.read_html(url)：解析URL、字符串或者HTML文件，抽取其中的tables表格pd.read_clipboard()：从你的粘贴板获取内容，并传给read_table()pd.DataFrame(dict)：从字典对象导入数据，Key是列名，Value是数据 导出数据df.to_csv(filename)：导出数据到CSV文件df.to_excel(filename)：导出数据到Excel文件df.to_sql(table_name, connection_object)：导出数据到SQL表df.to_json(filename)：以Json格式导出数据到文本文件 创建测试对象pd.DataFrame(np.random.rand(20,5))：创建20行5列的随机数组成的DataFrame对象pd.Series(my_list)：从可迭代对象my_list创建一个Series对象df.index = pd.date_range(‘1900/1/30’, periods=df.shape[0])：增加一个日期索引 查看、检查数据df.head(n)：查看DataFrame对象的前n行df.tail(n)：查看DataFrame对象的最后n行df.shape()：查看行数和列数http:// df.info() ：查看索引、数据类型和内存信息df.describe()：查看数值型列的汇总统计s.value_counts(dropna=False)：查看Series对象的唯一值和计数df.apply(pd.Series.value_counts)：查看DataFrame对象中每一列的唯一值和计数 数据选取df[col]：根据列名，并以Series的形式返回列df[[col1, col2]]：以DataFrame形式返回多列s.iloc[0]：按位置选取数据s.loc[‘index_one’]：按索引选取数据df.iloc[0,:]：返回第一行df.iloc[0,0]：返回第一列的第一个元素 数据清理df.columns = [‘a’,’b’,’c’]：重命名列名pd.isnull()：检查DataFrame对象中的空值，并返回一个Boolean数组pd.notnull()：检查DataFrame对象中的非空值，并返回一个Boolean数组df.dropna()：删除所有包含空值的行df.dropna(axis=1)：删除所有包含空值的列df.dropna(axis=1,thresh=n)：删除所有小于n个非空值的行df.fillna(x)：用x替换DataFrame对象中所有的空值s.astype(float)：将Series中的数据类型更改为float类型s.replace(1,’one’)：用‘one’代替所有等于1的值s.replace([1,3],[‘one’,’three’])：用’one’代替1，用’three’代替3df.rename(columns=lambda x: x + 1)：批量更改列名df.rename(columns={‘old_name’: ‘new_ name’})：选择性更改列名df.set_index(‘column_one’)：更改索引列df.rename(index=lambda x: x + 1)：批量重命名索引 数据处理：Filter、Sort和GroupBydf[df[col] &gt; 0.5]：选择col列的值大于0.5的行df.sort_values(col1)：按照列col1排序数据，默认升序排列df.sort_values(col2, ascending=False)：按照列col1降序排列数据df.sort_values([col1,col2], ascending=[True,False])：先按列col1升序排列，后按col2降序排列数据df.groupby(col)：返回一个按列col进行分组的Groupby对象df.groupby([col1,col2])：返回一个按多列进行分组的Groupby对象df.groupby(col1)[col2]：返回按列col1进行分组后，列col2的均值df.pivot_table(index=col1, values=[col2,col3], aggfunc=max)：创建一个按列col1进行分组，并计算col2和col3的最大值的数据透视表df.groupby(col1).agg(np.mean)：返回按列col1分组的所有列的均值data.apply(np.mean)：对DataFrame中的每一列应用函数np.meandata.apply(np.max,axis=1)：对DataFrame中的每一行应用函数np.max 数据合并df1.append(df2)：将df2中的行添加到df1的尾部df.concat([df1, df2],axis=1)：将df2中的列添加到df1的尾部df1.join(df2,on=col1,how=’inner’)：对df1的列和df2的列执行SQL形式的join 数据统计df.describe()：查看数据值列的汇总统计df.mean()：返回所有列的均值df.corr()：返回列与列之间的相关系数df.count()：返回每一列中的非空值的个数df.max()：返回每一列的最大值df.min()：返回每一列的最小值df.median()：返回每一列的中位数df.std()：返回每一列的标准差]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>数据分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[分享]]></title>
+    <url>%2F2018%2F08%2F13%2Fchuan%2F</url>
+    <content type="text"><![CDATA[好看的美食视频人生一串]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>美食</tag>
+      </tags>
+  </entry>
+</search>
