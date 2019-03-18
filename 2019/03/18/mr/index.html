@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="算法," />
+  <meta name="keywords" content="大数据," />
 
 
 
@@ -77,27 +77,24 @@
 
 
 
-<meta name="description" content="KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。">
-<meta name="keywords" content="算法">
+<meta name="description" content="Hadoop MapReduce是一个软件框架，该框架能够轻松编写出应用程序，这些应用程序以可靠，容错的方式在大型集群（数千节点）的商用硬件上并行处理大量数据。">
+<meta name="keywords" content="大数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="K近邻算法—KNN">
-<meta property="og:url" content="http://yoursite.com/2018/09/08/knn/index.html">
+<meta property="og:title" content="MapReduce理解">
+<meta property="og:url" content="http://yoursite.com/2019/03/18/mr/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。">
+<meta property="og:description" content="Hadoop MapReduce是一个软件框架，该框架能够轻松编写出应用程序，这些应用程序以可靠，容错的方式在大型集群（数千节点）的商用硬件上并行处理大量数据。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/01.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/02.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/04.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/05.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/k.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/weight.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/06.png">
-<meta property="og:image" content="http://yoursite.com/uploads/knn/p.png">
-<meta property="og:updated_time" content="2018-10-15T07:34:34.290Z">
+<meta property="og:image" content="http://yoursite.com/uploads/mr/mr05.png">
+<meta property="og:image" content="http://yoursite.com/uploads/mr/mr04.png">
+<meta property="og:image" content="http://yoursite.com/uploads/mr/mr01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/mr/mr02.png">
+<meta property="og:image" content="http://yoursite.com/uploads/mr/mr03.png">
+<meta property="og:updated_time" content="2019-03-18T13:52:15.460Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="K近邻算法—KNN">
-<meta name="twitter:description" content="KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。">
-<meta name="twitter:image" content="http://yoursite.com/uploads/knn/01.png">
+<meta name="twitter:title" content="MapReduce理解">
+<meta name="twitter:description" content="Hadoop MapReduce是一个软件框架，该框架能够轻松编写出应用程序，这些应用程序以可靠，容错的方式在大型集群（数千节点）的商用硬件上并行处理大量数据。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/mr/mr05.png">
 
 
 
@@ -127,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/08/knn/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/18/mr/"/>
 
 
 
 
 
-  <title>K近邻算法—KNN | 烈烈</title>
+  <title>MapReduce理解 | 烈烈</title>
   
 
 
@@ -334,7 +331,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/08/knn/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/18/mr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lieliee">
@@ -351,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">K近邻算法—KNN</h1>
+          <h1 class="post-title" itemprop="name headline">MapReduce理解</h1>
         
 
         <div class="post-meta">
@@ -363,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T09:26:04+08:00">
-                2018-09-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-18T16:05:23+08:00">
+                2019-03-18
               </time>
             
 
@@ -386,8 +383,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
                   </a>
                 </span>
 
@@ -403,7 +400,7 @@
 
           
           
-             <span id="/2018/09/08/knn/" class="leancloud_visitors" data-flag-title="K近邻算法—KNN">
+             <span id="/2019/03/18/mr/" class="leancloud_visitors" data-flag-title="MapReduce理解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -434,18 +431,53 @@
       
 
       
-        <p>KNN算法全称K-Nearest Neighbors，是一个适合入门机器学习的算法，KNN思想简单，数学知识少，拥有机器学习完整的流程，易于理解。<br><a id="more"></a><br>kNN算法的核心思想是如果一个样本在特征空间中的k个最相邻的样本中的大多数属于某一个类别，则该样本也属于这个类别，并具有这个类别上样本的特性。其中K通常是不大于20的整数。</p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>绿色圆要被决定赋予哪个类，是红色三角形还是蓝色四方形？如果K=3，由于红色三角形所占比例为2/3，绿色圆将被赋予红色三角形那个类，如果K=5，由于蓝色四方形比例为3/5，因此绿色圆被赋予蓝色四方形类。<br><img src="/uploads/knn/01.png" alt="avatar"><br>由此也说明了KNN算法的结果很大程度取决于K的选择。</p>
-<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：<br>1、思想简单，理论成熟，既可以用来做分类也可以用来做回归；<br>2、可用于非线性分类；<br>3、训练时间复杂度为O(n)；<br>4、准确度高，对数据没有假设，对outlier(离群值)不敏感；<br>缺点：<br>1、计算量大；<br>2、样本不平衡问题（即有些类别的样本数量很多，而其它样本的数量很少）；<br>3、需要大量的内存；</p>
-<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>1.计算测试数据与各个训练数据之间的距离（欧式距离）；<br>2.按照距离的递增关系进行排序；<br>3.选取距离最小的K个点；<br>4.确定前K个点所在类别的出现频率；<br>5.返回前K个点中出现频率最高的类别作为测试数据的预测分类。</p>
-<h4 id="距离类型"><a href="#距离类型" class="headerlink" title="距离类型"></a>距离类型</h4><p><img src="/uploads/knn/02.png" alt="avatar"><br>曼哈顿距离：<br>也可叫出租车距离，红蓝黄皆为曼哈顿距离。<br><img src="/uploads/knn/04.png" alt="avatar"><br>欧式距离：<br>两点之间距离最短，绿色为欧式距离。<br><img src="/uploads/knn/05.png" alt="avatar"></p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>KNN算法可自己编写进行实现，同时scikit-learn也对KNN算法进行了封装（只需要自己加载数据集），这里给出手动编写的KNN。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment">#自定义数据集</span></span><br><span class="line">raw_data_X = [ [<span class="number">3</span>,<span class="number">2</span>],</span><br><span class="line">               [<span class="number">3</span>,<span class="number">1</span>],</span><br><span class="line">               [<span class="number">1</span>,<span class="number">3</span>], </span><br><span class="line">               [<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">               [<span class="number">2</span>,<span class="number">2</span>],</span><br><span class="line">               [<span class="number">7</span>,<span class="number">4</span>], </span><br><span class="line">               [<span class="number">5</span>,<span class="number">3</span>],</span><br><span class="line">               [<span class="number">9</span>,<span class="number">2</span>],</span><br><span class="line">               [<span class="number">7</span>,<span class="number">3</span>],</span><br><span class="line">               [<span class="number">7</span>,<span class="number">0</span>] ]</span><br><span class="line"><span class="comment">#给数据集分类</span></span><br><span class="line">raw_data_y = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line">X_train = np.array(raw_data_X)</span><br><span class="line">y_train = np.array(raw_data_y)</span><br><span class="line"><span class="comment">#设置待分类的点</span></span><br><span class="line">x = np.array([<span class="number">8</span>,<span class="number">3</span>])</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"><span class="comment">#计算待分类的点与各点的距离</span></span><br><span class="line">distances = []</span><br><span class="line"><span class="keyword">for</span> x_train <span class="keyword">in</span> X_train:</span><br><span class="line">    d = sqrt(np.sum((x_train - x)**<span class="number">2</span>))</span><br><span class="line">    distances.append(d)</span><br><span class="line">    np.argsort(distances)</span><br><span class="line"><span class="comment">#由近到远排列</span></span><br><span class="line">nearest = np.argsort(distances)</span><br><span class="line"><span class="comment">#取前6个点</span></span><br><span class="line">k = <span class="number">6</span></span><br><span class="line">topK_y = [y_train[i] <span class="keyword">for</span> i <span class="keyword">in</span> nearest[:k]]</span><br><span class="line"><span class="comment">#看前6个点每个类别有多少个点</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter </span><br><span class="line">Counter(topK_y)</span><br><span class="line">votes = Counter(topK_y)</span><br><span class="line"><span class="comment">#取出现最多的类别</span></span><br><span class="line">votes.most_common(<span class="number">1</span>)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"><span class="comment">#结果为1</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="超参数"><a href="#超参数" class="headerlink" title="超参数"></a>超参数</h4><p>超参数：在算法运行前需要决定的参数。<br>模型参数：算法过程中学习的参数。<br>KNN算法中没有模型参数。<br>KNN中常见超参数：</p>
-<h5 id="K-近邻点的个数："><a href="#K-近邻点的个数：" class="headerlink" title="K-近邻点的个数："></a>K-近邻点的个数：</h5><p>KNN算法中，K值需要提前指定，如何取得最优K值呢，可以使用for循环对分类器结果进行比较取得最优K。<br><img src="/uploads/knn/k.png" alt="avatar"></p>
-<h5 id="weight-距离的权重："><a href="#weight-距离的权重：" class="headerlink" title="weight-距离的权重："></a>weight-距离的权重：</h5><p>weight的取值有两个(考虑权重或不考虑权重)：<br>uniform(默认，即不考虑距离)：一致的权重；<br>distance：距离的倒数作为权重<br><img src="/uploads/knn/weight.png" alt="avatar"></p>
-<h5 id="p-明可夫斯基距离中的P值："><a href="#p-明可夫斯基距离中的P值：" class="headerlink" title="p-明可夫斯基距离中的P值："></a>p-明可夫斯基距离中的P值：</h5><p><img src="/uploads/knn/06.png" alt="avatar"><br>超参数存在相互依赖关系,因为考虑p的前提是weight=distance，如果weight=uniform，则不会考虑p的值。<br>p=1:即欧式距离；p=2:即曼哈顿距离。<br><img src="/uploads/knn/p.png" alt="avatar"></p>
-<h4 id="网格搜索"><a href="#网格搜索" class="headerlink" title="网格搜索"></a>网格搜索</h4><p>更好的确定最优的超参数。</p>
-<h4 id="数据归一化"><a href="#数据归一化" class="headerlink" title="数据归一化"></a>数据归一化</h4><p>将所有的数据映射到同一个尺度中。</p>
+        <p>Hadoop MapReduce是一个软件框架，该框架能够轻松编写出应用程序，这些应用程序以可靠，容错的方式在大型集群（数千节点）的商用硬件上并行处理大量数据。<br><a id="more"></a></p>
+<h3 id="一、优缺点"><a href="#一、优缺点" class="headerlink" title="一、优缺点"></a>一、优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><h5 id="1-易于编程。"><a href="#1-易于编程。" class="headerlink" title="1)易于编程。"></a>1)易于编程。</h5><p>&emsp;&emsp;它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的 PC 机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点使得 MapReduce 编程变得非常流行。</p>
+<h5 id="2-良好的扩展性。"><a href="#2-良好的扩展性。" class="headerlink" title="2)良好的扩展性。"></a>2)良好的扩展性。</h5><p>&emsp;&emsp;当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。</p>
+<h5 id="3-高容错性。"><a href="#3-高容错性。" class="headerlink" title="3)高容错性。"></a>3)高容错性。</h5><p>&emsp;&emsp;MapReduce 设计的初衷就是使程序能够部署在廉价的 PC 机器上，这就 要求它具有很高的容错性。比如其中一台机器挂了，它可以把上面的计算任务转移到另外一 个节点上运行，不至于这个任务运行失败，而且这个过程不需要人工参与，而完全是由 Hadoop 内部完成。</p>
+<h5 id="4-适合PB级以上海量数据的离线处理。"><a href="#4-适合PB级以上海量数据的离线处理。" class="headerlink" title="4)适合PB级以上海量数据的离线处理。"></a>4)适合PB级以上海量数据的离线处理。</h5><p>&emsp;&emsp;这里强调离线处理，说明它适合离线处理而不适合在线处理。比如像毫秒级别的返回一个结果，MapReduce 很难做到。</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><h5 id="1-实时计算。"><a href="#1-实时计算。" class="headerlink" title="1)实时计算。"></a>1)实时计算。</h5><p>&emsp;&emsp;MapReduce 无法像 Mysql 一样，在毫秒或者秒级内返回结果。</p>
+<h5 id="2-流式计算。"><a href="#2-流式计算。" class="headerlink" title="2)流式计算。"></a>2)流式计算。</h5><p>&emsp;&emsp;流式计算的输入数据是动态的，而 MapReduce 的输入数据集是静态的，不能动态变化。这是因为 MapReduce 自身的设计特点决定了数据源必须是静态的。 </p>
+<h4 id="3-DAG-有向图-计算。"><a href="#3-DAG-有向图-计算。" class="headerlink" title="3)DAG(有向图)计算。"></a>3)DAG(有向图)计算。</h4><p>&emsp;&emsp;多个应用程序存在依赖关系，后一个应用程序的输入为前一个的输出。在这种情况下，MapReduce 并不是不能做，而是使用后，每个 MapReduce 作业的输出结果都会写入到磁盘，会造成大量的磁盘 IO，导致性能非常的低下。（spark使用的是内存）</p>
+<h3 id="二、流程"><a href="#二、流程" class="headerlink" title="二、流程"></a>二、流程</h3><p><strong>客户端（Client）：</strong>编写mapreduce程序，配置作业，提交作业，这就是程序员完成的工作；</p>
+<p><strong>JobTracker：</strong>JobTracker是一个后台服务进程，启动之后，会一直监听并接收来自各个TaskTracker发送的心跳信息，包括资源使用情况和任务运行情况等信息。 </p>
+<ul>
+<li>作业控制：在hadoop中每个应用程序被表示成一个作业，每个作业又被分成多个任务，JobTracker的作业控制模块则负责作业的分解和状态监控。</li>
+<li>状态监控：主要包括TaskTracker状态监控、作业状态监控和任务状态监控。主要作用：容错和为任务调度提供决策依据。</li>
+<li>JobTracker只有一个，他负责了任务的信息采集整理，你就把它当做包工头把，这个和采用Master/Slave结构中的Master保持一致</li>
+<li>JobTracker 对应于 NameNode</li>
+<li>一般情况应该把JobTracker部署在单独的机器上</li>
+</ul>
+<p><strong>TaskTracker：</strong>TaskTracker是JobTracker和Task之间的桥梁。TaskTracker与JobTracker和Task之间采用了RPC协议进行通信。 </p>
+<ul>
+<li>从JobTracker接收并执行各种命令：运行任务、提交任务、杀死任务等</li>
+<li>将本地节点上各个任务的状态通过心跳周期性汇报给JobTracker，节点健康情况、资源使用情况，任务执行进度、任务运行状态等，比如说map task我做完啦，你什么时候让reduce task过来拉数据啊</li>
+<li>TaskTracker是运行在多个节点上的slaver服务。TaskTracker主动与JobTracker通信，接收作业，并负责直接执行每一个任务。</li>
+<li>TaskTracker都需要运行在HDFS的DataNode上</li>
+</ul>
+<p><strong>HDFS：</strong>保存作业的数据、配置信息等等，最后的结果也是保存在hdfs上面 </p>
+<ul>
+<li>NameNode： 管理文件目录结构，接受用户的操作请求,管理数据节点(DataNode)</li>
+<li>DataNode：是HDFS中真正存储数据的</li>
+<li>Block：是hdfs读写数据的基本单位，默认64MB大小，就是说如果你有130MB数据，那就要分成三个block，两个存放64MB，最后一个存放2MB数据，虽然最后一个block块是64MB，但实际上占用空间为2MB</li>
+<li>Sencondary NameNode：它的目的是帮助 NameNode 合并编辑日志，减少 NameNode 启动时间，在文件系统中设置一个检查点来帮助NameNode更好的工作。它不是要取代掉NameNode也不是NameNode的备份。<br><img src="/uploads/mr/mr05.png" alt="avatar"><h4 id="提交作业"><a href="#提交作业" class="headerlink" title="提交作业"></a>提交作业</h4>1.在客户端启动一个作业。拿个比方说，我提交了一个hive程序。<br>2.向JobTracker请求一个Job ID，就像你排队买车一样，你不得摇个号啊，没有这个号你就不能买车(执行任务)。<br>3.将运行作业所需要的资源文件复制到HDFS上，包括MapReduce程序打包的JAR文件、配置文件和客户端计算所得的输入划分信息。<br>4.提交作业<h4 id="初始化作业"><a href="#初始化作业" class="headerlink" title="初始化作业"></a>初始化作业</h4>5.JobTracker接收到作业后，将其放在一个作业队列里(默认的调度方法是FIFO)，等待作业调度器对其进行调度。<br>6.当作业调度器根据自己的调度算法调度到该作业时，会根据输入划分信息(Split)为每个划分创建一个map任务，并将map任务分配给TaskTracker执行。<h4 id="分配任务"><a href="#分配任务" class="headerlink" title="分配任务"></a>分配任务</h4>7.TaskTracker和JobTracker之间的通信和任务分配是通过心跳机制按成的。TaskTracker作为一个单独的JVM执行一个简单的循环，主要实现每隔一段时间向JobTracker发送心跳（Heartbeat），以次告诉JobTracker此TaskTracker是否存活，是否准备执行新的任务。(心跳中还携带着很多的信息，比如当前map任务完成的进度等信息)<h4 id="执行任务"><a href="#执行任务" class="headerlink" title="执行任务"></a>执行任务</h4>8.TaskTracker申请到新的任务之后就要在本地运行任务。运行任务的第一步是将任务本地化：将任务运行所必需的数据、配置信息、程序代码从HDFS复制到TaskTracker本地。<br>9.发布任务<br>10.启动新的JVM来运行每个任务。<h4 id="更新任务执行进度和状态"><a href="#更新任务执行进度和状态" class="headerlink" title="更新任务执行进度和状态"></a>更新任务执行进度和状态</h4>通过心跳机制，所有的TaskTracker的统计信息都会汇总到JobTracker处。JobTracker将这些信息合并起来，产生一个全局作业进度统计信息，用来表明正在运行的所有作业，以及其中所含任务的状态。最后，JobClient通过每秒查看JobTracker来接收作业进度的最新状态。<h4 id="完成作业"><a href="#完成作业" class="headerlink" title="完成作业"></a>完成作业</h4>所有TaskTracker任务的执行进度信息都会汇总到JobTracker处，当JobTracker接收到最后一个任务的已完成通知后，便把作业的状态设置为“成功”。然后，JobClient也将及时得到任务已经完成，它会显示一条信息告知用户作业完成，最后从runJob()方法处返回。<h3 id="三、框架原理"><a href="#三、框架原理" class="headerlink" title="三、框架原理"></a>三、框架原理</h3>一个wordcount的例子:<br><img src="/uploads/mr/mr04.png" alt="avatar"><br>&emsp;&emsp;MapReduce大体分为Input，Split，Map，Shuffle，Reduce五个步骤，重点在Map,Shuffle,Reduce三个阶段。<br>下面这张图是根据官网图片翻译重画而来:<br><img src="/uploads/mr/mr01.png" alt="avatar"><br>&emsp;&emsp;<font color="red">shuffle横跨map和reduce两端，是MapReduce的核心过程。</font><br>&emsp;&emsp;Shuffle描述着数据从map task输出到reduce task输入的这段过程。map task干完活了要输出数据了，然后接下来数据给哪个reduce？怎么分配？就有了shuffle过程。Shuffle阶段可以分为Map端的Shuffle和Reduce端的Shuffle。<h4 id="Map端"><a href="#Map端" class="headerlink" title="Map端"></a>Map端</h4><img src="/uploads/mr/mr02.png" alt="avatar"><br>&emsp;&emsp;map端的shuffle包括环形内存缓冲区执行溢出写，partition，sort，combiner，生成溢出写文件，合并。<br>&emsp;&emsp;Map端会处理输入数据并产生中间结果，这个中间结果会写到本地磁盘，而不是HDFS。map函数开始产生输出时并非简单地将它输出到磁盘。因为频繁的磁盘操作会导致性能严重下降。它的处理过程更复杂，数据首先写到内存中的一个缓冲区，并做一些预排序，以提升效率。<h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5>&emsp;&emsp;输入数据来源于HDFS的block，当然在MapReduce概念中，map task只读取Split，也就是是我们所说的分片。在进行map计算之前，mapreduce会根据输入文件计算输入分片（input split），每个输入分片（input split）针对一个map任务。 </li>
+<li>Block是HDFS的基本存储单元，上文也有写，Block默认大小是128M。</li>
+<li>Split是map task只读的单位，存储的并非数据本身，而是一个分片长度和一个记录数据的位置的数组。</li>
+<li>Split与block的对应关系可能是多对一，默认是一对一。</li>
+</ul>
+<p>&emsp;&emsp;每个map任务都有一个环形内存缓冲区，用于存储任务的输出（默认大小100MB，mapreduce.task.io.sort.mb调整），被缓冲的K-V对记录已经被序列化，但没有排序。而且每个K-V对都附带一些额外的审计信息。一旦缓冲内容达到阈值（mapreduce.map.io.sort.spill.percent,默认0.80，或者80%），就会创建一个溢出写文件，同时开启一个后台线程把数据溢出写（spill）到本地磁盘中。溢出写过程按轮询方式将缓冲区中的内容写到mapreduce.cluster.local.dir属性指定的目录中。</p>
+<h5 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h5><p>&emsp;&emsp;在写磁盘之前，线程首先根据数据最终要传递到的Reducer把数据划分成相应的分区（partition），输出key会经过Partitioner分组或者分桶选择不同的reduce。默认的情况下Partitioner会对map输出的key进行hash取模，比如有6个ReduceTask，它就是模6，如果key的hash值为0，就选择第0个ReduceTask（为1，选Reduce Task1）。这样不同的map对相同单词key，它的hash值取模是一样的，所以会交给同一个reduce来处理。目的是将记录划分到不同的Reducer上去，以期望能够达到负载均衡，<font color="red">以后的Reducer就会根据partition来读取自己对应的数据</font>。</p>
+<h5 id="按key排序"><a href="#按key排序" class="headerlink" title="按key排序"></a>按key排序</h5><p>&emsp;&emsp;在每个分区中，后台线程将数据按Key进行排序（排序方式为<font color="red">快速排序</font>）。接着运行combiner在本地节点内存中将每个Map任务输出的中间结果按键做本地聚合(如果设置了的话)，可以减少传递给Reducer的数据量。可以通过setCombinerClass()方法来指定一个作业的combiner。当溢出写文件生成数至少为3时(mapreduce.map.combine.minspills属性设置)，combiner函数就会在它排序后的输出文件写到磁盘之前运行。</p>
+<h5 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h5><p>&emsp;&emsp;在写磁盘过程中，另外的20%内存可以继续写入数据，两种操作互不干扰，但如果在此期间缓冲区被填满，那么map就会阻塞写入内存的操作，让写入磁盘操作完成后再执行写入内存。 在map任务写完其最后一个输出记录之后，可能产生多个spill文件，在每个Map任务完成前，溢出写文件被合并成一个索引文件和数据文件（多路<font color="red">归并排序</font>）（Sort阶段）。一次最多合并多少流由io.sort.factor控制，默认为10。至此，Map端的shuffle过程就结束了。<br>&emsp;&emsp;溢出写文件归并完毕后，Map将删除所有的临时溢出写文件，并告知NodeManager任务已完成，只要其中一个MapTask完成，ReduceTask就开始复制它的输出（Copy阶段分区输出文件通过http的方式提供给reducer）</p>
+<h5 id="combiner"><a href="#combiner" class="headerlink" title="combiner"></a>combiner</h5><p>如果指定了Combiner，可能在两个地方被调用：<br>1.当为作业设置Combiner类后，缓存溢出线程将缓存存放到磁盘时，就会调用；<br>2.缓存溢出的数量超过mapreduce.map.combine.minspills（默认3）时，在缓存溢出文件合并的时候会调用<br>&emsp;&emsp;combiner可以在输入上反复运行，但并不影响最终结果。将有相同key的key/value对的value加起来，减少溢写到磁盘的数据量，combiner简单说就是map端的reduce。其目的是对将要写入到磁盘上的文件先进行一次处理，这样使得map输出结果更加紧凑，减少写到磁盘的数据。如果只有1或2个溢出写文件，那么由于map输出规模减少，因此不会为该map输出再次运行combiner。<br>&emsp;&emsp;combiner操作是有风险的，使用它的原则是<font color="red">combiner的输入不会影响到reduce计算的最终输入</font>。<br>例如：如果计算只是求总数，最大最小值可以使用combiner，但是做平均值计算使用combiner的话，最终的reduce计算结果就会出错。</p>
+<h5 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h5><p>&emsp;&emsp;    写磁盘时压缩map端的输出，因为这样会让写磁盘的速度更快，节约磁盘空间，并减少传给reducer的数据量。默认情况下，输出是不压缩的(将mapreduce.map.output.compress设置为true即可启动）</p>
+<h4 id="Reduce端"><a href="#Reduce端" class="headerlink" title="Reduce端"></a>Reduce端</h4><p><img src="/uploads/mr/mr03.png" alt="avatar"></p>
+<h5 id="1-Copy过程"><a href="#1-Copy过程" class="headerlink" title="1.Copy过程:"></a>1.Copy过程:</h5><p>&emsp;&emsp;Reduce会接收到不同map任务传来的数据，并且每个map传来的数据都是有序的。Reduce进程启动一些数据copy线程(Fetcher)，通过HTTP方式请求map task所在的TaskTracker获取map task的输出文件。因为map task早已结束，这些文件就归TaskTracker管理在本地磁盘中。<br>有人可能会问：分区中的数据怎么知道它对应的reduce是哪个呢？其实map任务一直和其父TaskTracker保持联系，而TaskTracker又一直和JobTracker保持心跳。所以JobTracker中保存了整个集群中的宏观信息。只要reduce任务向JobTracker获取对应的map输出位置就ok了哦。</p>
+<h5 id="2-Merge（合并）"><a href="#2-Merge（合并）" class="headerlink" title="2.Merge（合并）:"></a>2.Merge（合并）:</h5><p>&emsp;&emsp;这里的merge如map端的merge动作，只是数组中存放的是不同map端copy来的数值。Copy过来的数据会先放入内存缓冲区中，这里的缓冲区大小要比map端的更为灵活，它基于JVM的heap size设置，因为Shuffle阶段Reducer不运行，所以应该把绝大部分的内存都给Shuffle用。这里需要强调的是，merge有三种形式：1)内存到内存 2)内存到磁盘 3)磁盘到磁盘。默认情况下第一种形式不启用，让人比较困惑，是吧。<font color="red">当内存中的数据量到达一定阈值，就启动内存到磁盘的merge</font>。与map 端类似，这也是溢写的过程，这个过程中如果你设置有Combiner，也是会启用的，然后在磁盘中生成了众多的溢写文件。第二种merge方式一直在运行，直到没有map端的数据时才结束，然后启动第三种磁盘到磁盘的merge方式生成最终的那个文件。</p>
+<h5 id="3-Reducer的输入文件"><a href="#3-Reducer的输入文件" class="headerlink" title="3.Reducer的输入文件:"></a>3.Reducer的输入文件:</h5><p>&emsp;&emsp;不断地merge后，最后会生成一个“最终文件”。为什么加引号？因为这个文件可能存在于磁盘上，也可能存在于内存中。对我们来说，当然希望它存放于内存中，直接作为Reducer的输入，但默认情况下，这个文件是存放于磁盘中的。当Reducer的输入文件已定，整个Shuffle才最终结束。</p>
+<h5 id="4-reduce阶段："><a href="#4-reduce阶段：" class="headerlink" title="4.reduce阶段："></a>4.reduce阶段：</h5><p>&emsp;&emsp;和map函数一样也是程序员编写的，最终结果是存储在hdfs上的。</p>
+<h3 id="四、二次排序"><a href="#四、二次排序" class="headerlink" title="四、二次排序"></a>四、二次排序</h3><h4 id="为什么需要二次排序"><a href="#为什么需要二次排序" class="headerlink" title="为什么需要二次排序?"></a>为什么需要二次排序?</h4><p>&emsp;&emsp;在MapReduce操作时，我们知道传递的&lt;key,value&gt;会按照key的大小进行排序，最后输出的结果是按照key排过序的。有的时候我们在key排序的基础上，对value也进行排序。这种需求就是二次排序。</p>
+<h4 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h4><p>将map端输出的&lt;key,value&gt;中的key和value组合成一个新的key（称为newKey），value值不变。这里就变成&lt;(key,value),value&gt;，在针对newKey排序的时候，如果key相同，就再对value进行排序。</p>
 
       
     </div>
@@ -463,7 +495,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
+            <a href="/tags/大数据/" rel="tag"># 大数据</a>
           
         </div>
       
@@ -476,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/07/me/" rel="next" title="我的">
-                <i class="fa fa-chevron-left"></i> 我的
+              <a href="/2019/03/04/hive/" rel="next" title="Hive">
+                <i class="fa fa-chevron-left"></i> Hive
               </a>
             
           </div>
@@ -485,10 +517,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/09/ercheng/" rel="prev" title="最小二乘法">
-                最小二乘法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -651,7 +679,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优缺点"><span class="nav-number">2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程"><span class="nav-number">3.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#距离类型"><span class="nav-number">4.</span> <span class="nav-text">距离类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">5.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超参数"><span class="nav-number">6.</span> <span class="nav-text">超参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#K-近邻点的个数："><span class="nav-number">6.1.</span> <span class="nav-text">K-近邻点的个数：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#weight-距离的权重："><span class="nav-number">6.2.</span> <span class="nav-text">weight-距离的权重：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#p-明可夫斯基距离中的P值："><span class="nav-number">6.3.</span> <span class="nav-text">p-明可夫斯基距离中的P值：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网格搜索"><span class="nav-number">7.</span> <span class="nav-text">网格搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据归一化"><span class="nav-number">8.</span> <span class="nav-text">数据归一化</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、优缺点"><span class="nav-number">1.</span> <span class="nav-text">一、优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">1.1.</span> <span class="nav-text">优点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-易于编程。"><span class="nav-number">1.1.1.</span> <span class="nav-text">1)易于编程。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-良好的扩展性。"><span class="nav-number">1.1.2.</span> <span class="nav-text">2)良好的扩展性。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-高容错性。"><span class="nav-number">1.1.3.</span> <span class="nav-text">3)高容错性。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-适合PB级以上海量数据的离线处理。"><span class="nav-number">1.1.4.</span> <span class="nav-text">4)适合PB级以上海量数据的离线处理。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">1.2.</span> <span class="nav-text">缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-实时计算。"><span class="nav-number">1.2.1.</span> <span class="nav-text">1)实时计算。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-流式计算。"><span class="nav-number">1.2.2.</span> <span class="nav-text">2)流式计算。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-DAG-有向图-计算。"><span class="nav-number">1.3.</span> <span class="nav-text">3)DAG(有向图)计算。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、流程"><span class="nav-number">2.</span> <span class="nav-text">二、流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#提交作业"><span class="nav-number">2.1.</span> <span class="nav-text">提交作业</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化作业"><span class="nav-number">2.2.</span> <span class="nav-text">初始化作业</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分配任务"><span class="nav-number">2.3.</span> <span class="nav-text">分配任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行任务"><span class="nav-number">2.4.</span> <span class="nav-text">执行任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新任务执行进度和状态"><span class="nav-number">2.5.</span> <span class="nav-text">更新任务执行进度和状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完成作业"><span class="nav-number">2.6.</span> <span class="nav-text">完成作业</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、框架原理"><span class="nav-number">3.</span> <span class="nav-text">三、框架原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Map端"><span class="nav-number">3.1.</span> <span class="nav-text">Map端</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入"><span class="nav-number">3.1.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分区"><span class="nav-number">3.1.2.</span> <span class="nav-text">分区</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#按key排序"><span class="nav-number">3.1.3.</span> <span class="nav-text">按key排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#合并"><span class="nav-number">3.1.4.</span> <span class="nav-text">合并</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#combiner"><span class="nav-number">3.1.5.</span> <span class="nav-text">combiner</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#压缩"><span class="nav-number">3.1.6.</span> <span class="nav-text">压缩</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduce端"><span class="nav-number">3.2.</span> <span class="nav-text">Reduce端</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Copy过程"><span class="nav-number">3.2.1.</span> <span class="nav-text">1.Copy过程:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Merge（合并）"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.Merge（合并）:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Reducer的输入文件"><span class="nav-number">3.2.3.</span> <span class="nav-text">3.Reducer的输入文件:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-reduce阶段："><span class="nav-number">3.2.4.</span> <span class="nav-text">4.reduce阶段：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、二次排序"><span class="nav-number">4.</span> <span class="nav-text">四、二次排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么需要二次排序"><span class="nav-number">4.1.</span> <span class="nav-text">为什么需要二次排序?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法："><span class="nav-number">4.2.</span> <span class="nav-text">方法：</span></a></li></ol></li></ol></div>
             
 
           </div>
