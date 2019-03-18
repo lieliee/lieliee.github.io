@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/uploads/mr/mr01.png">
 <meta property="og:image" content="http://yoursite.com/uploads/mr/mr02.png">
 <meta property="og:image" content="http://yoursite.com/uploads/mr/mr03.png">
-<meta property="og:updated_time" content="2019-03-18T13:52:15.460Z">
+<meta property="og:updated_time" content="2019-03-18T13:56:32.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MapReduce理解">
 <meta name="twitter:description" content="Hadoop MapReduce是一个软件框架，该框架能够轻松编写出应用程序，这些应用程序以可靠，容错的方式在大型集群（数千节点）的商用硬件上并行处理大量数据。">
@@ -478,6 +478,7 @@
 <h5 id="4-reduce阶段："><a href="#4-reduce阶段：" class="headerlink" title="4.reduce阶段："></a>4.reduce阶段：</h5><p>&emsp;&emsp;和map函数一样也是程序员编写的，最终结果是存储在hdfs上的。</p>
 <h3 id="四、二次排序"><a href="#四、二次排序" class="headerlink" title="四、二次排序"></a>四、二次排序</h3><h4 id="为什么需要二次排序"><a href="#为什么需要二次排序" class="headerlink" title="为什么需要二次排序?"></a>为什么需要二次排序?</h4><p>&emsp;&emsp;在MapReduce操作时，我们知道传递的&lt;key,value&gt;会按照key的大小进行排序，最后输出的结果是按照key排过序的。有的时候我们在key排序的基础上，对value也进行排序。这种需求就是二次排序。</p>
 <h4 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h4><p>将map端输出的&lt;key,value&gt;中的key和value组合成一个新的key（称为newKey），value值不变。这里就变成&lt;(key,value),value&gt;，在针对newKey排序的时候，如果key相同，就再对value进行排序。</p>
+<p>PS:一开始觉得既然都要经过reduce端归约，那二次排序有什么意义？其实不同的业务场景，需求也不一样，reduce阶段也不是必须要执行。</p>
 
       
     </div>
