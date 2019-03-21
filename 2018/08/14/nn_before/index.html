@@ -77,23 +77,23 @@
 
 
 
-<meta name="description" content="神经网络的实现需要四步：1、准备数据集，提取特征，作为输入喂给NN2、搭建NN结构，从输入到输出(先搭建计算图，再用会话执行)(NN前向传播算法，计算输出)3、大量特征数据喂给NN，迭代优化NN参数(NN反向传播算法，优化参数训练模型)4、使用训练好的模型预测和分类">
+<meta name="description" content="前向传播就是搭建模型的计算过程，让模型具有推理能力，可以针对一组输入给出相应的输出。">
 <meta name="keywords" content="神经网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建神经网络--前向传播">
 <meta property="og:url" content="http://yoursite.com/2018/08/14/nn_before/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="神经网络的实现需要四步：1、准备数据集，提取特征，作为输入喂给NN2、搭建NN结构，从输入到输出(先搭建计算图，再用会话执行)(NN前向传播算法，计算输出)3、大量特征数据喂给NN，迭代优化NN参数(NN反向传播算法，优化参数训练模型)4、使用训练好的模型预测和分类">
+<meta property="og:description" content="前向传播就是搭建模型的计算过程，让模型具有推理能力，可以针对一组输入给出相应的输出。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/uploads/nn_before/nnbefore.png">
 <meta property="og:image" content="http://yoursite.com/uploads/nn_before/nn02.png">
 <meta property="og:image" content="http://yoursite.com/uploads/nn_before/nn03.png">
 <meta property="og:image" content="http://yoursite.com/uploads/nn_before/nn04.png">
 <meta property="og:image" content="http://yoursite.com/uploads/nn_before/nn05.png">
-<meta property="og:updated_time" content="2018-09-07T03:02:31.000Z">
+<meta property="og:updated_time" content="2019-03-21T08:12:57.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建神经网络--前向传播">
-<meta name="twitter:description" content="神经网络的实现需要四步：1、准备数据集，提取特征，作为输入喂给NN2、搭建NN结构，从输入到输出(先搭建计算图，再用会话执行)(NN前向传播算法，计算输出)3、大量特征数据喂给NN，迭代优化NN参数(NN反向传播算法，优化参数训练模型)4、使用训练好的模型预测和分类">
+<meta name="twitter:description" content="前向传播就是搭建模型的计算过程，让模型具有推理能力，可以针对一组输入给出相应的输出。">
 <meta name="twitter:image" content="http://yoursite.com/uploads/nn_before/nnbefore.png">
 
 
@@ -431,7 +431,7 @@
       
 
       
-        <p>神经网络的实现需要四步：<br>1、准备数据集，提取特征，作为输入喂给NN<br>2、搭建NN结构，从输入到输出(先搭建计算图，再用会话执行)<br>(NN前向传播算法，计算输出)<br>3、大量特征数据喂给NN，迭代优化NN参数<br>(NN反向传播算法，优化参数训练模型)<br>4、使用训练好的模型预测和分类<br><a id="more"></a><br>前向传播就是搭建模型的计算过程，让模型具有推理能力，可以针对一组输入给出相应的输出。</p>
+        <p>前向传播就是搭建模型的计算过程，让模型具有推理能力，可以针对一组输入给出相应的输出。<br><a id="more"></a><br>神经网络的实现需要四步：<br>1、准备数据集，提取特征，作为输入喂给NN<br>2、搭建NN结构，从输入到输出(先搭建计算图，再用会话执行)<br>(NN前向传播算法，计算输出)<br>3、大量特征数据喂给NN，迭代优化NN参数<br>(NN反向传播算法，优化参数训练模型)<br>4、使用训练好的模型预测和分类</p>
 <h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>假如生产一批零件，体积为 x1，重量为 x2，体积和重量就是我们选择的特征， 把它们喂入神经网络，当体积和重量这组数据走过神经网络后会得到一个输出。<br>假如输入的特征值是:体积 0.7 重量 0.5<br><img src="/uploads/nn_before/nnbefore.png" alt="avatar"><br>由搭建的神经网络可得，隐藏层节点a11=x1<em>w11+x2</em>w21=0.14+0.15=0.29，同理算得节点a12=0.32，a13=0.38，最终计算得到输出层Y=-0.015，这便实现了前向传播过程。</p>
 <h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>第一层<br>X 是输入为 1X2 矩阵<br>用x表示输入，是一个1行2列矩阵，表示一次输入一组特征，这组特征包含了体积和重量两个元素。<br><img src="/uploads/nn_before/nn02.png" alt="avatar"><br>对于第一层的w 前面有两个节点，后面有三个节点 w应该是个两行三列矩阵，表示为:<br><img src="/uploads/nn_before/nn03.png" alt="avatar"><br>神经网络共有几层(或当前是第几层网络)都是指的计算层，输入不是计算层，所以a为第一层网络，a是一个一行三列矩阵。表示为:<br><img src="/uploads/nn_before/nn04.png" alt="avatar"><br>第二层<br>参数要满足前面三个节点，后面一个节点，所以 W(2) 是三行一列矩阵。表示为:<br><img src="/uploads/nn_before/nn05.png" alt="avatar"><br>把每层输入乘以线上的权重w，这样用矩阵乘法可以计算出输出y了。<br>代码实现参考<a href="https://github.com/lieliee/Data-Analysis-ML/tree/master/NN" target="_blank" rel="noopener">Github</a>：before.py</p>
 
