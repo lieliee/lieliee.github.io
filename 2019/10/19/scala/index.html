@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="神经网络," />
+  <meta name="keywords" content="Scala," />
 
 
 
@@ -77,20 +77,18 @@
 
 
 
-<meta name="description" content="滑动平均:记录了一段时间内模型中所有参数 w 和 b 各自的平均值。利用滑动平均值可以增强模型的泛化能力。">
-<meta name="keywords" content="神经网络">
+<meta name="description" content="&amp;emsp;&amp;emsp;Scala是一种多范式的编程语言，其设计的初衷是要集成面向对象编程和函数式编程的各种特性。Scala运行于Java平台（JVM），并兼容现有的Java程序。">
+<meta name="keywords" content="Scala">
 <meta property="og:type" content="article">
-<meta property="og:title" content="神经网络优化--滑动平均">
-<meta property="og:url" content="http://yoursite.com/2018/08/15/opt_movingavg/index.html">
+<meta property="og:title" content="Scala和Java">
+<meta property="og:url" content="http://yoursite.com/2019/10/19/scala/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="滑动平均:记录了一段时间内模型中所有参数 w 和 b 各自的平均值。利用滑动平均值可以增强模型的泛化能力。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;Scala是一种多范式的编程语言，其设计的初衷是要集成面向对象编程和函数式编程的各种特性。Scala运行于Java平台（JVM），并兼容现有的Java程序。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/uploads/opt_movingavg/ma01.png">
-<meta property="og:updated_time" content="2018-09-07T03:02:57.000Z">
+<meta property="og:updated_time" content="2019-10-19T06:30:08.952Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="神经网络优化--滑动平均">
-<meta name="twitter:description" content="滑动平均:记录了一段时间内模型中所有参数 w 和 b 各自的平均值。利用滑动平均值可以增强模型的泛化能力。">
-<meta name="twitter:image" content="http://yoursite.com/uploads/opt_movingavg/ma01.png">
+<meta name="twitter:title" content="Scala和Java">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;Scala是一种多范式的编程语言，其设计的初衷是要集成面向对象编程和函数式编程的各种特性。Scala运行于Java平台（JVM），并兼容现有的Java程序。">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/15/opt_movingavg/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/10/19/scala/"/>
 
 
 
 
 
-  <title>神经网络优化--滑动平均 | 烈烈</title>
+  <title>Scala和Java | 烈烈</title>
   
 
 
@@ -327,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/opt_movingavg/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/scala/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lielie">
@@ -344,7 +342,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">神经网络优化--滑动平均</h1>
+          <h1 class="post-title" itemprop="name headline">Scala和Java</h1>
         
 
         <div class="post-meta">
@@ -356,8 +354,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T18:37:26+08:00">
-                2018-08-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-19T13:18:41+08:00">
+                2019-10-19
               </time>
             
 
@@ -379,8 +377,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/深度学习/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
                   </a>
                 </span>
 
@@ -396,7 +394,7 @@
 
           
           
-             <span id="/2018/08/15/opt_movingavg/" class="leancloud_visitors" data-flag-title="神经网络优化--滑动平均">
+             <span id="/2019/10/19/scala/" class="leancloud_visitors" data-flag-title="Scala和Java">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -427,8 +425,57 @@
       
 
       
-        <p>滑动平均:记录了一段时间内模型中所有参数 w 和 b 各自的平均值。利用滑动平均值可以增强模型的泛化能力。<br><a id="more"></a><br>滑动平均值(影子)计算公式:<br>影子 = 衰减率 <em> 影子 +(1 - 衰减率)</em> 参数<br>其中，衰减率<br><img src="/uploads/opt_movingavg/ma01.png" alt="avatat"><br>用 Tesnsorflow 函数表示为:<br><strong>ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY，global_step)</strong><br>其中<br>MOVING_AVERAGE_DECAY 表示滑动平均衰减率，一般会赋接近 1 的值<br>global_step 表示当前 训练了多少轮。<br><strong>ema_op = ema.apply(tf.trainable_variables())</strong><br>其中，ema.apply()函数实现对括号内参数求滑动平均，<br>tf.trainable_variables()函数实现把所有待训练参数汇总为列表。<br><strong>with tf.control_dependencies([train_step, ema_op]):</strong><br>&emsp;&emsp;<strong>train_op = tf.no_op(name=’train’)</strong><br>其中，该函数实现将滑动平均和训练过程同步运行。<br>查看模型中参数的平均值，可以用 ema.average()函数。<br>例如:<br>在神经网络模型中，将 MOVING_AVERAGE_DECAY 设置为 0.99，参数 w1 设置为 0，w1 的滑动平均值设置为 0。<br>1.开始时，轮数 global_step 设置为 0，参数 w1 更新为 1，则 w1 的滑动平均值为:<br>w1 滑动平均值=min(0.99,1/10)<em>0+(1– min(0.99,1/10)</em>1 = 0.9<br>2.当轮数 global_step 设置为 100 时，参数 w1 更新为 10，以下代码 global_step 保持为 100，每<br>次执行滑动平均操作影子值更新，则滑动平均值变为:<br>w1 滑动平均值=min(0.99,101/110)<em>0.9+(1– min(0.99,101/110)</em>10 = 0.826+0.818=1.644<br>3.再次运行，参数 w1 更新为 1.644，则滑动平均值变为:<br>w1 滑动平均值=min(0.99,101/110)<em>1.644+(1– min(0.99,101/110)</em>10 = 2.328<br>4.再次运行，参数 w1 更新为 2.328，则滑动平均值:<br>w1 滑动平均值=2.956<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment">#1. 定义变量及滑动平均类</span></span><br><span class="line"><span class="comment">#定义一个32位浮点变量，初始值为0.0  这个代码就是不断更新w1参数，优化w1参数，滑动平均做了个w1的影子</span></span><br><span class="line">w1 = tf.Variable(<span class="number">0</span>, dtype=tf.float32)</span><br><span class="line"><span class="comment">#定义num_updates（NN的迭代轮数）,初始值为0，不可被优化（训练），这个参数不训练</span></span><br><span class="line">global_step = tf.Variable(<span class="number">0</span>, trainable=<span class="keyword">False</span>)</span><br><span class="line"><span class="comment">#实例化滑动平均类，给衰减率为0.99，当前轮数global_step</span></span><br><span class="line">MOVING_AVERAGE_DECAY = <span class="number">0.99</span></span><br><span class="line">ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, global_step)</span><br><span class="line"><span class="comment">#ema.apply后的括号里是更新列表，每次运行sess.run（ema_op）时，对更新列表中的元素求滑动平均值。</span></span><br><span class="line"><span class="comment">#在实际应用中会使用tf.trainable_variables()自动将所有待训练的参数汇总为列表</span></span><br><span class="line"><span class="comment">#ema_op = ema.apply([w1])</span></span><br><span class="line">ema_op = ema.apply(tf.trainable_variables())</span><br><span class="line"></span><br><span class="line"><span class="comment">#2. 查看不同迭代中变量取值的变化。</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># 初始化</span></span><br><span class="line">    init_op = tf.global_variables_initializer()</span><br><span class="line">    sess.run(init_op)</span><br><span class="line">	<span class="comment">#用ema.average(w1)获取w1滑动平均值 （要运行多个节点，作为列表中的元素列出，写在sess.run中）</span></span><br><span class="line">	<span class="comment">#打印出当前参数w1和w1滑动平均值</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span>, sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1"</span>, sess.run([w1, ema.average(w1)]) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 参数w1的值赋为1</span></span><br><span class="line">    sess.run(tf.assign(w1, <span class="number">1</span>))</span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span>, sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1"</span>, sess.run([w1, ema.average(w1)]) </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 更新global_step和w1的值,模拟出轮数为100时，参数w1变为10, 以下代码global_step保持为100，每次执行滑动平均操作，影子值会更新 </span></span><br><span class="line">    sess.run(tf.assign(global_step, <span class="number">100</span>))  </span><br><span class="line">    sess.run(tf.assign(w1, <span class="number">10</span>))</span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span>, sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])       </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 每次sess.run会更新一次w1的滑动平均值</span></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line">    sess.run(ema_op)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current global_step:"</span> , sess.run(global_step)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"current w1:"</span>, sess.run([w1, ema.average(w1)])</span><br><span class="line"></span><br><span class="line"><span class="comment">#更改MOVING_AVERAGE_DECAY 为 0.1  看影子追随速度</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">current global_step: 0</span></span><br><span class="line"><span class="string">current w1 [0.0, 0.0]</span></span><br><span class="line"><span class="string">current global_step: 0</span></span><br><span class="line"><span class="string">current w1 [1.0, 0.9]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 1.6445453]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 2.3281732]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 2.955868]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 3.532206]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 4.061389]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 4.547275]</span></span><br><span class="line"><span class="string">current global_step: 100</span></span><br><span class="line"><span class="string">current w1: [10.0, 4.9934072]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></p>
-<p>从运行结果可知，最初参数 w1 和滑动平均值都是 0;参数 w1 设定为 1 后，滑动平均值变为 0.9; 当迭代轮数更新为 100 轮时，参数 w1 更新为 10 后，滑动平均值变为 1.644。随后每执行一次，参数 w1 的滑动平均值都向参数 w1 靠近。可见，滑动平均追随参数的变化而变化。<br>代码实现参考<a href="https://github.com/lieliee/Data-Analysis-ML/tree/master/opt" target="_blank" rel="noopener">Github</a>opt_movingavg.py</p>
+        <p>&emsp;&emsp;Scala是一种多范式的编程语言，其设计的初衷是要集成面向对象编程和函数式编程的各种特性。Scala运行于Java平台（JVM），并兼容现有的Java程序。<br><a id="more"></a><br>&emsp;&emsp;Scala源代码(.scala)会被编译成Java字节码(.class)，然后运行于JVM 之上并可以调用现有的Java 类库，实现两种语言的无缝对接。</p>
+<h4 id="Scala"><a href="#Scala" class="headerlink" title="Scala"></a>Scala</h4><ul>
+<li>优雅：这是框架设计师第一个要考虑的问题，框架的用户是应用开发程序员，API是否优雅直接影响用户体验。</li>
+<li>速度快：Scala语言表达能力强，一行代码抵得上Java多行，开发速度快；Scala是静态编译的，所以和JRuby,Groovy比起来速度会快很多。</li>
+<li>能融合到Hadoop生态圈：Hadoop现在是大数据事实标准，Spark并不是要取代Hadoop，而是要完善Hadoop生态。JVM语言大部分可能会想到Java，但Java做出来的API太丑，或者想实现一个优雅的API太费劲。</li>
+</ul>
+<h4 id="Java和Scala"><a href="#Java和Scala" class="headerlink" title="Java和Scala"></a>Java和Scala</h4><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">Java</th>
+<th style="text-align:center">Scala</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.对字符串的支持</td>
+<td style="text-align:center">Java需要采用“+”进行字符串的连接</td>
+<td style="text-align:center">Scala采用三个双引号“”“支持换行字符串</td>
+</tr>
+<tr>
+<td>2.方法返回值</td>
+<td style="text-align:center">Java需要显示的采用return进行值的返回</td>
+<td style="text-align:center">Scala的return是可选的，方法调用会自动返回最后求值的表达式。如果Scala使用了return则需要显示指定方法的返回值</td>
+</tr>
+<tr>
+<td>3.类和方法修饰符的默认值</td>
+<td style="text-align:center">Java默认是protected</td>
+<td style="text-align:center">scala默认是public</td>
+</tr>
+<tr>
+<td>4.默认导入的类</td>
+<td style="text-align:center">Java默认导入java.lang包</td>
+<td style="text-align:center">Scala默认导入java.lang包、scala包、scala.Predef类</td>
+</tr>
+<tr>
+<td>5.接口</td>
+<td style="text-align:center">Java支持接口</td>
+<td style="text-align:center">Scala不支持接口interface，采用trait（类似于Java中的抽象类）</td>
+</tr>
+<tr>
+<td>6.类成员和单例对象</td>
+<td style="text-align:center">Java由类成员，单例对象需要自己实现</td>
+<td style="text-align:center">Scala语言机制上支持单例对象和伴生对象，伴生类。伴生类和伴生对象需要在一个类文件中使用，在使用伴生对象时，系统隐式地调用apply生成一个伴生实例的对象</td>
+</tr>
+</tbody>
+</table>
+<h4 id="动态编译和静态编译"><a href="#动态编译和静态编译" class="headerlink" title="动态编译和静态编译"></a>动态编译和静态编译</h4><ul>
+<li>动态编译<br>也叫即时编译，在程序运行时进行代码编译。<br>按需编译，程序在运行的时候，用到那个模块就编译哪个模块。<br>优点：平台中立，代码质量高<br>缺点：编译器必须与应用程序共享 CPU，性能下降。</li>
+<li>静态编译<br>在程序执行前进行编译，避免程序运行时性能消耗或内存消耗。<br>一次性编译。在编译的时候把你所有的模块都编译进去。<br>优点：效率较高<br>缺点：牺牲平台中立，牺牲代码质量。</li>
+</ul>
 
       
     </div>
@@ -446,7 +493,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
+            <a href="/tags/Scala/" rel="tag"># Scala</a>
           
         </div>
       
@@ -459,8 +506,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/15/opt_learning_rate/" rel="next" title="神经网络优化--学习率">
-                <i class="fa fa-chevron-left"></i> 神经网络优化--学习率
+              <a href="/2019/10/14/sandr/" rel="next" title="Synchronized和ReentrantLock">
+                <i class="fa fa-chevron-left"></i> Synchronized和ReentrantLock
               </a>
             
           </div>
@@ -468,10 +515,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/15/opt_regular/" rel="prev" title="神经网络优化--正则化">
-                神经网络优化--正则化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -528,8 +571,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -615,6 +667,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Scala"><span class="nav-number">1.</span> <span class="nav-text">Scala</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java和Scala"><span class="nav-number">2.</span> <span class="nav-text">Java和Scala</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态编译和静态编译"><span class="nav-number">3.</span> <span class="nav-text">动态编译和静态编译</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Scala和Java]]></title>
+    <url>%2F2019%2F10%2F19%2Fscala%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;Scala是一种多范式的编程语言，其设计的初衷是要集成面向对象编程和函数式编程的各种特性。Scala运行于Java平台（JVM），并兼容现有的Java程序。&emsp;&emsp;Scala源代码(.scala)会被编译成Java字节码(.class)，然后运行于JVM 之上并可以调用现有的Java 类库，实现两种语言的无缝对接。 Scala 优雅：这是框架设计师第一个要考虑的问题，框架的用户是应用开发程序员，API是否优雅直接影响用户体验。 速度快：Scala语言表达能力强，一行代码抵得上Java多行，开发速度快；Scala是静态编译的，所以和JRuby,Groovy比起来速度会快很多。 能融合到Hadoop生态圈：Hadoop现在是大数据事实标准，Spark并不是要取代Hadoop，而是要完善Hadoop生态。JVM语言大部分可能会想到Java，但Java做出来的API太丑，或者想实现一个优雅的API太费劲。 Java和Scala Java Scala 1.对字符串的支持 Java需要采用“+”进行字符串的连接 Scala采用三个双引号“”“支持换行字符串 2.方法返回值 Java需要显示的采用return进行值的返回 Scala的return是可选的，方法调用会自动返回最后求值的表达式。如果Scala使用了return则需要显示指定方法的返回值 3.类和方法修饰符的默认值 Java默认是protected scala默认是public 4.默认导入的类 Java默认导入java.lang包 Scala默认导入java.lang包、scala包、scala.Predef类 5.接口 Java支持接口 Scala不支持接口interface，采用trait（类似于Java中的抽象类） 6.类成员和单例对象 Java由类成员，单例对象需要自己实现 Scala语言机制上支持单例对象和伴生对象，伴生类。伴生类和伴生对象需要在一个类文件中使用，在使用伴生对象时，系统隐式地调用apply生成一个伴生实例的对象 动态编译和静态编译 动态编译也叫即时编译，在程序运行时进行代码编译。按需编译，程序在运行的时候，用到那个模块就编译哪个模块。优点：平台中立，代码质量高缺点：编译器必须与应用程序共享 CPU，性能下降。 静态编译在程序执行前进行编译，避免程序运行时性能消耗或内存消耗。一次性编译。在编译的时候把你所有的模块都编译进去。优点：效率较高缺点：牺牲平台中立，牺牲代码质量。]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>Scala</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Synchronized和ReentrantLock]]></title>
     <url>%2F2019%2F10%2F14%2Fsandr%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;Synchronized与ReentrantLock是两种同步锁，两者有相同点也存在区别。 Synchronized&emsp;&emsp;Synchronized是实现线程同步的基本手段，底层通过锁机制来实现，对于被synchronized修饰的区域每次只有一个线程可以访问，从而满足线程安全的目的。&emsp;&emsp;Synchronized是悲观锁，悲观地认为程序中的并发情况严重，所以严防死守。这种线程一旦得到锁，其他需要锁的线程就挂起的情况就是悲观锁。(认为别人会修改数据)。&emsp;&emsp;可修饰方法，又可修饰对象，代码块。 优点：不消耗CPU。 缺点：响应时间缓慢，不够灵活。 ReentrantLock&emsp;&emsp;ReentrantLock 内部是基于 AbstractQueuedSynchronizer（抽象队列化同步器，AQS）实现的。使用了CAS方法。 优点：竞争的线程不会阻塞，提高了程序的响应速度。 缺点：自旋CPU开销大。破坏代码原子性。AQSCAS]]></content>
