@@ -77,23 +77,23 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;Hadoop 1.x 的Secondary NameNode，和 Hadoop 2.x 的 NameNode HA。">
+<meta name="description" content="&amp;emsp;&amp;emsp;Hadoop 1.x 的 Secondary NameNode，和 Hadoop 2.x 的 NameNode HA。">
 <meta name="keywords" content="大数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop节点恢复策略">
 <meta property="og:url" content="http://yoursite.com/2019/10/20/snode/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;Hadoop 1.x 的Secondary NameNode，和 Hadoop 2.x 的 NameNode HA。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;Hadoop 1.x 的 Secondary NameNode，和 Hadoop 2.x 的 NameNode HA。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/uploads/snode/snode01.png">
 <meta property="og:image" content="http://yoursite.com/uploads/snode/snode02.png">
 <meta property="og:image" content="http://yoursite.com/uploads/snode/snode03.png">
 <meta property="og:image" content="http://yoursite.com/uploads/snode/snode04.png">
 <meta property="og:image" content="http://yoursite.com/uploads/snode/snode05.png">
-<meta property="og:updated_time" content="2019-10-20T13:01:39.040Z">
+<meta property="og:updated_time" content="2019-10-20T13:02:55.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop节点恢复策略">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;Hadoop 1.x 的Secondary NameNode，和 Hadoop 2.x 的 NameNode HA。">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;Hadoop 1.x 的 Secondary NameNode，和 Hadoop 2.x 的 NameNode HA。">
 <meta name="twitter:image" content="http://yoursite.com/uploads/snode/snode01.png">
 
 
@@ -431,7 +431,7 @@
       
 
       
-        <p>&emsp;&emsp;Hadoop 1.x 的Secondary NameNode，和 Hadoop 2.x 的 NameNode HA。<br><a id="more"></a></p>
+        <p>&emsp;&emsp;Hadoop 1.x 的 Secondary NameNode，和 Hadoop 2.x 的 NameNode HA。<br><a id="more"></a></p>
 <h4 id="NameNode"><a href="#NameNode" class="headerlink" title="NameNode"></a>NameNode</h4><p>&emsp;&emsp;NameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。<br><img src="/uploads/snode/snode01.png" alt="avatar"><br>&emsp;&emsp;上面的这张图片展示了NameNode怎么把元数据保存到磁盘上的。这里有两个不同的文件：</p>
 <ul>
 <li>fsimage - 它是在NameNode启动时对整个文件系统的快照</li>
