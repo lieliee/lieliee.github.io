@@ -87,7 +87,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/uploads/spark/spark01.png">
 <meta property="og:image" content="http://yoursite.com/uploads/spark/spark02.png">
-<meta property="og:updated_time" content="2019-03-05T09:00:02.407Z">
+<meta property="og:image" content="http://yoursite.com/uploads/spark/spark03.png">
+<meta property="og:updated_time" content="2019-10-20T13:36:09.007Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark">
 <meta name="twitter:description" content="Spark是一种基于内存的大数据并行处理框架。">
@@ -440,6 +441,7 @@
 <h5 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h5><p>1.将数据按时间间隔分批，也就是离散化。（DStream）<br>2.每一段都通过Spark（此时理解成一个队列）转换成RDD。<br>3.对RDD进行处理。<br><img src="/uploads/spark/spark01.png" alt="avatar"></p>
 <h5 id="Spark-SQL："><a href="#Spark-SQL：" class="headerlink" title="Spark SQL："></a>Spark SQL：</h5><p>主要用于结构化数据处理。<br>前身是Shark，Shark即Hive on Spark。Shark依赖Hive，MR，存在瓶颈。<br>数据集有：RDD，DataFram<br>Spark MLlib:机器学习组件。<br>Spark GraphX:分布式图计算框架。</p>
 <h5 id="Spark运行架构"><a href="#Spark运行架构" class="headerlink" title="Spark运行架构"></a>Spark运行架构</h5><p><img src="/uploads/spark/spark02.png" alt="avatar"><br>1.Driver和master连接并申请资源。<br>2.master进行资源调度。<br>3.master跟Worker进行RPC通信，让Worker启动Executor。<br>4.启动Executor。<br>5.Executor进行通信。<br>6.RDD依赖生成DAG图。<br>7.RDD触发Action，从后往前，宽依赖就shuffe切分stage。由ADG Scheduler完成。每个stage里有一个或多个任务，每个stage是一个调度阶段。<br>8.Task Scheduler接收来自DAG Scheduler的任务集，以任务的形式一个个分发到Woker的Executor中运行。（序列化）<br>9.Executor接收到Task，将Task反序列化，执行任务。</p>
+<h4 id="Spark支持的文件格式"><a href="#Spark支持的文件格式" class="headerlink" title="Spark支持的文件格式"></a>Spark支持的文件格式</h4><p><img src="/uploads/spark/spark03.png" alt="avatar"></p>
 
       
     </div>
@@ -645,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#特点："><span class="nav-number">1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-Core"><span class="nav-number">2.</span> <span class="nav-text">Spark Core:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-Streaming"><span class="nav-number">3.</span> <span class="nav-text">Spark Streaming:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理流程"><span class="nav-number">4.</span> <span class="nav-text">处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-SQL："><span class="nav-number">5.</span> <span class="nav-text">Spark SQL：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark运行架构"><span class="nav-number">6.</span> <span class="nav-text">Spark运行架构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#特点："><span class="nav-number">1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-Core"><span class="nav-number">2.</span> <span class="nav-text">Spark Core:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-Streaming"><span class="nav-number">3.</span> <span class="nav-text">Spark Streaming:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理流程"><span class="nav-number">4.</span> <span class="nav-text">处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-SQL："><span class="nav-number">5.</span> <span class="nav-text">Spark SQL：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark运行架构"><span class="nav-number">6.</span> <span class="nav-text">Spark运行架构</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spark支持的文件格式"><span class="nav-number"></span> <span class="nav-text">Spark支持的文件格式</span></a></div>
             
 
           </div>
