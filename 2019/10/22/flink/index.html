@@ -77,24 +77,21 @@
 
 
 
-<meta name="description" content="熟悉大数据的同学，对Hadoop一定不会陌生，Hadoop是Apache的顶级项目。">
+<meta name="description" content="&amp;emsp;&amp;emsp;Apache Flink 是一个面向分布式数据流处理和批量数据处理的开源计算平台，它能够基于同一个 Flink 运行时（Flink Runtime），提供支持流处理和批处理两种类型应用的功能。">
 <meta name="keywords" content="大数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop">
-<meta property="og:url" content="http://yoursite.com/2019/03/04/hadoop/index.html">
+<meta property="og:title" content="Flink">
+<meta property="og:url" content="http://yoursite.com/2019/10/22/flink/index.html">
 <meta property="og:site_name" content="烈烈">
-<meta property="og:description" content="熟悉大数据的同学，对Hadoop一定不会陌生，Hadoop是Apache的顶级项目。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;Apache Flink 是一个面向分布式数据流处理和批量数据处理的开源计算平台，它能够基于同一个 Flink 运行时（Flink Runtime），提供支持流处理和批处理两种类型应用的功能。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/uploads/hadoop/hadoop01.png">
-<meta property="og:image" content="http://yoursite.com/uploads/hadoop/hadoop02.png">
-<meta property="og:image" content="http://yoursite.com/uploads/hadoop/hadoop03.png">
-<meta property="og:image" content="http://yoursite.com/uploads/hadoop/hadoop04.png">
-<meta property="og:image" content="http://yoursite.com/uploads/hadoop/hadoop05.png">
-<meta property="og:updated_time" content="2019-10-20T14:09:53.227Z">
+<meta property="og:image" content="http://yoursite.com/uploads/flink/flink01.png">
+<meta property="og:image" content="http://yoursite.com/uploads/flink/flink02.png">
+<meta property="og:updated_time" content="2019-10-22T12:16:18.766Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop">
-<meta name="twitter:description" content="熟悉大数据的同学，对Hadoop一定不会陌生，Hadoop是Apache的顶级项目。">
-<meta name="twitter:image" content="http://yoursite.com/uploads/hadoop/hadoop01.png">
+<meta name="twitter:title" content="Flink">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;Apache Flink 是一个面向分布式数据流处理和批量数据处理的开源计算平台，它能够基于同一个 Flink 运行时（Flink Runtime），提供支持流处理和批处理两种类型应用的功能。">
+<meta name="twitter:image" content="http://yoursite.com/uploads/flink/flink01.png">
 
 
 
@@ -124,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/04/hadoop/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/10/22/flink/"/>
 
 
 
 
 
-  <title>Hadoop | 烈烈</title>
+  <title>Flink | 烈烈</title>
   
 
 
@@ -331,7 +328,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/hadoop/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/22/flink/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lielie">
@@ -348,7 +345,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hadoop</h1>
+          <h1 class="post-title" itemprop="name headline">Flink</h1>
         
 
         <div class="post-meta">
@@ -360,8 +357,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T10:36:36+08:00">
-                2019-03-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T18:54:26+08:00">
+                2019-10-22
               </time>
             
 
@@ -400,7 +397,7 @@
 
           
           
-             <span id="/2019/03/04/hadoop/" class="leancloud_visitors" data-flag-title="Hadoop">
+             <span id="/2019/10/22/flink/" class="leancloud_visitors" data-flag-title="Flink">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -431,16 +428,36 @@
       
 
       
-        <p>熟悉大数据的同学，对Hadoop一定不会陌生，Hadoop是Apache的顶级项目。<br><a id="more"></a></p>
-<h4 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h4><p>&emsp;&emsp;Hadoop是一个对大型数据集进行存储和计算的软件系统，单个→千台计算机，联合进行计算和存储。</p>
-<h4 id="2-Hadoop模块"><a href="#2-Hadoop模块" class="headerlink" title="2.Hadoop模块"></a>2.Hadoop模块</h4><h5 id="Hadoop-Common"><a href="#Hadoop-Common" class="headerlink" title="Hadoop Common:"></a>Hadoop Common:</h5><p>&emsp;&emsp;支持其他Hadoop模块的常用程序。</p>
-<h5 id="Hadoop-HDFS-Hadoop-Distributed-File-System"><a href="#Hadoop-HDFS-Hadoop-Distributed-File-System" class="headerlink" title="Hadoop HDFS(Hadoop Distributed File System):"></a>Hadoop HDFS(Hadoop Distributed File System):</h5><p>&emsp;&emsp;Hadoop分布式文件系统，提供应用程序数据的高吞吐量访问。HDFS有着高容错性的特点，并且设计用来部署在低廉的硬件上。</p>
-<h5 id="YARN"><a href="#YARN" class="headerlink" title="YARN:"></a>YARN:</h5><p>&emsp;&emsp;作业调度和集群资源管理的框架。</p>
-<h5 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce:"></a>MapReduce:</h5><p>&emsp;&emsp;一种计算模型，并行处理大型数据集。Map生成键值，Reduce对中间结果中相同的“键”进行“值”归约。</p>
-<h5 id="核心：HDFS-MapReduce"><a href="#核心：HDFS-MapReduce" class="headerlink" title="核心：HDFS,MapReduce"></a>核心：HDFS,MapReduce</h5><h4 id="3-HDFS架构"><a href="#3-HDFS架构" class="headerlink" title="3.HDFS架构"></a>3.HDFS架构</h4><p>主/从结构<br>1个Master带N个Slaves<br>1:NameNode<br>N:DataNode<br>DN定期向NN发送心跳信息，汇报自身及所有block信息，健康状况。<br><strong>NameNode：</strong><br>&emsp;&emsp;(1)NameNode是一个中心服务器，单一节点，负责管理文件系统的名字空间以及客户端对文件的访问。<br>&emsp;&emsp;(2)文件操作，Namenode负责文件元数据的操作，DataNode负责处理文件内容的读写请求，跟文件内容相关的数据流不经NameNode。只会询问它和那个DataNode联系，否则NameNode会成为系统的瓶颈。<br>&emsp;&emsp;(3)副本存放在那些DataNode由NameNode控制。根据全局情况作出块放置的决定。读取文件时，NameNode尽量先让用户读取最近的副本，降低带块消耗和读取时延。<br>&emsp;&emsp;(4)NameNode全权管理数据块的复制，它周期性地从集群中的每个DataNode接收心跳信号和块状态报告（BlockReport），接收到心跳信号以为这该DataNode节点工作正常。块状态报告包含了一个该DataNode所有的数据块列表。<br><strong>DataNode:</strong><br>&emsp;&emsp;(1)一个数据块在DataNode以文件存储在磁盘上，包括两个文件，一个是数据本身，一个是元数据包括数据块的长度，块数据的校验和，以及时间戳。<br>&emsp;&emsp;(2)DataNode启动后向Namenode注册，通过后，周期性的向NameNode报告所有的块信息。<br>&emsp;&emsp;(3)心跳是每3秒一次，心跳返回结果带有NameNode给该DataNode的命令，如果复制块数据到另一台机器，或删除某个数据块。如果超过10分钟没有收到某个DataNode的心跳，则认为该节点不可用。<br>&emsp;&emsp;(4)集群运行中可以安全加入和退出一些机器。<br>1个文件被拆成多个block，默认保存3份，默认每个block为128M。<br>130–&gt;2个，1个128M，1个2M<br>如图：<br><img src="/uploads/hadoop/hadoop01.png" alt="avatar"></p>
-<h4 id="4-HDFS副本机制"><a href="#4-HDFS副本机制" class="headerlink" title="4.HDFS副本机制"></a>4.HDFS副本机制</h4><p>block默认保存3份。<br>block大小和备份份数都可以配置。<br>除了最后一个block(块)，前面的块相同。<br>128m|128m|2m<br>一个DataNode存储多个block<br>NameNode(Filename,numReplicas,block=ids,…)<br>/users/sameerp/data/part-0,r:2,{1,3},…<br>/users/sameerp/data/part-0,r:3,{2,4,5},…<br>如图：<br><img src="/uploads/hadoop/hadoop02.png" alt="avatar"></p>
-<h4 id="5-分布式计算框架MapReduce-并行编程模式，将任务分不到上千台集群节点"><a href="#5-分布式计算框架MapReduce-并行编程模式，将任务分不到上千台集群节点" class="headerlink" title="5.分布式计算框架MapReduce(并行编程模式，将任务分不到上千台集群节点)"></a>5.分布式计算框架MapReduce(并行编程模式，将任务分不到上千台集群节点)</h4><p>采用“分而治之”的思想，把大规模数据集拆分吗，并行计算<br>多个子任务汇总。主要靠：<br>Map:把任务分解成多个任务。<br>Reduce:把分解后的多任务处理的结果汇总。<br>MapReduce编程模型<br>·input<br>·map&amp;reduce<br>·output<br>距离词频统计WordCount：<br><img src="/uploads/hadoop/hadoop03.png" alt="avatar"><br>Input–&gt;             //输入数据<br>Splitting–&gt;         //分割数据，每行一块，按空格分割单词<br>Mapping–&gt;             //每块每个单词处理下出现的次数<br>Shuffling–&gt;         //相同单词分一起，每个单词出现一次<br>Reducing–&gt;             //每个单词的次数求和<br>Final Result–&gt;         //结果汇总<br>MapReduce体系结构：<br><img src="/uploads/hadoop/hadoop04.png" alt="avatar"><br>Client:用户编写的MR程序通过Client提交到JobTracker端。<br>Job Tracker：负责资源调度作业，监控所有TaskTrack和Job的健康状况。失败则转移到其他节点。跟踪任务的执行进度，资源使用，把这些信息高速TaskTracker(任务调度器)，调度何时选择task执行。<br>TraskTracker:周期通过“心跳”（主从节点的通信时间间隔）,向Job Tracker汇报任务进度，资源使用，同时接收Job Tracker的命令。如启动新Task，杀旧Task。<br><strong>从节点仅负责由主节点指派的任务。</strong><br>Task:Map Task,Rduce均由TrackTracker启动。<br><strong>MR特点：</strong><br>易于编程<br>良好的扩展性<br>高容错性<br>海量数据的离线处理<br><strong>MR不擅长：</strong><br>实时计算<br>流式计算<br>DAG计算</p>
-<h4 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h4><p><img src="/uploads/hadoop/hadoop05.png" alt="avatar"></p>
+        <p>&emsp;&emsp;Apache Flink 是一个面向分布式数据流处理和批量数据处理的开源计算平台，它能够基于同一个 Flink 运行时（Flink Runtime），提供支持流处理和批处理两种类型应用的功能。<br><a id="more"></a></p>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>&emsp;&emsp;现有开源计算方案中，会把流处理和批处理作为两种不同的应用类型：流处理一般需要支持低延迟、Exactly-once保证，而批处理需要支持高吞吐、高效处理。实现批处理的开源方案有 MapReduce、Tez、Crunch、Spark，实现流处理的开源方案有 Samza、Storm。 Flink 将二者统一起来：Flink 是完全支持流处理，也就是说作为流处理看待时输入数据流是无界的；批处理被作为一种特殊的流处理，只是它的输入数据流被定义为有界的。基于同一个Flink运行时（Flink Runtime），分别提供了流处理和批处理API，而这两种API也是实现上层面向流处理、批处理类型应用框架的基础。<br>&emsp;&emsp;Flink 是一款新的大数据处理引擎，目标是统一不同来源的数据处理。这个目标看起来和 Spark 和类似。这两套系统都在尝试建立一个统一的平台可以运行批量，流式，交互式，图处理，机器学习等应用。所以，Flink 和 Spark 的目标差异并不大，他们最主要的区别在于实现的细节。<br>&emsp;&emsp;Flink 技术栈如下。<br><img src="/uploads/flink/flink01.png" alt="avatar"></p>
+<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><p>&emsp;&emsp;了解 Flink 的作用和优缺点，与 Spark 来对比阐述。从抽象层，内存管理，语言实现，以及 API 和 SQL 等方面来描述。</p>
+<h4 id="抽象层"><a href="#抽象层" class="headerlink" title="抽象层"></a>抽象层</h4><p>&emsp;&emsp;Spark 批处理任务，可以使用 RDD，而对于流处理，可以使用 Streaming（RDD，实质批处理）。<br>&emsp;&emsp;Flink 批处理用 DataSet，对于流处理，有 DataStreams。<br>&emsp;&emsp;DataSet 和 DataStream 是相对独立的 API，在 Spark 中，所有不同的 API，比如 Streaming，DataFrame 都是基于 RDD 抽象的。然而在 Flink 中，DataSet 和 DataStream 是同一个公用引擎之上的两个独立的抽象。</p>
+<h4 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h4><p>&emsp;&emsp;Spark 延用 Java 的内存管理来做数据缓存，这样很容易导致 OOM 或者 GC。之后，Spark 开始转向另外更加友好和精准的控制内存，即：Tungsten 项目。<br>&emsp;&emsp;Flink 从一开始就坚持使用自己控制内存。Flink 除把数据存在自己管理的内存之外，还直接操作二进制数据。在 Spark 1.5之后的版本开始，所有的 DataFrame 操作都是直接作用于 Tungsten 的二进制数据上。</p>
+<h4 id="语言实现"><a href="#语言实现" class="headerlink" title="语言实现"></a>语言实现</h4><p>&emsp;&emsp;Spark 使用 Scala 来实现的，它提供了 Java，Python 以及 R 语言的编程接口。而对于 Flink 来说，它是使用 Java 实现的，提供 Scala 编程 API。从编程语言的角度来看，Spark 略显丰富一些。</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>&emsp;&emsp;对于 Streaming，Spark 把它看成更快的批处理，而 Flink 把批处理看成 Streaming 的特殊例子，差异如下：其一，在实时计算问题上，Flink 提供了基于每个事件的流式处理机制，所以它可以被认为是一个真正意义上的流式计算，类似于 Storm 的计算模型。对于 Spark 来说，不是基于事件粒度的，而是用小批量来模拟流式，也就是多个事件的集合。所以，Spark 被认为是一个接近实时的处理系统。虽然，大部分应用实时是可以接受的，但对于很多应用需要基于事件级别的流式计算。因而，会选择 Storm 而不是 Spark Streaming，现在，Flink 也许是一个不错的选择。</p>
+<h4 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h4><p>&emsp;&emsp;Spark SQL 是其组件中较为活跃的一部分，它提供了类似于 Hive SQL 来查询结构化数据，API 依然很成熟。对于 Flink 来说，截至到目前 1.0 版本，只支持 Flink Table API，官方在 Flink 1.1 版本中会添加 SQL 的接口支持。</p>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul>
+<li>高吞吐 &amp; 低延时</li>
+<li>支持 Event Time &amp; 乱序事件</li>
+<li>状态计算的 Exactly-Once 语义</li>
+<li>高度灵活的流式窗口</li>
+<li>带反压的连续流模型</li>
+<li>容错性</li>
+<li>流处理和批处理共用一个引擎</li>
+<li>内存管理</li>
+<li>迭代 &amp; 增量迭代</li>
+<li>程序调优</li>
+<li>流处理应用</li>
+<li>批处理应用</li>
+<li>类库生态</li>
+<li>广泛集成</li>
+</ul>
+<h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><p><img src="/uploads/flink/flink02.png" alt="avatar"></p>
+<ul>
+<li>相比于storm ，spark和flink两个都支持窗口和算子，减少了不少的编程时间</li>
+<li>flink相比于storm和spark，flink支持乱序和延迟时间（在实际场景中，这个功能很牛逼），个人觉得就这个功能就可以锤爆spark</li>
+<li>对于spark而言他的优势就是机器学习，如果我们的场景中对实时要求不高可以考虑spark，但是如果是要求很高就考虑使用flink，比如对用户异常消费进行监控，如果这个场景使用spark的话那么等到系统发现开始预警的时候（0.5s），罪犯已经完成了交易，可想而知在某些场景下flink的实时有多重要。</li>
+</ul>
 
       
     </div>
@@ -471,8 +488,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/29/fenqu/" rel="next" title="Hive分区与实例">
-                <i class="fa fa-chevron-left"></i> Hive分区与实例
+              <a href="/2019/10/20/threadpool/" rel="next" title="线程池">
+                <i class="fa fa-chevron-left"></i> 线程池
               </a>
             
           </div>
@@ -480,10 +497,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/04/hive/" rel="prev" title="Hive">
-                Hive <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -646,7 +659,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Hadoop模块"><span class="nav-number">2.</span> <span class="nav-text">2.Hadoop模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hadoop-Common"><span class="nav-number">2.1.</span> <span class="nav-text">Hadoop Common:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Hadoop-HDFS-Hadoop-Distributed-File-System"><span class="nav-number">2.2.</span> <span class="nav-text">Hadoop HDFS(Hadoop Distributed File System):</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#YARN"><span class="nav-number">2.3.</span> <span class="nav-text">YARN:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce"><span class="nav-number">2.4.</span> <span class="nav-text">MapReduce:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#核心：HDFS-MapReduce"><span class="nav-number">2.5.</span> <span class="nav-text">核心：HDFS,MapReduce</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-HDFS架构"><span class="nav-number">3.</span> <span class="nav-text">3.HDFS架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-HDFS副本机制"><span class="nav-number">4.</span> <span class="nav-text">4.HDFS副本机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-分布式计算框架MapReduce-并行编程模式，将任务分不到上千台集群节点"><span class="nav-number">5.</span> <span class="nav-text">5.分布式计算框架MapReduce(并行编程模式，将任务分不到上千台集群节点)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件格式"><span class="nav-number">6.</span> <span class="nav-text">文件格式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较"><span class="nav-number">2.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象层"><span class="nav-number">3.</span> <span class="nav-text">抽象层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存管理"><span class="nav-number">4.</span> <span class="nav-text">内存管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语言实现"><span class="nav-number">5.</span> <span class="nav-text">语言实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API"><span class="nav-number">6.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL"><span class="nav-number">7.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特性"><span class="nav-number">8.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-number">9.</span> <span class="nav-text">对比</span></a></li></ol></div>
             
 
           </div>

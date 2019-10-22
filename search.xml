@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Flink]]></title>
+    <url>%2F2019%2F10%2F22%2Fflink%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;Apache Flink 是一个面向分布式数据流处理和批量数据处理的开源计算平台，它能够基于同一个 Flink 运行时（Flink Runtime），提供支持流处理和批处理两种类型应用的功能。 概述&emsp;&emsp;现有开源计算方案中，会把流处理和批处理作为两种不同的应用类型：流处理一般需要支持低延迟、Exactly-once保证，而批处理需要支持高吞吐、高效处理。实现批处理的开源方案有 MapReduce、Tez、Crunch、Spark，实现流处理的开源方案有 Samza、Storm。 Flink 将二者统一起来：Flink 是完全支持流处理，也就是说作为流处理看待时输入数据流是无界的；批处理被作为一种特殊的流处理，只是它的输入数据流被定义为有界的。基于同一个Flink运行时（Flink Runtime），分别提供了流处理和批处理API，而这两种API也是实现上层面向流处理、批处理类型应用框架的基础。&emsp;&emsp;Flink 是一款新的大数据处理引擎，目标是统一不同来源的数据处理。这个目标看起来和 Spark 和类似。这两套系统都在尝试建立一个统一的平台可以运行批量，流式，交互式，图处理，机器学习等应用。所以，Flink 和 Spark 的目标差异并不大，他们最主要的区别在于实现的细节。&emsp;&emsp;Flink 技术栈如下。 比较&emsp;&emsp;了解 Flink 的作用和优缺点，与 Spark 来对比阐述。从抽象层，内存管理，语言实现，以及 API 和 SQL 等方面来描述。 抽象层&emsp;&emsp;Spark 批处理任务，可以使用 RDD，而对于流处理，可以使用 Streaming（RDD，实质批处理）。&emsp;&emsp;Flink 批处理用 DataSet，对于流处理，有 DataStreams。&emsp;&emsp;DataSet 和 DataStream 是相对独立的 API，在 Spark 中，所有不同的 API，比如 Streaming，DataFrame 都是基于 RDD 抽象的。然而在 Flink 中，DataSet 和 DataStream 是同一个公用引擎之上的两个独立的抽象。 内存管理&emsp;&emsp;Spark 延用 Java 的内存管理来做数据缓存，这样很容易导致 OOM 或者 GC。之后，Spark 开始转向另外更加友好和精准的控制内存，即：Tungsten 项目。&emsp;&emsp;Flink 从一开始就坚持使用自己控制内存。Flink 除把数据存在自己管理的内存之外，还直接操作二进制数据。在 Spark 1.5之后的版本开始，所有的 DataFrame 操作都是直接作用于 Tungsten 的二进制数据上。 语言实现&emsp;&emsp;Spark 使用 Scala 来实现的，它提供了 Java，Python 以及 R 语言的编程接口。而对于 Flink 来说，它是使用 Java 实现的，提供 Scala 编程 API。从编程语言的角度来看，Spark 略显丰富一些。 API&emsp;&emsp;对于 Streaming，Spark 把它看成更快的批处理，而 Flink 把批处理看成 Streaming 的特殊例子，差异如下：其一，在实时计算问题上，Flink 提供了基于每个事件的流式处理机制，所以它可以被认为是一个真正意义上的流式计算，类似于 Storm 的计算模型。对于 Spark 来说，不是基于事件粒度的，而是用小批量来模拟流式，也就是多个事件的集合。所以，Spark 被认为是一个接近实时的处理系统。虽然，大部分应用实时是可以接受的，但对于很多应用需要基于事件级别的流式计算。因而，会选择 Storm 而不是 Spark Streaming，现在，Flink 也许是一个不错的选择。 SQL&emsp;&emsp;Spark SQL 是其组件中较为活跃的一部分，它提供了类似于 Hive SQL 来查询结构化数据，API 依然很成熟。对于 Flink 来说，截至到目前 1.0 版本，只支持 Flink Table API，官方在 Flink 1.1 版本中会添加 SQL 的接口支持。 特性 高吞吐 &amp; 低延时 支持 Event Time &amp; 乱序事件 状态计算的 Exactly-Once 语义 高度灵活的流式窗口 带反压的连续流模型 容错性 流处理和批处理共用一个引擎 内存管理 迭代 &amp; 增量迭代 程序调优 流处理应用 批处理应用 类库生态 广泛集成 对比 相比于storm ，spark和flink两个都支持窗口和算子，减少了不少的编程时间 flink相比于storm和spark，flink支持乱序和延迟时间（在实际场景中，这个功能很牛逼），个人觉得就这个功能就可以锤爆spark 对于spark而言他的优势就是机器学习，如果我们的场景中对实时要求不高可以考虑spark，但是如果是要求很高就考虑使用flink，比如对用户异常消费进行监控，如果这个场景使用spark的话那么等到系统发现开始预警的时候（0.5s），罪犯已经完成了交易，可想而知在某些场景下flink的实时有多重要。]]></content>
+      <categories>
+        <category>大数据</category>
+      </categories>
+      <tags>
+        <tag>大数据</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[线程池]]></title>
     <url>%2F2019%2F10%2F20%2Fthreadpool%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;线程池是一种多线程处理形式，处理过程中将任务添加到队列，然后在创建线程后自动启动这些任务。 概念：&emsp;&emsp;线程池就是首先创建一些线程，它们的集合称为线程池。使用线程池可以很好地提高性能，线程池在系统启动时即创建大量空闲的线程，程序将一个任务传给线程池，线程池就会启动一条线程来执行这个任务，执行结束以后，该线程并不会死亡，而是再次返回线程池中成为空闲状态，等待执行下一个任务。 工作机制&emsp;&emsp;1.在线程池的编程模式下，任务是提交给整个线程池，而不是直接提交给某个线程，线程池在拿到任务后，就在内部寻找是否有空闲的线程，如果有，则将任务交给某个空闲的线程。&emsp;&emsp;2.一个线程同时只能执行一个任务，但可以同时向一个线程池提交多个任务。 原因&emsp;&emsp;1.多线程运行时，系统不断的启动和关闭新线程，成本高，过渡消耗资源。&emsp;&emsp;2.过渡切换线程的危险，导致系统资源的崩溃。&emsp;&emsp;3.缺乏统一管理，缺乏更多功能，如定时执行等。 创建&emsp;&emsp;Executors提供了四种方法来创建线程池。 newFixedThreadPool():创建固定大小的线程池。 newCachedThreadPool():创建无限大小的线程池，线程池中线程数量不固定，可根据需求自动更改。 newSingleThreadPool():创建单个线程池，线程池中只有一个线程。 newScheduledThreadPool()创建固定大小的线程池，可以延迟或定时的执行任务。]]></content>
