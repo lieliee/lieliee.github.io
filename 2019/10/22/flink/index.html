@@ -87,7 +87,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/uploads/flink/flink01.png">
 <meta property="og:image" content="http://yoursite.com/uploads/flink/flink02.png">
-<meta property="og:updated_time" content="2019-10-22T12:16:18.766Z">
+<meta property="og:updated_time" content="2019-10-22T12:56:12.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;Apache Flink 是一个面向分布式数据流处理和批量数据处理的开源计算平台，它能够基于同一个 Flink 运行时（Flink Runtime），提供支持流处理和批处理两种类型应用的功能。">
@@ -458,7 +458,10 @@
 <li>flink相比于storm和spark，flink支持乱序和延迟时间（在实际场景中，这个功能很牛逼），个人觉得就这个功能就可以锤爆spark</li>
 <li>对于spark而言他的优势就是机器学习，如果我们的场景中对实时要求不高可以考虑spark，但是如果是要求很高就考虑使用flink，比如对用户异常消费进行监控，如果这个场景使用spark的话那么等到系统发现开始预警的时候（0.5s），罪犯已经完成了交易，可想而知在某些场景下flink的实时有多重要。</li>
 </ul>
-
+<h4 id="分布式系统评价"><a href="#分布式系统评价" class="headerlink" title="分布式系统评价"></a>分布式系统评价</h4><p>&emsp;&emsp;At Most once,At Least once和Exactly once<br>&emsp;&emsp;在分布式系统中，组成系统的各个计算机是独立的。这些计算机有可能fail。<br>&emsp;&emsp;一个sender发送一条message到receiver。根据receiver出现fail时sender如何处理fail，可以将message delivery分为三种语义:</p>
+<h5 id="At-Most-once-对于一条message-receiver最多收到一次-0次或1次"><a href="#At-Most-once-对于一条message-receiver最多收到一次-0次或1次" class="headerlink" title="At Most once: 对于一条message,receiver最多收到一次(0次或1次)."></a>At Most once: 对于一条message,receiver最多收到一次(0次或1次).</h5><p>&emsp;&emsp;可以达成At Most Once的策略:<br>&emsp;&emsp;sender把message发送给receiver.无论receiver是否收到message,sender都不再重发message.</p>
+<h5 id="At-Least-once-对于一条message-receiver最少收到一次-1次及以上"><a href="#At-Least-once-对于一条message-receiver最少收到一次-1次及以上" class="headerlink" title="At Least once: 对于一条message,receiver最少收到一次(1次及以上)."></a>At Least once: 对于一条message,receiver最少收到一次(1次及以上).</h5><p>&emsp;&emsp;可以达成At Least Once的策略:<br>&emsp;&emsp;sender把message发送给receiver.当receiver在规定时间内没有回复ACK或回复了error信息,那么sender重发这条message给receiver,直到sender收到receiver的ACK.</p>
+<h5 id="Exactly-once-对于一条message-receiver确保只收到一次"><a href="#Exactly-once-对于一条message-receiver确保只收到一次" class="headerlink" title="Exactly once: 对于一条message,receiver确保只收到一次"></a>Exactly once: 对于一条message,receiver确保只收到一次</h5>
       
     </div>
     
@@ -659,7 +662,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较"><span class="nav-number">2.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象层"><span class="nav-number">3.</span> <span class="nav-text">抽象层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存管理"><span class="nav-number">4.</span> <span class="nav-text">内存管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语言实现"><span class="nav-number">5.</span> <span class="nav-text">语言实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API"><span class="nav-number">6.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL"><span class="nav-number">7.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特性"><span class="nav-number">8.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-number">9.</span> <span class="nav-text">对比</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较"><span class="nav-number">2.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象层"><span class="nav-number">3.</span> <span class="nav-text">抽象层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存管理"><span class="nav-number">4.</span> <span class="nav-text">内存管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语言实现"><span class="nav-number">5.</span> <span class="nav-text">语言实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API"><span class="nav-number">6.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL"><span class="nav-number">7.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特性"><span class="nav-number">8.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-number">9.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式系统评价"><span class="nav-number">10.</span> <span class="nav-text">分布式系统评价</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#At-Most-once-对于一条message-receiver最多收到一次-0次或1次"><span class="nav-number">10.1.</span> <span class="nav-text">At Most once: 对于一条message,receiver最多收到一次(0次或1次).</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#At-Least-once-对于一条message-receiver最少收到一次-1次及以上"><span class="nav-number">10.2.</span> <span class="nav-text">At Least once: 对于一条message,receiver最少收到一次(1次及以上).</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Exactly-once-对于一条message-receiver确保只收到一次"><span class="nav-number">10.3.</span> <span class="nav-text">Exactly once: 对于一条message,receiver确保只收到一次</span></a></li></ol></li></ol></div>
             
 
           </div>
